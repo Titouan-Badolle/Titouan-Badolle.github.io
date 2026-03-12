@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-Portfolio – Titouan Badolle</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#accueil" class="nav-logo">&lt;Portfolio /&gt;</a>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#accueil"     class="nav-link">Accueil</a></li>
+        <li><a href="#about"       class="nav-link">À propos</a></li>
+        <li><a href="#competences" class="nav-link">Compétences</a></li>
+        <li><a href="#preuves"     class="nav-link">Preuves</a></li>
+        <li><a href="#reflexion"   class="nav-link">Réflexion</a></li>
+        <li><a href="#contact"     class="nav-link">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section id="accueil" class="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-content">
+      <p class="hero-greeting">Bienvenue sur mon</p>
+      <h1 class="hero-title">E-Portfolio</h1>
+      <h2 class="hero-subtitle">
+        <span id="typing-text"></span><span class="cursor-blink">|</span>
+      </h2>
+      <p class="hero-desc">
+        <strong>Titouan Badolle</strong> — Étudiant en <strong>BUT Réseaux &amp; Télécommunications</strong> – Parcours Cybersécurité<br />
+        Ce portfolio témoigne de mes apprentissages, compétences et projets acquis lors de la 2ème année de formation.
+      </p>
+      <div class="hero-btns">
+        <a href="#preuves"  class="btn btn-primary"><i class="fas fa-folder-open"></i> Voir mes preuves</a>
+        <a href="#contact"  class="btn btn-outline"><i class="fas fa-envelope"></i> Me contacter</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num" data-count="5">0</span><span class="stat-lbl">SAÉ réalisées</span></div>
+        <div class="stat"><span class="stat-num" data-count="5">0</span><span class="stat-lbl">Compétences</span></div>
+        <div class="stat"><span class="stat-num" data-count="2">0</span><span class="stat-lbl">Ans de formation</span></div>
+      </div>
+    </div>
+    <a class="hero-scroll" href="#about"><i class="fas fa-chevron-down"></i></a>
+  </section>
+
+  <!-- ===================== À PROPOS ===================== -->
+  <section id="about" class="section about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-photo">
+          <div class="photo-frame">
+            <div class="photo-placeholder"><img src="image/Profile.jpg" alt="Titouan Badolle" /></div>
+          </div>
+        </div>
+        <div class="about-text">
+          <span class="section-tag">À propos</span>
+          <h2 class="section-title">Qui suis-je ?</h2>
+          <p>
+            Je suis <strong>Titouan Badolle</strong>, étudiant en 2ème année de BUT Réseaux &amp; Télécommunications,
+            parcours Cybersécurité, à l'<strong>IUT de Roanne</strong>. Passionné par les réseaux, la sécurité
+            informatique et les nouvelles technologies, je développe mes compétences à travers des projets concrets
+            et des mises en situation professionnelle – de l'IoT LoRaWAN au pentesting.
+          </p>
+          <p>
+            Ce portfolio rassemble mes travaux, mes analyses réflexives et les preuves de l'acquisition
+            de mes compétences tout au long de cette formation (Semestres 3 &amp; 4).
+          </p>
+          <div class="info-grid">
+            <div class="info-item"><i class="fas fa-graduation-cap"></i> BUT RT – Cybersécurité</div>
+            <div class="info-item"><i class="fas fa-university"></i> IUT de Roanne, Loire (42)</div>
+            <div class="info-item"><i class="fas fa-calendar-alt"></i> 2024 – 2026</div>
+            <div class="info-item"><i class="fas fa-map-marker-alt"></i> Roanne, Auvergne-Rhône-Alpes</div>
+          </div>
+          <a href="CV%20-%20Titouan%20Badolle.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fas fa-download"></i> Télécharger mon CV</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== COMPÉTENCES ===================== -->
+  <section id="competences" class="section competences">
+    <div class="container">
+      <span class="section-tag">Référentiel</span>
+      <h2 class="section-title centered">Mes Compétences</h2>
+      <p class="section-desc">
+        Mon parcours est structuré autour de 5 blocs de compétences définis par le référentiel
+        du BUT RT – Parcours Cybersécurité.
+      </p>
+
+      <div class="comp-grid">
+
+        <div class="comp-card" data-aos>
+          <div class="comp-head">
+            <div class="comp-icon"><i class="fas fa-network-wired"></i></div>
+            <span class="comp-badge">CCA</span>
+          </div>
+          <h3>Administrer les réseaux</h3>
+          <p>Configurer et maintenir des équipements réseau, assurer leur performance et disponibilité.</p>
+          <div class="comp-tags"><span>Cisco IOS</span><span>VLAN</span><span>OSPF</span><span>STP</span></div>
+          <div class="progress-wrap"><div class="progress-bar" data-p="75"></div></div>
+        </div>
+
+        <div class="comp-card" data-aos>
+          <div class="comp-head">
+            <div class="comp-icon"><i class="fas fa-globe"></i></div>
+            <span class="comp-badge">CCB</span>
+          </div>
+          <h3>Connecter les entreprises</h3>
+          <p>Concevoir et déployer des solutions de connectivité WAN pour relier sites et utilisateurs.</p>
+          <div class="comp-tags"><span>VPN</span><span>BGP</span><span>WAN</span><span>QoS</span></div>
+          <div class="progress-wrap"><div class="progress-bar" data-p="70"></div></div>
+        </div>
+
+        <div class="comp-card" data-aos>
+          <div class="comp-head">
+            <div class="comp-icon"><i class="fas fa-code"></i></div>
+            <span class="comp-badge">CCC</span>
+          </div>
+          <h3>Créer des applications</h3>
+          <p>Développer des outils et applications adaptés aux besoins du réseau et des utilisateurs.</p>
+          <div class="comp-tags"><span>Python</span><span>API REST</span><span>Socket</span><span>Git</span></div>
+          <div class="progress-wrap"><div class="progress-bar" data-p="65"></div></div>
+        </div>
+
+        <div class="comp-card cyber" data-aos>
+          <div class="comp-head">
+            <div class="comp-icon"><i class="fas fa-shield-halved"></i></div>
+            <span class="comp-badge cyber-badge">CyberA</span>
+          </div>
+          <h3>Sécuriser les réseaux</h3>
+          <p>Concevoir des architectures sécurisées avec pare-feux, VPN, PKI et contrôle d'accès.</p>
+          <div class="comp-tags"><span>Firewall</span><span>IPSec</span><span>PKI</span><span>DMZ</span></div>
+          <div class="progress-wrap"><div class="progress-bar" data-p="80"></div></div>
+        </div>
+
+        <div class="comp-card cyber" data-aos>
+          <div class="comp-head">
+            <div class="comp-icon"><i class="fas fa-bug"></i></div>
+            <span class="comp-badge cyber-badge">CyberB</span>
+          </div>
+          <h3>Analyser les menaces</h3>
+          <p>Évaluer la sécurité par des audits et tests d'intrusion pour identifier les vulnérabilités.</p>
+          <div class="comp-tags"><span>Kali Linux</span><span>Nmap</span><span>Metasploit</span><span>OSINT</span></div>
+          <div class="progress-wrap"><div class="progress-bar" data-p="72"></div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PREUVES / SAÉ ===================== -->
+  <section id="preuves" class="section preuves">
+    <div class="container">
+      <span class="section-tag">Travaux</span>
+      <h2 class="section-title centered">Preuves de Compétences</h2>
+      <p class="section-desc">
+        Chaque SAÉ constitue une preuve concrète de l'acquisition de mes compétences,
+        documentée selon le cadre : contexte · savoirs · tâches · visuels · problèmes.
+      </p>
+
+      <div class="tab-nav" role="tablist">
+        <button class="tab-btn active" data-tab="sae301"    role="tab" aria-selected="true">
+          <span class="tab-num">SAÉ 3.01</span><span class="tab-name">Transmission</span>
+        </button>
+        <button class="tab-btn"        data-tab="sae302"    role="tab">
+          <span class="tab-num">SAÉ 3.02</span><span class="tab-name">Applications</span>
+        </button>
+        <button class="tab-btn"        data-tab="cyber03"   role="tab">
+          <span class="tab-num">Cyber.03</span><span class="tab-name">Réseau sécurisé</span>
+        </button>
+        <button class="tab-btn"        data-tab="cyber04"   role="tab">
+          <span class="tab-num">Cyber.04</span><span class="tab-name">Pentesting</span>
+        </button>
+        <button class="tab-btn"        data-tab="stage"     role="tab">
+          <span class="tab-num">S4</span><span class="tab-name">SAÉ4 – Cyber</span>
+        </button>
+      </div>
+
+      <div class="tab-body">
+
+        <!-- ---- SAÉ 3.01 ---- -->
+        <div class="tab-pane active" id="tab-sae301" role="tabpanel">
+          <div class="sae-header">
+            <div><h3>SAÉ 3.01 – Infrastructure IoT LoRaWAN</h3>
+              <div class="sae-tags"><span class="tag-c">CCA</span><span class="tag-c">CCB</span><span class="tag-s">Semestre 3</span></div>
+              <div class="ac-tags">
+                <span class="tag-ac" title="Déployer des postes clients et des solutions virtualisées">AC21.03</span>
+                <span class="tag-ac" title="Déployer des services réseaux avancés">AC21.04</span>
+                <span class="tag-ac" title="Travailler en équipe pour développer ses compétences professionnelles">AC21.06</span>
+                <span class="tag-ac" title="Déployer et caractériser des systèmes de transmissions complexes">AC22.01</span>
+                <span class="tag-ac" title="Capacité à questionner un cahier des charges R&amp;T">AC22.05</span>
+                <span class="tag-ac" title="Développer une application à partir d'un cahier des charges, pour le Web ou périphériques mobiles">AC23.02</span>
+                <span class="tag-ac" title="Utiliser un protocole réseau pour programmer une application client/serveur">AC23.03</span>
+              </div>
+            </div>
+            <div class="sae-icon"><i class="fas fa-broadcast-tower"></i></div>
+          </div>
+          <div class="proof-grid">
+
+            <div class="proof-card">
+              <div class="proof-head"><i class="fas fa-map-marker-alt"></i><h4>Contexte</h4></div>
+              <p>Réalisé en binôme avec <strong>Abel Raquin</strong>, l'objectif de cette SAÉ était de concevoir
+              et déployer une <strong>infrastructure IoT LoRaWAN complète</strong> pour le suivi GPS en temps réel de
+              balises lors d'une course d'orientation dans la forêt autour de Roanne. Le défi principal était la
+              transmission fiable de coordonnées GPS toutes les 10 secondes dans un environnement forestier dense,
+              contraignant l'utilisation du <em>Data Rate 0 ("Mode Forêt")</em> pour maximiser la portée.</p>
+            </div>
+
+            <div class="proof-card">
+              <div class="proof-head"><i class="fas fa-brain"></i><h4>Savoirs mobilisés</h4></div>
+              <div class="savoirs">
+                <div class="savoir-item"><span class="stag">Savoir</span><p>Protocole LoRaWAN (OTAA, DR0, EU868), architecture IoT (capteur → gateway → serveur → dashboard), cryptographie symétrique (AppKey AES-128), modèle OSI couches physique et réseau, Docker et VPS Linux.</p></div>
+                <div class="savoir-item"><span class="stag">Savoir-faire</span><p>Programmation Arduino (C++) pour SeeedStudio, débogage matériel (correction de bugs de pilotage Pin 38/Serial2), déploiement ChirpStack v4 via Docker Compose (Mosquitto, PostgreSQL, Redis) sur Digital Ocean, écriture d'un payload decoder JavaScript.</p></div>
+                <div class="savoir-item"><span class="stag">Savoir-être</span><p>Travail en binôme, répartition des tâches (développement embarqué / infrastructure serveur), rigueur dans la documentation technique, gestion du temps sur un projet en deux phases distinctes.</p></div>
+              </div>
+            </div>
+
+            <div class="proof-card">
+              <div class="proof-head"><i class="fas fa-tasks"></i><h4>Tâches réalisées &amp; Résultats</h4></div>
+              <ul class="task-list">
+                <li><i class="fas fa-check-circle"></i> <strong>Phase 1 – POC sur TTN :</strong> code Arduino validé (OTAA, fix GPS, envoi encodé), visualisation sur Datacake avec décodeur JS (÷ 1 000 000).</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Phase 2 – Infrastructure privée :</strong> VPS Digital Ocean, stack ChirpStack v4 sous Docker Compose, reconfiguration passerelle Dragino LPS8N.</li>
+                <li><i class="fas fa-check-circle"></i> Enregistrement du Device (DevEUI <code>8CF9572000065F6A</code>) avec mode OTAA et validation de la séquence JoinRequest/JoinAccept dans l'onglet Events ChirpStack.</li>
+                <li><i class="fas fa-check-circle"></i> Test réel en extérieur : déplacement GPS visible en temps réel sur le dashboard Datacake (vidéo de démonstration produite).</li>
+              </ul>
+            </div>
+
+            <div class="proof-card visuals-card">
+              <div class="proof-head"><i class="fas fa-images"></i><h4>Visuels / Captures d'écran</h4></div>
+              <div class="visuals-grid">
+                <div class="visual-ph visual-real"><img src="image/datacake-map.png" alt="Dashboard Datacake – Carte GPS temps réel" /><span class="visual-caption">Dashboard Datacake<br/><small>Carte GPS temps réel</small></span></div>
+                <div class="visual-ph"><i class="fas fa-server"></i><p>ChirpStack<br/><small>Events OTAA JoinAccept</small></p></div>
+                <div class="visual-ph"><i class="fas fa-microchip"></i><p>SeeedStudio<br/><small>Module LoRaWAN + GPS</small></p></div>
+                <div class="visual-ph"><i class="fab fa-docker"></i><p>Docker Compose<br/><small>Stack ChirpStack v4</small></p></div>
+              </div>
+            </div>
+
+            <div class="proof-card">
+              <div class="proof-head"><i class="fas fa-exclamation-triangle"></i><h4>Problèmes &amp; Solutions</h4></div>
+              <div class="pb-list">
+                <div class="pb-item">
+                  <p class="pb-label"><i class="fas fa-times-circle"></i> Problème #1 – Crash matériel de la carte</p>
+                  <p>L'activation de la <strong>Pin 50</strong> selon la documentation officielle SeeedStudio provoquait un plantage immédiat de la carte.</p>
+                  <p class="sol-label"><i class="fas fa-lightbulb"></i> Solution</p>
+                  <p>Après analyse du schéma électrique, nous avons piloté uniquement la <strong>Pin 38</strong> pour l'alimentation GPS et utilisé <strong>Serial2</strong> pour la communication, contournant le bug matériel.</p>
+                </div>
+                <div class="pb-item">
+                  <p class="pb-label"><i class="fas fa-times-circle"></i> Problème #2 – Migration vers le serveur privé</p>
+                  <p>Les données reçues par ChirpStack étaient encodées (octets bruts) et illisibles directement dans Datacake.</p>
+                  <p class="sol-label"><i class="fas fa-lightbulb"></i> Solution</p>
+                  <p>Rédaction d'un <strong>payload decoder JavaScript</strong> divisant les octets par 1 000 000 pour retrouver les coordonnées float (latitude/longitude) et création d'un champ <em>Geopoint</em> dans Datacake.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ---- SAÉ 3.02 ---- -->
+        <div class="tab-pane" id="tab-sae302" role="tabpanel">
+          <div class="sae-header">
+            <div><h3>SAÉ 3.02 – Application Android Client/Serveur</h3>
+              <div class="sae-tags"><span class="tag-c">CCC</span><span class="tag-s">Semestre 3</span></div>
+              <div class="ac-tags">
+                <span class="tag-ac" title="Travailler en équipe pour développer ses compétences professionnelles">AC21.06</span>
+                <span class="tag-ac" title="Capacité à questionner un cahier des charges R&amp;T">AC22.05</span>
+                <span class="tag-ac" title="Développer une application à partir d'un cahier des charges, pour le Web ou périphériques mobiles">AC23.02</span>
+                <span class="tag-ac" title="Utiliser un protocole réseau pour programmer une application client/serveur">AC23.03</span>
+                <span class="tag-ac tag-ac-cyber" title="Connaître et utiliser les bonnes pratiques et recommandations de cybersécurité">AC24.01Cyber</span>
+                <span class="tag-ac tag-ac-cyber" title="Sécuriser les services">AC24.03Cyber</span>
+              </div>
+            </div>
+            <div class="sae-icon"><i class="fas fa-code"></i></div>
+          </div>
+          <div class="proof-grid">
+
+            <div class="proof-card">
+              <div class="proof-head"><i class="fas fa-map-marker-alt"></i><h4>Contexte</h4></div>
+              <p>Projet individuel consistant à concevoir une <strong>application Android complète</strong> implémentant
+              une architecture Client/Serveur. Les contraintes techniques imposées étaient fortes :
+              gestion des protocoles <strong>TCP et UDP</strong>, <strong>multithreading</strong> pour gérer plusieurs
+              clients simultanément, sérialisation Java des données et mise en place d'un système de
+              <strong>contrôle d'accès basé sur les rôles (RBAC)</strong> avec authentification sécurisée. Développé sous
+              Android Studio (Java).</p>
+            </div>
+
+            <div class="proof-card">
+              <div class="proof-head"><i class="fas fa-brain"></i><h4>Savoirs mobilisés</h4></div>
+              <div class="savoirs">
+                <div class="savoir-item"><span class="stag">Savoir</span><p>Architecture Client/Serveur, protocoles TCP (fiable) vs UDP (rapide), sérialisation Java (<code>Serializable</code>), gestion du cycle de vie des <code>Activity</code> Android, sécurité RBAC.</p></div>
+                <div class="savoir-item"><span class="stag">Savoir-faire</span><p>Développement Android (Java) sous Android Studio, sockets TCP/UDP, <code>ObjectOutputStream</code>/<code>ObjectInputStream</code>, <code>Thread</code> séparés pour les opérations réseau, passage de données entre <code>Activity</code> par <code>Intent</code>.</p></div>
+                <div class="savoir-item"><span class="stag">Savoir-être</span><p>Rigueur dans les tests (émulateur + téléphone réel), documentation du code, respect des contraintes Android (interdiction opérations réseau sur le thread principal).</p></div>
+              </div>
+            </div>
+
+            <div class="proof-card">
+              <div class="proof-head"><i class="fas fa-tasks"></i><h4>Tâches réalisées &amp; Résultats</h4></div>
+              <ul class="task-list">
+                <li><i class="fas fa-check-circle"></i> <strong>LoginActivity :</strong> authentification sécurisée avec gestion des rôles (Admin / Étudiant) — accès refusé avec message Toast en cas d'identifiant incorrect.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>ServerActivity :</strong> serveur hybride TCP+UDP sur port 8080 avec threads dédiés par client, logs en temps réel.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>RBAC :</strong> le bouton "Panneau Admin (Serveur)" est masqué (<code>View.GONE</code>) pour les étudiants, empêchant physiquement tout accès non autorisé.</li>
+                <li><i class="fas fa-check-circle"></i> Classe <code>MessagePacket implements Serializable</code> encapsulant type, user et content pour un transport réseau fidèle.</li>
+                <li><i class="fas fa-check-circle"></i> Tests validés : envoi UDP (<em>"[UDP] Etu1 : Bonjour"</em>), connexion multi-clients simultanés, scénario de mauvais mot de passe.</li>
+              </ul>
+            </div>
+
+            <div class="proof-card visuals-card">
+              <div class="proof-head"><i class="fas fa-images"></i><h4>Visuels / Captures d'écran</h4></div>
+              <div class="visuals-grid">
+                <div class="visual-ph visual-real"><img src="image/Interface%20d'authentification.png" alt="Interface d'authentification" /><span class="visual-caption">LoginActivity<br/><small>Interface d'authentification</small></span></div>
+                <div class="visual-ph visual-real"><img src="image/Vue%20Admin%20vs%20Vue%20Étudiant.png" alt="RBAC – Vue Admin vs Vue Étudiant" /><span class="visual-caption">RBAC<br/><small>Vue Admin vs Vue Étudiant</small></span></div>
+                <div class="visual-ph visual-real"><img src="image/Réception%20sur%20serveur.png" alt="Réception sur serveur" /><span class="visual-caption">ServerActivity<br/><small>Réception sur serveur</small></span></div>
+                <div class="visual-ph visual-real"><img src="image/Envoi%20d'un%20paquet%20UDP.png" alt="Envoi d'un paquet UDP" /><span class="visual-caption">Test réseau<br/><small>Envoi d'un paquet UDP</small></span></div>
+              </div>
+            </div>
+
+            <div class="proof-card">
+              <div class="proof-head"><i class="fas fa-exclamation-triangle"></i><h4>Problèmes &amp; Solutions</h4></div>
+              <div class="pb-list">
+                <div class="pb-item">
+                  <p class="pb-label"><i class="fas fa-times-circle"></i> Problème – NetworkOnMainThreadException</p>
+                  <p>Android interdit les opérations réseau sur le thread principal, provoquant une <code>NetworkOnMainThreadException</code> lors des premières tentatives de connexion socket.</p>
+                  <p class="sol-label"><i class="fas fa-lightbulb"></i> Solution</p>
+                  <p>Toutes les opérations réseau (écoute serveur, envoi client) ont été déplacées dans des <strong>threads dédiés</strong>. Le serveur instancie un nouveau thread TCP par client accepté, garantissant la gestion parallèle sans bloquer l'interface.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ---- SAÉ Cyber.03 ---- -->
+        <div class="tab-pane" id="tab-cyber03" role="tabpanel">
+          <div class="sae-header">
+            <div><h3>SAÉ Cyber.03 – Infrastructure réseau sécurisée multi-services</h3>
+              <div class="sae-tags">
+                <span class="tag-c tag-cyber">CyberA</span>
+                <span class="tag-c">CCA</span><span class="tag-c">CCB</span>
+                <span class="tag-s">Semestre 3</span>
+              </div>
+              <div class="ac-tags">
+                <span class="tag-ac" title="Configurer et dépanner le routage dynamique dans un réseau">AC21.01</span>
+                <span class="tag-ac" title="Configurer et expliquer une politique simple de QoS et fonctions de base de sécurité">AC21.02</span>
+                <span class="tag-ac" title="Déployer des postes clients et des solutions virtualisées">AC21.03</span>
+                <span class="tag-ac" title="Déployer des services réseaux avancés">AC21.04</span>
+                <span class="tag-ac" title="Travailler en équipe pour développer ses compétences professionnelles">AC21.06</span>
+                <span class="tag-ac" title="Déployer et caractériser des systèmes de transmissions complexes">AC22.01</span>
+                <span class="tag-ac" title="Mettre en place un accès distant sécurisé">AC22.02</span>
+                <span class="tag-ac" title="Capacité à questionner un cahier des charges R&amp;T">AC22.05</span>
+                <span class="tag-ac" title="Automatiser l'administration système avec des scripts">AC23.01</span>
+                <span class="tag-ac tag-ac-cyber" title="Connaître et utiliser les bonnes pratiques et recommandations de cybersécurité">AC24.01Cyber</span>
+                <span class="tag-ac tag-ac-cyber" title="Mettre en œuvre les outils fondamentaux de sécurisation d'une infrastructure réseau">AC24.02Cyber</span>
+                <span class="tag-ac tag-ac-cyber" title="Sécuriser les services">AC24.03Cyber</span>
+              </div>
+            </div>
+            <div class="sae-icon"><i class="fas fa-shield-halved"></i></div>
+          </div>
+          <div class="proof-grid">
+
+            <div class="proof-card">
+              <div class="proof-head"><i class="fas fa-map-marker-alt"></i><h4>Contexte</h4></div>
+              <p>Projet individuel (Etu7) visant à <strong>moderniser l'infrastructure réseau vieillissante</strong>
+              d'une entreprise fictive (Windows 2008/Debian 7) vers un environnement actuel et sécurisé
+              (Windows Server 2019/Debian 11). Le projet couvrait la virtualisation sous <strong>vCenter</strong>,
+              le routage dynamique <strong>OSPFv2</strong>, la gestion centralisée des identités (<strong>AD-DS</strong>),
+              la mobilité Wi-Fi sécurisée (<strong>WPA2-Enterprise / RADIUS 802.1X</strong>),
+              la publication d'applications <strong>RemoteApp (RDS)</strong> et la supervision
+              (<strong>Grafana</strong>).
+              Réseau attribué : Domaine <code>etu7.sae</code> – LAN <code>172.32.68.0/24</code> – VLAN 8.</p>
+            </div>
+
+            <div class="proof-card">
+              <div class="proof-head"><i class="fas fa-brain"></i><h4>Savoirs mobilisés</h4></div>
+              <div class="savoirs">
+                <div class="savoir-item"><span class="stag">Savoir</span><p>Active Directory (AD-DS, DNS, OU), protocole 802.1X / WPA2-Enterprise, OSPFv2 (area 0), VLAN et segmentation réseau, PKI et PEAP/MS-CHAPv2, virtualisation vCenter (Thin Provisioning), supervision Grafana/Prometheus.</p></div>
+                <div class="savoir-item"><span class="stag">Savoir-faire</span><p>Déploiement Windows Server 2019 sur vCenter, configuration AD-DS + DNS (<code>nslookup</code>), installation NPS (RADIUS), configuration Unifi (SSID WPA2-Enterprise + Visiteur isolé avec QoS 2 Mbps), ACL Cisco pour cloisonnement réseau invité, configuration SSH v2 sur tous les équipements Cisco (R0, R1, Switch).</p></div>
+                <div class="savoir-item"><span class="stag">Savoir-être</span><p>Autonomie et prise d'initiative face aux incidents, démarche de diagnostic logique (logs, identification conflits de ports), justification des choix techniques par matrices de décision (Ubiquiti vs Cisco, Grafana vs Zabbix).</p></div>
+              </div>
+            </div>
+
+            <div class="proof-card">
+              <div class="proof-head"><i class="fas fa-tasks"></i><h4>Tâches réalisées &amp; Résultats</h4></div>
+              <ul class="task-list">
+                <li><i class="fas fa-check-circle"></i> Déploiement VM Windows Server 2019 sur vCenter (Thin Provisioning, 60 Go), configuration AD-DS et DNS pour le domaine <code>etu7.sae</code>, organisation en Unités d'Organisation (OU).</li>
+                <li><i class="fas fa-check-circle"></i> Routage dynamique OSPFv2 sur deux routeurs Cisco physiques (R0 et R1), interconnexion via réseau <code>172.32.128.0/30</code>, DHCP sécurisé confiné au VLAN 8.</li>
+                <li><i class="fas fa-check-circle"></i> Publication d'applications RemoteApp (LibreOffice Calc + Acrylic Wi-Fi) via portail RDWeb, accessible depuis une machine cliente du domaine.</li>
+                <li><i class="fas fa-check-circle"></i> Wi-Fi sécurisé : SSID <em>Entreprise_Etu7</em> (WPA2-Enterprise, auth RADIUS/NPS avec compte AD <code>ttproduction</code>) + SSID <em>Visiteur_Etu7</em> (isolé, 2 Mbps).</li>
+                <li><i class="fas fa-check-circle"></i> ACL Cisco pour cloisonnement strict réseau invité → LAN collaborateur, SSH v2 sur tous les équipements.</li>
+              </ul>
+            </div>
+
+            <div class="proof-card visuals-card">
+              <div class="proof-head"><i class="fas fa-images"></i><h4>Visuels / Captures d'écran</h4></div>
+              <div class="visuals-grid">
+                <div class="visual-ph"><i class="fas fa-project-diagram"></i><p>Topologie réseau<br/><small>Architecture multi-services</small></p></div>
+                <div class="visual-ph visual-real"><img src="image/Utilisateurs%20et%20OU.png" alt="Active Directory – Utilisateurs et OU" /><span class="visual-caption">Active Directory<br/><small>Utilisateurs et OU</small></span></div>
+                <div class="visual-ph visual-real"><img src="image/Auth%20WPA2-Enterprise%20config.png" alt="Auth WPA2-Enterprise config" /><span class="visual-caption">Unifi / RADIUS<br/><small>Auth WPA2-Enterprise</small></span></div>
+                <div class="visual-ph visual-real"><img src="image/Applications%20RemoteApp.png" alt="RDWeb – Applications RemoteApp" /><span class="visual-caption">RDWeb<br/><small>Applications RemoteApp</small></span></div>
+              </div>
+            </div>
+
+            <div class="proof-card">
+              <div class="proof-head"><i class="fas fa-exclamation-triangle"></i><h4>Problèmes &amp; Solutions</h4></div>
+              <div class="pb-list">
+                <div class="pb-item">
+                  <p class="pb-label"><i class="fas fa-times-circle"></i> Problème – Conflit de port sur le contrôleur Unifi</p>
+                  <p>Lors du démarrage du contrôleur Unifi, une erreur empêchait son lancement : le <strong>port 8080</strong> était déjà utilisé par un autre service sur la machine.</p>
+                  <p class="sol-label"><i class="fas fa-lightbulb"></i> Solution</p>
+                  <p>Identification du processus bloquant via le <strong>Gestionnaire des tâches (PID)</strong>, arrêt du service concurrent, puis relance réussie du contrôleur Unifi. Cette approche méthodique (analyse des logs → identification du conflit → résolution ciblée) a évité une réinstallation inutile.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ---- SAÉ Cyber.04 ---- -->
+        <div class="tab-pane" id="tab-cyber04" role="tabpanel">
+          <div class="sae-header">
+            <div><h3>SAÉ Cyber.04 – Pentesting (Tests d'intrusion)</h3>
+              <div class="sae-tags">
+                <span class="tag-c tag-cyber">CyberB</span>
+                <span class="tag-s">Semestre 3</span>
+              </div>
+              <div class="ac-tags">
+                <span class="tag-ac" title="Capacité à questionner un cahier des charges R&amp;T">AC22.05</span>
+                <span class="tag-ac tag-ac-cyber" title="Connaître et utiliser les bonnes pratiques et recommandations de cybersécurité">AC24.01Cyber</span>
+                <span class="tag-ac tag-ac-cyber" title="Mettre en œuvre les outils fondamentaux de sécurisation d'une infrastructure réseau">AC24.02Cyber</span>
+                <span class="tag-ac tag-ac-cyber" title="Connaître les différents types d'attaque">AC24.05Cyber</span>
+                <span class="tag-ac tag-ac-cyber" title="Comprendre des documents techniques en anglais">AC24.06Cyber</span>
+                <span class="tag-ac tag-ac-cyber" title="Administrer les protections contre les logiciels malveillants">AC25.01Cyber</span>
+                <span class="tag-ac tag-ac-cyber" title="Prendre en main des outils de test de pénétration réseau/système">AC25.02Cyber</span>
+              </div>
+            </div>
+            <div class="sae-icon"><i class="fas fa-user-secret"></i></div>
+          </div>
+          <div class="proof-grid">
+
+            <div class="proof-card">
+              <div class="proof-head"><i class="fas fa-map-marker-alt"></i><h4>Contexte</h4></div>
+              <p>SAÉ individuelle de <strong>tests d'intrusion éthiques</strong> réalisés sur des machines virtuelles
+              volontairement vulnérables (VulnHub) dans un réseau <strong>isolé Host-Only</strong> (Kali Linux <code>192.168.195.3</code>).
+              Toutes les manipulations ont été effectuées dans un environnement hors-production.
+              Les cibles sont : <strong>Kioptrix Level 1</strong> (Linux/Samba) et <strong>SickOs 1.2</strong>
+              (lighttpd/PHP). Pour chaque machine, une méthodologie structurée a été suivie :
+              reconnaissance → exploitation → élévation de privilèges → rapport.</p>
+            </div>
+
+            <div class="proof-card">
+              <div class="proof-head"><i class="fas fa-brain"></i><h4>Savoirs mobilisés</h4></div>
+              <div class="savoirs">
+                <div class="savoir-item"><span class="stag">Savoir</span><p>CVE et CVSS (CVE-2003-0201, CVE-2017-0238), catégories OWASP (mauvaise configuration serveur, upload de fichier non restreint), mécanismes de débordement de tampon (<em>buffer overflow</em>), cronjobs Linux et permissions SUID, Egress Filtering.</p></div>
+                <div class="savoir-item"><span class="stag">Savoir-faire</span><p>Scan de ports Nmap (<code>-sV</code>, <code>-sC</code>, <code>-p-</code>), énumération web Gobuster, exploitation Metasploit (<code>exploit/linux/samba/trans2open</code>), upload de reverse shell PHP via <code>curl -T</code> (HTTP PUT), élévation de privilèges via chkrootkit 0.49 (script <code>/tmp/update</code> + SUID bash), netcat (<code>nc</code>).</p></div>
+                <div class="savoir-item"><span class="stag">Savoir-être</span><p>Éthique professionnelle et respect strict du cadre légal (lab isolé, autorisations explicites), rédaction de rapports techniques clairs avec preuves de compromission, formulation de recommandations de sécurisation.</p></div>
+              </div>
+            </div>
+
+            <div class="proof-card">
+              <div class="proof-head"><i class="fas fa-tasks"></i><h4>Tâches réalisées &amp; Résultats</h4></div>
+              <ul class="task-list">
+                <li><i class="fas fa-check-circle"></i> <strong>Kioptrix Level 1 :</strong> scan Nmap → Samba 2.2.1a identifié via Metasploit (<code>smb_version</code>) → exploit <code>trans2open</code> (CVE-2003-0201) → shell root direct → flag lu dans <code>/var/spool/mail/root</code>.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>SickOs 1.2 :</strong> scan Nmap → lighttpd 1.4.28 → Gobuster → <code>/test/</code> → méthode HTTP PUT activée → upload reverse shell PHP (port 443 pour contourner l'Egress Filtering) → shell <code>www-data</code>.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Élévation de privilèges (SickOs) :</strong> chkrootkit 0.49 (CVE-2017-0238) → cronjob daily → création de <code>/tmp/update</code> (<code>chmod +s /bin/bash</code>) → SUID bash → <code>/bin/bash -p</code> → root + flag.</li>
+                <li><i class="fas fa-check-circle"></i> Rédaction de rapports de pentest complets avec résumé d'attaque et recommandations de sécurité détaillées.</li>
+              </ul>
+            </div>
+
+            <div class="proof-card visuals-card">
+              <div class="proof-head"><i class="fas fa-images"></i><h4>Visuels / Captures d'écran</h4></div>
+              <div class="visuals-grid">
+                <div class="visual-ph visual-real"><img src="image/Nmap%20scan.png" alt="Nmap scan – Découverte des services" /><span class="visual-caption">Nmap scan<br/><small>Découverte des services</small></span></div>
+                <div class="visual-ph"><i class="fas fa-terminal"></i><p>Metasploit<br/><small>Shell root sur Kioptrix</small></p></div>
+                <div class="visual-ph visual-real"><img src="image/httpput.png" alt="HTTP PUT – Upload reverse shell" /><span class="visual-caption">HTTP PUT<br/><small>Upload reverse shell</small></span></div>
+                <div class="visual-ph visual-real"><img src="image/chrootkit.png" alt="Privilege Escalation – Root via chkrootkit" /><span class="visual-caption">Privilege Escalation<br/><small>Root via chkrootkit</small></span></div>
+              </div>
+            </div>
+
+            <div class="proof-card">
+              <div class="proof-head"><i class="fas fa-exclamation-triangle"></i><h4>Problèmes &amp; Solutions</h4></div>
+              <div class="pb-list">
+                <div class="pb-item">
+                  <p class="pb-label"><i class="fas fa-times-circle"></i> Problème – Reverse shell bloqué (SickOs)</p>
+                  <p>Après l'upload du shell PHP, la connexion <code>netcat</code> sur le port standard <strong>4444</strong>
+                  n'aboutissait jamais : la machine cible filtrait les connexions sortantes sur les ports non-standards
+                  (Egress Filtering/pare-feu sortant).</p>
+                  <p class="sol-label"><i class="fas fa-lightbulb"></i> Solution</p>
+                  <p>Modification du script PHP pour utiliser le <strong>port 443</strong> (HTTPS), considéré comme
+                  légitime pour le trafic sortant et donc non filtré. Écoute avec <code>sudo nc -lvnp 443</code>
+                  (nécessite les droits root car port &lt; 1024) → connexion réussie.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ---- Stage S4 ---- -->
+        <div class="tab-pane" id="tab-stage" role="tabpanel">
+          <div class="stage-notice" role="note">
+            <i class="fas fa-clock"></i>
+            <div>
+              <strong>Stage en entreprise – non encore réalisé</strong>
+              <p>Cette section présente les travaux académiques réalisés en Semestre 4 (SAÉ4.Cyber.01 – Fortinet &amp; Bastion). Le stage ou l'alternance en entreprise n'a pas encore eu lieu et sera ajouté à l'issue de la formation.</p>
+            </div>
+          </div>
+          <div class="sae-header">
+            <div><h3>SAÉ4.Cyber.01 – Sécurité Fortinet &amp; Bastion (Semestre 4)</h3>
+              <div class="sae-tags">
+                <span class="tag-c tag-cyber">CyberA</span>
+                <span class="tag-c tag-cyber">CyberB</span>
+                <span class="tag-s">Semestre 4</span>
+              </div>
+            </div>
+            <div class="sae-icon"><i class="fas fa-shield-alt"></i></div>
+          </div>
+          <div class="proof-grid">
+
+            <div class="proof-card">
+              <div class="proof-head"><i class="fas fa-map-marker-alt"></i><h4>Contexte</h4></div>
+              <p>Travaux dirigés et projet en binôme (avec <strong>Baptiste Feige</strong>) autour de la
+              plateforme <strong>Fortinet</strong> dans le cadre du semestre 4. L'objectif est de maîtriser
+              les équipements pare-feux de niveau entreprise, la mise en place de politiques de blocage
+              des cyberattaques et le déploiement d'un <strong>serveur Bastion</strong> pour sécuriser
+              les accès d'administration. Cette SAÉ s'inscrit dans la continuité des compétences CyberA
+              (sécuriser) et CyberB (analyser les menaces).</p>
+            </div>
+
+            <div class="proof-card">
+              <div class="proof-head"><i class="fas fa-brain"></i><h4>Savoirs mobilisés</h4></div>
+              <div class="savoirs">
+                <div class="savoir-item"><span class="stag">Savoir</span><p>Pare-feux Next-Generation (NGFW) Fortinet/FortiGate, principes du zero-trust, architecture Bastion (jump server), politiques de sécurité et inspection SSL/TLS, journalisation et audit des accès.</p></div>
+                <div class="savoir-item"><span class="stag">Savoir-faire</span><p>Configuration de règles de sécurité FortiGate pour bloquer les cyberattaques (IPS, antivirus, filtrage URL), déploiement et configuration d'un Bastion pour centraliser les accès SSH/RDP, gestion des politiques par utilisateur/groupe.</p></div>
+                <div class="savoir-item"><span class="stag">Savoir-être</span><p>Collaboration efficace en binôme, documentation technique rigoureuse, respect des consignes de sécurité de l'environnement de lab.</p></div>
+              </div>
+            </div>
+
+            <div class="proof-card">
+              <div class="proof-head"><i class="fas fa-tasks"></i><h4>Missions réalisées &amp; Résultats</h4></div>
+              <ul class="task-list">
+                <li><i class="fas fa-check-circle"></i> TD 01 – Configuration du FortiGate pour bloquer les cyberattaques connues (Partie 1) : règles IPS, signatures d'attaques.</li>
+                <li><i class="fas fa-check-circle"></i> TD 02 – Configuration du FortiGate pour bloquer les cyberattaques connues (Partie 2) : filtrage applicatif, inspection HTTPS.</li>
+                <li><i class="fas fa-check-circle"></i> TD 04 – Mise en place d'un serveur Bastion (avec Baptiste Feige) : accès centralisé aux équipements d'administration, journalisation des sessions.</li>
+                <li><i class="fas fa-check-circle"></i> Accès aux ressources certifiantes Fortinet dans le cadre de la formation.</li>
+              </ul>
+            </div>
+
+            <div class="proof-card visuals-card">
+              <div class="proof-head"><i class="fas fa-images"></i><h4>Visuels / Documents</h4></div>
+              <div class="visuals-grid">
+                <div class="visual-ph"><i class="fas fa-fire-alt"></i><p>FortiGate<br/><small>Policies de sécurité</small></p></div>
+                <div class="visual-ph"><i class="fas fa-door-open"></i><p>Bastion<br/><small>Accès d'administration</small></p></div>
+                <div class="visual-ph"><i class="fas fa-file-contract"></i><p>Rapports TD<br/><small>TD4 Badolle, Feige</small></p></div>
+              </div>
+            </div>
+
+            <div class="proof-card">
+              <div class="proof-head"><i class="fas fa-exclamation-triangle"></i><h4>Difficultés &amp; Apprentissages</h4></div>
+              <div class="pb-list">
+                <div class="pb-item">
+                  <p class="pb-label"><i class="fas fa-times-circle"></i> Difficulté – Complexité de l'interface FortiGate</p>
+                  <p>La multitude d'options de l'interface FortiOS et la subtilité de l'ordre des règles de sécurité (first-match) rendait difficile la mise en place des politiques sans bloquer le trafic légitime.</p>
+                  <p class="sol-label"><i class="fas fa-lightbulb"></i> Apprentissage tiré</p>
+                  <p>L'importance de tester chaque règle individuellement avant de les combiner, et d'utiliser les logs FortiGate pour diagnostiquer les blocages inattendus. Cette rigueur est directement transposable à tout équipement réseau professionnel.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div><!-- /tab-body -->
+    </div>
+  </section>
+
+  <!-- ===================== RÉFLEXION – CYCLE DE GIBBS ===================== -->
+  <section id="reflexion" class="section reflexion">
+    <div class="container">
+      <span class="section-tag">Méta-cognition</span>
+      <h2 class="section-title centered">Analyse Réflexive</h2>
+      <p class="section-desc">
+        Le <strong>Cycle de Gibbs</strong> est un modèle de réflexion structurée qui me permet d'analyser
+        en profondeur mes expériences d'apprentissage et d'améliorer continuellement ma pratique.
+      </p>
+
+      <div class="gibbs-layout">
+
+        <!-- Pentagon SVG -->
+        <div class="gibbs-pentagon-wrap">
+          <svg class="gibbs-svg" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer glow circle -->
+            <circle cx="160" cy="160" r="145" fill="none" stroke="rgba(99,102,241,0.15)" stroke-width="1"/>
+            <!-- Pentagon path -->
+            <polygon
+              points="160,22 289,109 240,258 80,258 31,109"
+              fill="none" stroke="rgba(99,102,241,0.5)" stroke-width="1.5" stroke-dasharray="6 3"/>
+            <!-- Arrows (curved) connecting the steps -->
+            <defs>
+              <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="#6366f1" opacity="0.7"/>
+              </marker>
+            </defs>
+            <!-- Step circles -->
+            <!-- Step 1 – top -->
+            <circle cx="160" cy="22"  r="22" fill="#1e1b4b" stroke="#6366f1" stroke-width="2" class="g-step-circle" data-step="1"/>
+            <text x="160" y="27" text-anchor="middle" fill="#a5b4fc" font-size="13" font-weight="700">1</text>
+            <!-- Step 2 – top-right -->
+            <circle cx="289" cy="109" r="22" fill="#1e1b4b" stroke="#6366f1" stroke-width="2" class="g-step-circle" data-step="2"/>
+            <text x="289" y="114" text-anchor="middle" fill="#a5b4fc" font-size="13" font-weight="700">2</text>
+            <!-- Step 3 – bottom-right -->
+            <circle cx="240" cy="258" r="22" fill="#1e1b4b" stroke="#6366f1" stroke-width="2" class="g-step-circle" data-step="3"/>
+            <text x="240" y="263" text-anchor="middle" fill="#a5b4fc" font-size="13" font-weight="700">3</text>
+            <!-- Step 4 – bottom-left -->
+            <circle cx="80"  cy="258" r="22" fill="#1e1b4b" stroke="#6366f1" stroke-width="2" class="g-step-circle" data-step="4"/>
+            <text x="80"  y="263" text-anchor="middle" fill="#a5b4fc" font-size="13" font-weight="700">4</text>
+            <!-- Step 5 – top-left -->
+            <circle cx="31"  cy="109" r="22" fill="#1e1b4b" stroke="#6366f1" stroke-width="2" class="g-step-circle" data-step="5"/>
+            <text x="31"  y="114" text-anchor="middle" fill="#a5b4fc" font-size="13" font-weight="700">5</text>
+            <!-- Labels -->
+            <text x="160" y="3"   text-anchor="middle" fill="#c7d2fe" font-size="9">Description</text>
+            <text x="311" y="100" text-anchor="middle" fill="#c7d2fe" font-size="9">Ressenti</text>
+            <text x="252" y="290" text-anchor="middle" fill="#c7d2fe" font-size="9">Analyse</text>
+            <text x="68"  y="290" text-anchor="middle" fill="#c7d2fe" font-size="9">Conclusions</text>
+            <text x="10"  y="100" text-anchor="middle" fill="#c7d2fe" font-size="9">Plan d'action</text>
+            <!-- Center -->
+            <circle cx="160" cy="160" r="40" fill="rgba(99,102,241,0.1)" stroke="rgba(99,102,241,0.4)" stroke-width="1"/>
+            <text x="160" y="155" text-anchor="middle" fill="#a5b4fc" font-size="8" font-weight="600">Cycle de</text>
+            <text x="160" y="168" text-anchor="middle" fill="#a5b4fc" font-size="8" font-weight="600">Gibbs</text>
+          </svg>
+        </div>
+
+        <!-- Detail cards -->
+        <div class="gibbs-cards">
+
+          <div class="gibbs-card" data-step="1">
+            <div class="gc-header">
+              <div class="gc-num">1</div>
+              <div class="gc-icon"><i class="fas fa-clipboard-list"></i></div>
+              <div><span class="gc-step-lbl">Étape 1</span><h3>Description des faits</h3></div>
+            </div>
+            <p class="gc-method">Décrire objectivement ce qui s'est passé, sans jugement.</p>
+            <div class="gc-body">
+              <p>Lors de la <strong>SAÉ Cyber.03</strong> (Semestre 3), j'ai dû concevoir seul et déployer
+              une infrastructure réseau complète pour moderniser le système d'information d'une entreprise fictive.
+              En 4 semaines, il m'a fallu virtualiser un Windows Server 2019 sur vCenter, configurer l'Active
+              Directory (domaine <code>etu7.sae</code>), mettre en place OSPFv2 sur du matériel Cisco physique,
+              déployer un réseau Wi-Fi WPA2-Enterprise avec authentification RADIUS et publier des applications
+              RemoteApp. En parallèle, j'ai réalisé des travaux de veille technologique (choix Grafana vs
+              Zabbix, Ubiquiti vs Cisco).</p>
+            </div>
+          </div>
+
+          <div class="gibbs-card" data-step="2">
+            <div class="gc-header">
+              <div class="gc-num">2</div>
+              <div class="gc-icon"><i class="fas fa-heart"></i></div>
+              <div><span class="gc-step-lbl">Étape 2</span><h3>Investigation du ressenti</h3></div>
+            </div>
+            <p class="gc-method">Exprimer honnêtement vos émotions et ressentis subjectifs.</p>
+            <div class="gc-body">
+              <p>Au démarrage, j'ai ressenti un mélange d'<strong>enthousiasme</strong> (projet ambitieux
+              et technique) et d'<strong>inquiétude</strong> face à l'ampleur du périmètre à couvrir seul.
+              La multiplication des technologies à maîtriser simultanément (vCenter, AD, OSPF, RADIUS, RDS)
+              a généré du <strong>stress</strong>, notamment lors du blocage causé par le conflit de port 8080
+              sur le contrôleur Unifi. La résolution méthodique de cet incident m'a procuré une vraie
+              <strong>satisfaction</strong> et un regain de confiance. En fin de projet, obtenir
+              la connexion Wi-Fi WPA2-Enterprise validée avec le compte Active Directory a été
+              un moment de véritable <strong>fierté</strong>.</p>
+            </div>
+          </div>
+
+          <div class="gibbs-card" data-step="3">
+            <div class="gc-header">
+              <div class="gc-num">3</div>
+              <div class="gc-icon"><i class="fas fa-microscope"></i></div>
+              <div><span class="gc-step-lbl">Étape 3</span><h3>Analyse et évaluation</h3></div>
+            </div>
+            <p class="gc-method">Évaluer objectivement ce qui a bien fonctionné et ce qui aurait pu être amélioré.</p>
+            <div class="gc-body">
+              <p><strong>Points positifs :</strong> Ma démarche de diagnostic face au conflit de port Unifi
+              (analyse des logs → identification du PID → arrêt ciblé) a été efficace et m'a évité une
+              perte de temps. Les choix technologiques justifiés par des matrices de décision ont démontré
+              une capacité à raisonner objectivement plutôt que par habitude. Le cloisonnement réseau
+              (ACL, VLAN, réseaux visités isolés) était fonctionnel.</p>
+              <p style="margin-top:.75rem"><strong>Points à améliorer :</strong> j'aurais dû anticiper davantage
+              les dépendances entre services (ex. : le DNS doit être opérationnel avant de promouvoir le
+              Contrôleur de Domaine). Une meilleure planification initiale via un diagramme de dépendances
+              aurait évité plusieurs allers-retours.</p>
+            </div>
+          </div>
+
+          <div class="gibbs-card" data-step="4">
+            <div class="gc-header">
+              <div class="gc-num">4</div>
+              <div class="gc-icon"><i class="fas fa-graduation-cap"></i></div>
+              <div><span class="gc-step-lbl">Étape 4</span><h3>Conclusions</h3></div>
+            </div>
+            <p class="gc-method">Tirer des enseignements généraux et personnels de cette expérience.</p>
+            <div class="gc-body">
+              <p>Ce projet m'a appris que l'<strong>autonomie technique</strong> s'acquiert en acceptant de
+              se confronter à l'inconnu sans chercher à tout maîtriser a priori. J'ai découvert que ma
+              capacité à diagnostiquer méthodiquement un incident (plutôt que de réinstaller "à l'aveugle")
+              est un point fort réel. En revanche, je dois progresser sur la <strong>planification
+              structurée</strong> des déploiements complexes : documenter les dépendances avant de commencer
+              évite des cycles d'erreur coûteux en temps.</p>
+            </div>
+          </div>
+
+          <div class="gibbs-card" data-step="5">
+            <div class="gc-header">
+              <div class="gc-num">5</div>
+              <div class="gc-icon"><i class="fas fa-rocket"></i></div>
+              <div><span class="gc-step-lbl">Étape 5</span><h3>Retour à l'action</h3></div>
+            </div>
+            <p class="gc-method">Définir des actions concrètes pour progresser.</p>
+            <div class="gc-body">
+              <p>Pour mes prochains projets techniques, je vais systématiquement rédiger un
+              <strong>plan de dépendances</strong> avant tout déploiement. Je vais approfondir
+              la sécurité réseau Fortinet (SAÉ4.Cyber.01 en cours) et me préparer à la certification
+              <strong>Cisco CyberOps Associate</strong> (déjà entamée à l'étape 2 de Cyber.04).
+              Sur le plan du travail collaboratif, j'appliquerai le modèle de matrice de décision
+              (Grafana vs Zabbix, Ubiquiti vs Cisco) à d'autres choix technologiques pour continuer
+              à développer une argumentation technique rigoureuse et documentée.</p>
+            </div>
+          </div>
+
+        </div><!-- /gibbs-cards -->
+      </div><!-- /gibbs-layout -->
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact" class="section contact">
+    <div class="container">
+      <span class="section-tag">Liens</span>
+      <h2 class="section-title centered">Me Contacter</h2>
+      <p class="section-desc">Retrouvez mes projets sur les plateformes ci-dessous ou contactez-moi directement.</p>
+      <div class="contact-grid">
+
+        <!-- Remplacez [votre-username] par votre vrai pseudo GitHub -->
+        <a href="https://github.com/Titouan-Badolle" target="_blank" rel="noopener noreferrer" class="contact-card">
+          <div class="cc-icon"><i class="fab fa-github"></i></div>
+          <h3>GitHub</h3>
+          <p>Mes projets, scripts<br/>et dépôts de code</p>
+          <span class="cc-link">@Titouan-Badolle</span>
+        </a>
+
+        <!-- Remplacez [votre-profil] par votre URL LinkedIn -->
+        <a href="https://www.linkedin.com/in/titouan-badolle-40031935a/" target="_blank" rel="noopener noreferrer" class="contact-card">
+          <div class="cc-icon"><i class="fab fa-linkedin"></i></div>
+          <h3>LinkedIn</h3>
+          <p>Mon profil professionnel<br/>et mon parcours</p>
+          <span class="cc-link">Titouan Badolle</span>
+        </a>
+
+        <!-- Remplacez par votre adresse e-mail -->
+        <a href="mailto:badolletitouanpro@gmail.com" class="contact-card">
+          <div class="cc-icon"><i class="fas fa-envelope"></i></div>
+          <h3>Email</h3>
+          <p>Pour toute question<br/>ou prise de contact</p>
+          <span class="cc-link">badolletitouanpro@gmail.com</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <span class="nav-logo">&lt;Portfolio /&gt;</span>
+          <p>E-Portfolio – BUT Réseaux &amp; Télécommunications</p>
+          <p>Titouan Badolle – Parcours Cybersécurité – 2024 / 2026</p>
+        </div>
+        <nav class="footer-nav">
+          <a href="#accueil">Accueil</a>
+          <a href="#competences">Compétences</a>
+          <a href="#preuves">Preuves</a>
+          <a href="#reflexion">Réflexion</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 – Titouan Badolle – Tous droits réservés</p>
+        <p>Hébergé sur <a href="https://pages.github.com" target="_blank" rel="noopener noreferrer">GitHub Pages</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
