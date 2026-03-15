@@ -1,0 +1,19 @@
+# Dependencies
+remotion-video/node_modules/
+
+# Rendered video output (large binary files)
+remotion-video/out/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/settings.json
+*.swp
+*.swo
+
+# Logs
+npm-debug.log*
+yarn-error.log
