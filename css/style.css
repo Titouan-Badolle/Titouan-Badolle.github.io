@@ -635,7 +635,7 @@ body.cursor-click .cursor-ring {
 }
 
 .tl-title { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
-.tl-content p { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.tl-content p { font-size: .88rem; color: var(--text2); line-height: 1.7; overflow-wrap: break-word; }
 
 .tl-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .75rem; justify-content: flex-end; }
 .tl-item.right .tl-tags { justify-content: flex-start; }
@@ -923,7 +923,7 @@ body.cursor-click .cursor-ring {
 }
 .proof-head i { color: var(--primary2); font-size: .95rem; }
 .proof-head h4 { font-size: .95rem; font-weight: 600; }
-.proof-card > p { color: var(--text2); font-size: .9rem; line-height: 1.7; }
+.proof-card > p { color: var(--text2); font-size: .9rem; line-height: 1.7; overflow-wrap: break-word; }
 
 /* Savoirs */
 .savoirs { display: flex; flex-direction: column; gap: .85rem; }
@@ -935,7 +935,7 @@ body.cursor-click .cursor-ring {
   border: 1px solid rgba(245,158,11,.2); white-space: nowrap;
   margin-top: .1rem;
 }
-.savoir-item p { font-size: .88rem; color: var(--text2); line-height: 1.6; }
+.savoir-item p { font-size: .88rem; color: var(--text2); line-height: 1.6; min-width: 0; overflow-wrap: break-word; }
 
 /* Tasks */
 .task-list { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
@@ -1031,7 +1031,7 @@ body.cursor-click .cursor-ring {
 .pb-label i { color: var(--cyber); }
 .sol-label { margin-top: .75rem; }
 .sol-label i { color: var(--yellow); }
-.pb-item p:not(.pb-label):not(.sol-label) { font-size: .88rem; color: var(--text2); line-height: 1.6; }
+.pb-item p:not(.pb-label):not(.sol-label) { font-size: .88rem; color: var(--text2); line-height: 1.6; overflow-wrap: break-word; }
 
 /* Code block */
 .code-block {
