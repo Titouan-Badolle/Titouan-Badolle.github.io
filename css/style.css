@@ -33,7 +33,7 @@
   --glow-red:  0 0 24px rgba(244,63,94,.2);
 }
 
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
 
 body {
   font-family: var(--sans);
@@ -41,8 +41,11 @@ body {
   color: var(--text);
   line-height: 1.7;
   overflow-x: hidden;
+  max-width: 100%;
   cursor: none;
 }
+
+img { max-width: 100%; height: auto; display: block; }
 
 ::selection { background: var(--primary); color: #fff; }
 
@@ -96,7 +99,7 @@ body {
   display: flex; align-items: center; gap: .75rem;
 }
 .preloader-bar {
-  width: 220px; height: 3px;
+  width: clamp(140px, 55vw, 220px); height: 3px;
   background: rgba(255,255,255,.06);
   border-radius: 2px; overflow: hidden;
 }
@@ -274,7 +277,8 @@ body.cursor-click .cursor-ring {
 
 #hero-canvas {
   position: absolute; inset: 0; z-index: 0;
-  opacity: .55;
+  opacity: .55; pointer-events: none;
+  max-width: 100%;
 }
 
 .hero-bg-grid {
@@ -501,7 +505,7 @@ body.cursor-click .cursor-ring {
 .about-photo { position: relative; }
 
 .photo-frame {
-  width: 280px; height: 280px; border-radius: 50%;
+  width: min(280px, 75vw); height: min(280px, 75vw); border-radius: 50%;
   background: linear-gradient(135deg, var(--primary), var(--accent));
   padding: 3px; margin: 0 auto;
 }
@@ -645,7 +649,7 @@ body.cursor-click .cursor-ring {
    ============================================================ */
 .comp-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
   gap: 1.5rem;
 }
 
@@ -736,7 +740,7 @@ body.cursor-click .cursor-ring {
   display: flex; align-items: center; gap: .6rem;
   color: var(--yellow);
 }
-.certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+.certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 1rem; }
 .cert-card {
   background: var(--card); border: 1px solid var(--border);
   border-radius: var(--radius-sm); padding: 1.1rem;
@@ -899,7 +903,7 @@ body.cursor-click .cursor-ring {
 /* Proof grid */
 .proof-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
   gap: 1.25rem;
 }
 .proof-card {
@@ -940,7 +944,7 @@ body.cursor-click .cursor-ring {
 /* Visuals */
 .visuals-card { grid-column: span 2; }
 .visuals-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr));
   gap: 1rem;
 }
 .visual-ph {
@@ -1368,31 +1372,37 @@ code {
   .vid-modal-wrap { width: 96vw; }
 }
 
+/* Breakpoint intermédiaire – tablette portrait / grands smartphones */
+@media (max-width: 620px) {
+  .proof-grid    { grid-template-columns: 1fr; }
+  .comp-grid     { grid-template-columns: 1fr; }
+  .certs-grid    { grid-template-columns: 1fr; }
+  .form-row      { grid-template-columns: 1fr; }
+  .contact-layout { grid-template-columns: 1fr; }
+  .hero-btns     { flex-direction: column; align-items: center; }
+  .hero-btns .btn { width: 100%; max-width: min(300px, 88vw); justify-content: center; }
+}
+
 @media (max-width: 480px) {
   /* ── Preloader ── */
-  .preloader-bar { width: 160px; }
+  .preloader-bar { width: min(160px, 80vw); }
 
   /* ── Hero ── */
   .hero-content { padding-top: 36px; }
   .hero-stats { gap: 1.5rem; }
   .stat-num { font-size: 1.6rem; }
   .hero-btns { flex-direction: column; align-items: center; }
-  .hero-btns .btn { width: 100%; max-width: 260px; justify-content: center; }
+  .hero-btns .btn { width: 100%; max-width: min(260px, 88vw); justify-content: center; }
 
   /* ── Section spacing ── */
   .section { padding: 4rem 0; }
   .section-title { font-size: clamp(1.5rem, 7vw, 2rem); }
 
   /* ── About ── */
-  .photo-frame { width: 200px; height: 200px; }
   .info-grid { grid-template-columns: 1fr; justify-items: start; }
 
   /* ── Competences ── */
-  .comp-grid { grid-template-columns: 1fr; }
   .comp-card { padding: 1.25rem; }
-
-  /* ── Certifications ── */
-  .certs-grid { grid-template-columns: 1fr; }
 
   /* ── Tools ── */
   .tool-item { min-width: 76px; padding: .65rem .8rem; }
@@ -1401,7 +1411,6 @@ code {
   .tab-btn { font-size: .75rem; padding: .45rem .7rem; }
 
   /* ── SAÉ ── */
-  .proof-grid { grid-template-columns: 1fr; }
   .sae-video { max-height: 220px; }
 
   /* ── Contact ── */
