@@ -345,6 +345,7 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
    3D TILT CARDS
    ============================================================ */
 (function tiltCards() {
+  if (window.matchMedia('(hover: none)').matches) return; // désactivé sur écrans tactiles
   const cards = document.querySelectorAll('.tilt-card');
   cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {

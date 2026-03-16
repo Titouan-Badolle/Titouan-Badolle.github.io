@@ -1323,6 +1323,7 @@ code {
 }
 
 @media (max-width: 768px) {
+  /* ── Navbar ── */
   .nav-menu {
     position: fixed; top: 60px; left: 0; right: 0;
     background: rgba(10,10,15,.98); backdrop-filter: blur(20px);
@@ -1334,25 +1335,83 @@ code {
   }
   .nav-menu.open { transform: translateY(0); opacity: 1; pointer-events: all; }
   .nav-toggle { display: flex; }
+
+  /* ── Layout helpers ── */
   .floating-social { display: none; }
   .visuals-card { grid-column: span 1; }
+  .sae-video-card { grid-column: span 1; }
+
+  /* ── SAÉ header & tabs ── */
   .sae-header { flex-direction: column; }
-  .tab-nav { gap: .5rem; }
+  .tab-nav { gap: .5rem; flex-wrap: wrap; justify-content: center; }
   .tab-btn { padding: .55rem .9rem; }
+
+  /* ── Forms ── */
   .form-row { grid-template-columns: 1fr; }
+
+  /* ── Footer ── */
   .footer-nav { flex-direction: column; gap: 1.5rem; }
+
+  /* ── Cursor (touch devices) ── */
   .cursor-ring, .cursor-dot { display: none; }
   body { cursor: auto; }
   .btn, .nav-toggle, .tab-btn, .contact-card, .back-to-top,
   .vid-modal-close, .btn-fs, .fs-btn { cursor: pointer; }
+
+  /* ── Hero ── */
+  .hero-content { padding-top: 50px; }
+
+  /* ── Video ── */
+  .sae-video { max-height: 300px; }
+
+  /* ── Video modal ── */
+  .vid-modal-wrap { width: 96vw; }
 }
 
 @media (max-width: 480px) {
+  /* ── Preloader ── */
+  .preloader-bar { width: 160px; }
+
+  /* ── Hero ── */
+  .hero-content { padding-top: 36px; }
   .hero-stats { gap: 1.5rem; }
-  .comp-grid { grid-template-columns: 1fr; }
-  .proof-grid { grid-template-columns: 1fr; }
-  .contact-grid { grid-template-columns: 1fr; }
-  .certs-grid { grid-template-columns: 1fr; }
+  .stat-num { font-size: 1.6rem; }
+  .hero-btns { flex-direction: column; align-items: center; }
+  .hero-btns .btn { width: 100%; max-width: 260px; justify-content: center; }
+
+  /* ── Section spacing ── */
   .section { padding: 4rem 0; }
+  .section-title { font-size: clamp(1.5rem, 7vw, 2rem); }
+
+  /* ── About ── */
+  .photo-frame { width: 200px; height: 200px; }
+  .info-grid { grid-template-columns: 1fr; justify-items: start; }
+
+  /* ── Competences ── */
+  .comp-grid { grid-template-columns: 1fr; }
+  .comp-card { padding: 1.25rem; }
+
+  /* ── Certifications ── */
+  .certs-grid { grid-template-columns: 1fr; }
+
+  /* ── Tools ── */
+  .tool-item { min-width: 76px; padding: .65rem .8rem; }
+
+  /* ── Tabs ── */
+  .tab-btn { font-size: .75rem; padding: .45rem .7rem; }
+
+  /* ── SAÉ ── */
+  .proof-grid { grid-template-columns: 1fr; }
+  .sae-video { max-height: 220px; }
+
+  /* ── Contact ── */
+  .contact-grid { grid-template-columns: 1fr; }
   .contact-card { flex-direction: column; text-align: center; }
+  .contact-form-wrap { padding: 1.25rem; }
+
+  /* ── Footer ── */
+  .footer-top { gap: 1rem; margin-bottom: 1.5rem; }
+
+  /* ── Back to top ── */
+  .back-to-top { bottom: 1rem; right: 1rem; width: 40px; height: 40px; font-size: .85rem; }
 }
