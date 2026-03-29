@@ -55,6 +55,7 @@
         <li><a href="#outils"      class="nav-link">Outils</a></li>
         <li><a href="#preuves"     class="nav-link">Preuves</a></li>
         <li><a href="#reflexion"   class="nav-link">Réflexion</a></li>
+        <li><a href="#conclusion"  class="nav-link">Conclusion</a></li>
         <li><a href="#contact"     class="nav-link">Contact</a></li>
       </ul>
       <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
@@ -297,6 +298,12 @@
 
       </div>
 
+      <!-- Radar chart -->
+      <div class="radar-wrap" data-aos>
+        <h3 class="radar-title"><i class="fas fa-chart-radar"></i> Vue globale – Radar des compétences</h3>
+        <canvas id="radar-chart" width="460" height="460" aria-label="Radar des 5 blocs de compétences BUT RT Cybersécurité"></canvas>
+      </div>
+
       <!-- Certifications -->
       <div class="certs-section" data-aos>
         <h3 class="certs-title"><i class="fas fa-certificate"></i> Certifications visées</h3>
@@ -471,28 +478,14 @@
               </ul>
             </div>
 
-            <div class="proof-card sae-video-card">
-              <div class="proof-head"><i class="fas fa-film"></i><h4>Présentation vidéo</h4></div>
-              <div class="sae-video-wrap">
-                <video controls muted playsinline preload="metadata" class="sae-video">
-                  <source src="video/lorawan-showcase.mp4" type="video/mp4" />
-                  Votre navigateur ne supporte pas la balise vidéo.
-                </video>
-              </div>
-              <div class="sae-video-actions">
-                <button class="btn-fs" data-modal-video="video/lorawan-showcase.mp4" data-modal-title="SAÉ 3.01 – Infrastructure IoT LoRaWAN">
-                  <i class="fas fa-expand"></i> Plein écran
-                </button>
-              </div>
-            </div>
 
-            <div class="proof-card visuals-card">
-              <div class="proof-head"><i class="fas fa-images"></i><h4>Visuels / Captures d'écran</h4></div>
-              <div class="visuals-grid">
-                <div class="visual-ph visual-real"><img src="image/datacake-map.png" alt="Dashboard Datacake – Carte GPS temps réel" /><span class="visual-caption">Dashboard Datacake<br/><small>Carte GPS temps réel</small></span></div>
-                <div class="visual-ph"><i class="fas fa-server"></i><p>ChirpStack<br/><small>Events OTAA JoinAccept</small></p></div>
-                <div class="visual-ph"><i class="fas fa-microchip"></i><p>SeeedStudio<br/><small>Module LoRaWAN + GPS</small></p></div>
-                <div class="visual-ph"><i class="fab fa-docker"></i><p>Docker Compose<br/><small>Stack ChirpStack v4</small></p></div>
+
+            <div class="proof-card cr-card">
+              <div class="proof-head"><i class="fas fa-file-pdf"></i><h4>Compte Rendu complet</h4></div>
+              <iframe src="cr/SAE3.01.pdf" class="cr-iframe" title="Compte rendu SAÉ 3.01"></iframe>
+              <div class="cr-actions">
+                <a href="cr/SAE3.01.pdf" target="_blank" class="btn-cr-open"><i class="fas fa-external-link-alt"></i> Ouvrir</a>
+                <a href="cr/SAE3.01.pdf" download class="btn-cr-dl"><i class="fas fa-download"></i> Télécharger</a>
               </div>
             </div>
 
@@ -566,28 +559,14 @@
               </ul>
             </div>
 
-            <div class="proof-card sae-video-card">
-              <div class="proof-head"><i class="fas fa-film"></i><h4>Présentation vidéo</h4></div>
-              <div class="sae-video-wrap">
-                <video controls muted playsinline preload="metadata" class="sae-video">
-                  <source src="video/android-showcase.mp4" type="video/mp4" />
-                  Votre navigateur ne supporte pas la balise vidéo.
-                </video>
-              </div>
-              <div class="sae-video-actions">
-                <button class="btn-fs" data-modal-video="video/android-showcase.mp4" data-modal-title="SAÉ 3.02 – Application Android Client/Serveur">
-                  <i class="fas fa-expand"></i> Plein écran
-                </button>
-              </div>
-            </div>
 
-            <div class="proof-card visuals-card">
-              <div class="proof-head"><i class="fas fa-images"></i><h4>Visuels / Captures d'écran</h4></div>
-              <div class="visuals-grid">
-                <div class="visual-ph visual-real"><img src="image/Interface%20d'authentification.png" alt="Interface d'authentification" /><span class="visual-caption">LoginActivity<br/><small>Interface d'authentification</small></span></div>
-                <div class="visual-ph visual-real"><img src="image/Vue%20Admin%20vs%20Vue%20Étudiant.png" alt="RBAC – Vue Admin vs Vue Étudiant" /><span class="visual-caption">RBAC<br/><small>Vue Admin vs Vue Étudiant</small></span></div>
-                <div class="visual-ph visual-real"><img src="image/Réception%20sur%20serveur.png" alt="Réception sur serveur" /><span class="visual-caption">ServerActivity<br/><small>Réception sur serveur</small></span></div>
-                <div class="visual-ph visual-real"><img src="image/Envoi%20d'un%20paquet%20UDP.png" alt="Envoi d'un paquet UDP" /><span class="visual-caption">Test réseau<br/><small>Envoi d'un paquet UDP</small></span></div>
+
+            <div class="proof-card cr-card">
+              <div class="proof-head"><i class="fas fa-file-pdf"></i><h4>Compte Rendu complet</h4></div>
+              <iframe src="cr/SAE3.02.pdf" class="cr-iframe" title="Compte rendu SAÉ 3.02"></iframe>
+              <div class="cr-actions">
+                <a href="cr/SAE3.02.pdf" target="_blank" class="btn-cr-open"><i class="fas fa-external-link-alt"></i> Ouvrir</a>
+                <a href="cr/SAE3.02.pdf" download class="btn-cr-dl"><i class="fas fa-download"></i> Télécharger</a>
               </div>
             </div>
 
@@ -666,28 +645,14 @@
               </ul>
             </div>
 
-            <div class="proof-card sae-video-card">
-              <div class="proof-head"><i class="fas fa-film"></i><h4>Présentation vidéo</h4></div>
-              <div class="sae-video-wrap">
-                <video controls muted playsinline preload="metadata" class="sae-video">
-                  <source src="video/cyber03-showcase.mp4" type="video/mp4" />
-                  Votre navigateur ne supporte pas la balise vidéo.
-                </video>
-              </div>
-              <div class="sae-video-actions">
-                <button class="btn-fs" data-modal-video="video/cyber03-showcase.mp4" data-modal-title="SAÉ Cyber.03 – Infrastructure réseau sécurisée">
-                  <i class="fas fa-expand"></i> Plein écran
-                </button>
-              </div>
-            </div>
 
-            <div class="proof-card visuals-card">
-              <div class="proof-head"><i class="fas fa-images"></i><h4>Visuels / Captures d'écran</h4></div>
-              <div class="visuals-grid">
-                <div class="visual-ph"><i class="fas fa-project-diagram"></i><p>Topologie réseau<br/><small>Architecture multi-services</small></p></div>
-                <div class="visual-ph visual-real"><img src="image/Utilisateurs%20et%20OU.png" alt="Active Directory – Utilisateurs et OU" /><span class="visual-caption">Active Directory<br/><small>Utilisateurs et OU</small></span></div>
-                <div class="visual-ph visual-real"><img src="image/Auth%20WPA2-Enterprise%20config.png" alt="Auth WPA2-Enterprise config" /><span class="visual-caption">Unifi / RADIUS<br/><small>Auth WPA2-Enterprise</small></span></div>
-                <div class="visual-ph visual-real"><img src="image/Applications%20RemoteApp.png" alt="RDWeb – Applications RemoteApp" /><span class="visual-caption">RDWeb<br/><small>Applications RemoteApp</small></span></div>
+
+            <div class="proof-card cr-card">
+              <div class="proof-head"><i class="fas fa-file-pdf"></i><h4>Compte Rendu complet</h4></div>
+              <iframe src="cr/Cyber.03.pdf" class="cr-iframe" title="Compte rendu SAÉ Cyber.03"></iframe>
+              <div class="cr-actions">
+                <a href="cr/Cyber.03.pdf" target="_blank" class="btn-cr-open"><i class="fas fa-external-link-alt"></i> Ouvrir</a>
+                <a href="cr/Cyber.03.pdf" download class="btn-cr-dl"><i class="fas fa-download"></i> Télécharger</a>
               </div>
             </div>
 
@@ -758,30 +723,7 @@
               </ul>
             </div>
 
-            <div class="proof-card sae-video-card">
-              <div class="proof-head"><i class="fas fa-film"></i><h4>Présentation vidéo</h4></div>
-              <div class="sae-video-wrap">
-                <video controls muted playsinline preload="metadata" class="sae-video">
-                  <source src="video/cyber-showcase.mp4" type="video/mp4" />
-                  Votre navigateur ne supporte pas la balise vidéo.
-                </video>
-              </div>
-              <div class="sae-video-actions">
-                <button class="btn-fs" data-modal-video="video/cyber-showcase.mp4" data-modal-title="SAÉ Cyber.04 – Pentesting">
-                  <i class="fas fa-expand"></i> Plein écran
-                </button>
-              </div>
-            </div>
 
-            <div class="proof-card visuals-card">
-              <div class="proof-head"><i class="fas fa-images"></i><h4>Visuels / Captures d'écran</h4></div>
-              <div class="visuals-grid">
-                <div class="visual-ph visual-real"><img src="image/Nmap%20scan.png" alt="Nmap scan – Découverte des services" /><span class="visual-caption">Nmap scan<br/><small>Découverte des services</small></span></div>
-                <div class="visual-ph"><i class="fas fa-terminal"></i><p>Metasploit<br/><small>Shell root sur Kioptrix</small></p></div>
-                <div class="visual-ph visual-real"><img src="image/httpput.png" alt="HTTP PUT – Upload reverse shell" /><span class="visual-caption">HTTP PUT<br/><small>Upload reverse shell</small></span></div>
-                <div class="visual-ph visual-real"><img src="image/chrootkit.png" alt="Privilege Escalation – Root via chkrootkit" /><span class="visual-caption">Privilege Escalation<br/><small>Root via chkrootkit</small></span></div>
-              </div>
-            </div>
 
             <div class="proof-card">
               <div class="proof-head"><i class="fas fa-exclamation-triangle"></i><h4>Problèmes &amp; Solutions</h4></div>
@@ -796,6 +738,15 @@
                   légitime pour le trafic sortant et donc non filtré. Écoute avec <code>sudo nc -lvnp 443</code>
                   (nécessite les droits root car port &lt; 1024) → connexion réussie.</p>
                 </div>
+              </div>
+            </div>
+
+            <div class="proof-card cr-card">
+              <div class="proof-head"><i class="fas fa-file-pdf"></i><h4>Compte Rendu complet</h4></div>
+              <iframe src="cr/Cyber.04.pdf" class="cr-iframe" title="Compte rendu SAÉ Cyber.04"></iframe>
+              <div class="cr-actions">
+                <a href="cr/Cyber.04.pdf" target="_blank" class="btn-cr-open"><i class="fas fa-external-link-alt"></i> Ouvrir</a>
+                <a href="cr/Cyber.04.pdf" download class="btn-cr-dl"><i class="fas fa-download"></i> Télécharger</a>
               </div>
             </div>
 
@@ -852,12 +803,12 @@
               </ul>
             </div>
 
-            <div class="proof-card visuals-card">
-              <div class="proof-head"><i class="fas fa-images"></i><h4>Visuels / Documents</h4></div>
-              <div class="visuals-grid">
-                <div class="visual-ph"><i class="fas fa-fire-alt"></i><p>FortiGate<br/><small>Policies de sécurité</small></p></div>
-                <div class="visual-ph"><i class="fas fa-door-open"></i><p>Bastion<br/><small>Accès d'administration</small></p></div>
-                <div class="visual-ph"><i class="fas fa-file-contract"></i><p>Rapports TD<br/><small>TD4 Badolle, Feige</small></p></div>
+            <div class="proof-card cr-card">
+              <div class="proof-head"><i class="fas fa-file-pdf"></i><h4>Compte Rendu – TD4 Bastion (Badolle, Feige)</h4></div>
+              <iframe src="cr/SAE4.pdf" class="cr-iframe" title="Compte rendu SAÉ4 – Bastion"></iframe>
+              <div class="cr-actions">
+                <a href="cr/SAE4.pdf" target="_blank" class="btn-cr-open"><i class="fas fa-external-link-alt"></i> Ouvrir</a>
+                <a href="cr/SAE4.pdf" download class="btn-cr-dl"><i class="fas fa-download"></i> Télécharger</a>
               </div>
             </div>
 
@@ -1035,6 +986,112 @@
     </div>
   </section>
 
+  <!-- ===================== CONCLUSION GÉNÉRALE ===================== -->
+  <section id="conclusion" class="section conclusion">
+    <div class="container">
+      <span class="section-tag" data-aos>Bilan S3 &amp; S4</span>
+      <h2 class="section-title centered" data-aos>Conclusion Générale</h2>
+      <p class="section-desc" data-aos>
+        Retour sur l'acquisition de mes compétences BUT RT – Cybersécurité
+        à l'issue des Semestres 3 et 4.
+      </p>
+
+      <!-- Bilan AC -->
+      <div class="concl-ac-section" data-aos>
+        <h3 class="concl-subtitle"><i class="fas fa-list-check"></i> Bilan des Apprentissages Critiques</h3>
+        <div class="ac-bilan-grid">
+
+          <div class="acb-block">
+            <div class="acb-head acb-cca"><i class="fas fa-network-wired"></i> CCA – Administrer</div>
+            <div class="acb-items">
+              <div class="acb-item acb-ok"><span class="acb-code">AC21.01</span><span class="acb-lbl">Configurer et dépanner le routage dynamique</span><span class="acb-status">Acquis</span></div>
+              <div class="acb-item acb-ok"><span class="acb-code">AC21.02</span><span class="acb-lbl">QoS et sécurité de base</span><span class="acb-status">Acquis</span></div>
+              <div class="acb-item acb-ok"><span class="acb-code">AC21.03</span><span class="acb-lbl">Déployer postes clients et virtualisation</span><span class="acb-status">Acquis</span></div>
+              <div class="acb-item acb-ok"><span class="acb-code">AC21.04</span><span class="acb-lbl">Déployer des services réseaux avancés</span><span class="acb-status">Acquis</span></div>
+              <div class="acb-item acb-ok"><span class="acb-code">AC21.06</span><span class="acb-lbl">Travailler en équipe</span><span class="acb-status">Acquis</span></div>
+            </div>
+          </div>
+
+          <div class="acb-block">
+            <div class="acb-head acb-ccb"><i class="fas fa-globe"></i> CCB – Connecter</div>
+            <div class="acb-items">
+              <div class="acb-item acb-ok"><span class="acb-code">AC22.01</span><span class="acb-lbl">Systèmes de transmissions complexes</span><span class="acb-status">Acquis</span></div>
+              <div class="acb-item acb-ok"><span class="acb-code">AC22.02</span><span class="acb-lbl">Accès distant sécurisé</span><span class="acb-status">Acquis</span></div>
+              <div class="acb-item acb-wip"><span class="acb-code">AC22.05</span><span class="acb-lbl">Questionner un cahier des charges R&amp;T</span><span class="acb-status">En cours</span></div>
+            </div>
+          </div>
+
+          <div class="acb-block">
+            <div class="acb-head acb-ccc"><i class="fas fa-code"></i> CCC – Créer</div>
+            <div class="acb-items">
+              <div class="acb-item acb-ok"><span class="acb-code">AC23.01</span><span class="acb-lbl">Automatiser avec des scripts</span><span class="acb-status">Acquis</span></div>
+              <div class="acb-item acb-ok"><span class="acb-code">AC23.02</span><span class="acb-lbl">Développer une application Web/mobile</span><span class="acb-status">Acquis</span></div>
+              <div class="acb-item acb-ok"><span class="acb-code">AC23.03</span><span class="acb-lbl">Programmer une app client/serveur</span><span class="acb-status">Acquis</span></div>
+            </div>
+          </div>
+
+          <div class="acb-block">
+            <div class="acb-head acb-cybera"><i class="fas fa-shield-halved"></i> CyberA – Sécuriser</div>
+            <div class="acb-items">
+              <div class="acb-item acb-ok"><span class="acb-code">AC24.01</span><span class="acb-lbl">Bonnes pratiques cybersécurité</span><span class="acb-status">Acquis</span></div>
+              <div class="acb-item acb-ok"><span class="acb-code">AC24.02</span><span class="acb-lbl">Outils de sécurisation d'infra réseau</span><span class="acb-status">Acquis</span></div>
+              <div class="acb-item acb-ok"><span class="acb-code">AC24.03</span><span class="acb-lbl">Sécuriser les services</span><span class="acb-status">Acquis</span></div>
+            </div>
+          </div>
+
+          <div class="acb-block">
+            <div class="acb-head acb-cyberb"><i class="fas fa-bug"></i> CyberB – Analyser</div>
+            <div class="acb-items">
+              <div class="acb-item acb-ok"><span class="acb-code">AC24.05</span><span class="acb-lbl">Types d'attaques</span><span class="acb-status">Acquis</span></div>
+              <div class="acb-item acb-ok"><span class="acb-code">AC24.06</span><span class="acb-lbl">Documents techniques en anglais</span><span class="acb-status">Acquis</span></div>
+              <div class="acb-item acb-ok"><span class="acb-code">AC25.01</span><span class="acb-lbl">Protections contre malwares</span><span class="acb-status">Acquis</span></div>
+              <div class="acb-item acb-ok"><span class="acb-code">AC25.02</span><span class="acb-lbl">Outils de test de pénétration</span><span class="acb-status">Acquis</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Gibbs global -->
+      <div class="concl-gibbs" data-aos>
+        <h3 class="concl-subtitle"><i class="fas fa-brain"></i> Réflexion globale – S3 &amp; S4</h3>
+        <div class="concl-gibbs-grid">
+
+          <div class="cg-card">
+            <div class="cg-num">1</div>
+            <h4>Ce que j'ai fait</h4>
+            <p>Cinq SAÉ sur deux semestres, dans des domaines qui n'ont pas grand-chose en commun : IoT LoRaWAN sur VPS, application Android avec RBAC, infrastructure AD/RADIUS/vCenter, tests d'intrusion sur VulnHub, et sécurité Fortinet avec serveur Bastion. À chaque fois, j'ai dû apprendre un environnement que je ne connaissais pas encore — souvent en partant d'une page blanche.</p>
+          </div>
+
+          <div class="cg-card">
+            <div class="cg-num" style="background:var(--cyber)">2</div>
+            <h4>Ce que j'ai ressenti</h4>
+            <p>La progression n'a pas été linéaire. Les SAÉ techniques (Cyber.03, Pentesting) m'ont mis en difficulté, mais pas de la même façon : l'infra réseau demandait de la rigueur sur les dépendances, le pentesting demandait d'accepter de chercher sans trouver tout de suite. Les deux m'ont appris que l'inconfort est souvent le signe qu'on apprend vraiment.</p>
+          </div>
+
+          <div class="cg-card">
+            <div class="cg-num" style="background:var(--accent)">3</div>
+            <h4>Ce que j'analyse</h4>
+            <p>Mon profil se clarifie : je suis à l'aise dans les rôles qui mêlent technique et méthode — diagnostiquer un incident, argumenter un choix technologique, documenter proprement. Ce qui reste à travailler, c'est la planification en amont des projets complexes et la gestion du temps quand plusieurs technologies se croisent.</p>
+          </div>
+
+          <div class="cg-card">
+            <div class="cg-num" style="background:var(--green)">4</div>
+            <h4>Ce que j'en conclus</h4>
+            <p>Ces deux semestres ont confirmé que la cybersécurité est le domaine où je veux aller, défense comme offense. Mais la technique seule ne suffit pas — savoir documenter, expliquer et justifier ses choix compte autant en entreprise que savoir configurer un FortiGate.</p>
+          </div>
+
+          <div class="cg-card cg-card-full">
+            <div class="cg-num" style="background:var(--yellow)">5</div>
+            <h4>Mon plan d'action</h4>
+            <p>Le stage qui commence le <strong>6 avril 2026</strong> est la prochaine étape concrète. L'objectif n'est pas juste de valider les crédits : c'est de trouver un contexte où ce que j'ai appris devient opérationnel sur des problèmes réels. Je cherche une entreprise où je peux travailler sur de la sécurité réseau avec des gens qui ont des choses à m'apprendre — et où je peux enchaîner en alternance dès septembre. La <strong>certification Cisco CyberOps Associate</strong> avance en parallèle pour structurer les connaissances offensives.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== CONTACT ===================== -->
   <section id="contact" class="section contact">
     <div class="container">
@@ -1127,6 +1184,7 @@
             <a href="#outils">Outils</a>
             <a href="#preuves">Preuves SAÉ</a>
             <a href="#reflexion">Réflexion</a>
+            <a href="#conclusion">Conclusion</a>
             <a href="#contact">Contact</a>
           </div>
         </nav>
@@ -1158,6 +1216,16 @@
           <source id="vid-modal-src" src="" type="video/mp4" />
         </video>
       </div>
+    </div>
+  </div>
+
+  <!-- ===================== LIGHTBOX IMAGES ===================== -->
+  <div class="img-lightbox" id="img-lightbox" aria-hidden="true" role="dialog" aria-label="Agrandissement image">
+    <div class="lb-bg" id="lb-bg"></div>
+    <div class="lb-content">
+      <button class="lb-close" id="lb-close" aria-label="Fermer"><i class="fas fa-times"></i></button>
+      <img class="lb-img" id="lb-img" src="" alt="" />
+      <p class="lb-caption" id="lb-caption"></p>
     </div>
   </div>
 

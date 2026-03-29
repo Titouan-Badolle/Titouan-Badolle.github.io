@@ -549,3 +549,162 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 setTimeout(() => {
   document.querySelector('.floating-social')?.classList.add('visible');
 }, 2500);
+
+/* ============================================================
+   RADAR CHART – Compétences BUT RT Cybersécurité
+   ============================================================ */
+(function radarChart() {
+  const canvas = document.getElementById('radar-chart');
+  if (!canvas) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { drawRadar(); observer.unobserve(e.target); }
+    });
+  }, { threshold: .25 });
+  observer.observe(canvas);
+
+  function drawRadar() {
+    const ctx  = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+    const cx = W / 2, cy = H / 2;
+    const R  = Math.min(W, H) * 0.34;
+
+    const data = [
+      { label: 'CCA', sub: 'Administrer', value: .75, color: '#6366f1' },
+      { label: 'CCB', sub: 'Connecter',   value: .70, color: '#22d3ee' },
+      { label: 'CCC', sub: 'Créer',       value: .65, color: '#a855f7' },
+      { label: 'CyberA', sub: 'Sécuriser', value: .80, color: '#f43f5e' },
+      { label: 'CyberB', sub: 'Analyser',  value: .72, color: '#10b981' },
+    ];
+    const n = data.length;
+    const angles = data.map((_, i) => (i * 2 * Math.PI / n) - Math.PI / 2);
+
+    let progress = 0;
+    function frame() {
+      ctx.clearRect(0, 0, W, H);
+      progress = Math.min(progress + 0.03, 1);
+      const t = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+
+      // Background grid rings
+      [.25, .5, .75, 1].forEach(r => {
+        ctx.beginPath();
+        angles.forEach((a, i) => {
+          const x = cx + Math.cos(a) * R * r;
+          const y = cy + Math.sin(a) * R * r;
+          i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        });
+        ctx.closePath();
+        ctx.strokeStyle = r === 1 ? 'rgba(99,102,241,.22)' : 'rgba(99,102,241,.1)';
+        ctx.lineWidth = r === 1 ? 1.5 : 1;
+        ctx.stroke();
+      });
+
+      // Spokes
+      angles.forEach(a => {
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(cx + Math.cos(a) * R, cy + Math.sin(a) * R);
+        ctx.strokeStyle = 'rgba(99,102,241,.18)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      });
+
+      // Data fill
+      ctx.beginPath();
+      angles.forEach((a, i) => {
+        const v = data[i].value * t;
+        const x = cx + Math.cos(a) * R * v;
+        const y = cy + Math.sin(a) * R * v;
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      });
+      ctx.closePath();
+      ctx.fillStyle   = 'rgba(99,102,241,.12)';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(99,102,241,.7)';
+      ctx.lineWidth   = 2;
+      ctx.stroke();
+
+      // Dots + labels
+      angles.forEach((a, i) => {
+        const v  = data[i].value * t;
+        const px = cx + Math.cos(a) * R * v;
+        const py = cy + Math.sin(a) * R * v;
+
+        // Dot
+        ctx.beginPath();
+        ctx.arc(px, py, 5, 0, Math.PI * 2);
+        ctx.fillStyle   = data[i].color;
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(255,255,255,.7)';
+        ctx.lineWidth   = 1.5;
+        ctx.stroke();
+
+        // Labels (outside ring)
+        const lx = cx + Math.cos(a) * (R + 42);
+        const ly = cy + Math.sin(a) * (R + 42);
+        ctx.textAlign    = 'center';
+        ctx.textBaseline = 'middle';
+
+        ctx.font      = 'bold 12px Inter, sans-serif';
+        ctx.fillStyle = data[i].color;
+        ctx.fillText(data[i].label, lx, ly - 8);
+
+        ctx.font      = '10px Inter, sans-serif';
+        ctx.fillStyle = 'rgba(148,163,184,.85)';
+        ctx.fillText(data[i].sub, lx, ly + 6);
+
+        ctx.font      = 'bold 9px "Fira Code", monospace';
+        ctx.fillStyle = data[i].color;
+        ctx.fillText(Math.round(data[i].value * 100 * t) + '%', lx, ly + 19);
+      });
+
+      if (progress < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+})();
+
+/* ============================================================
+   LIGHTBOX – zoom sur les captures d'écran
+   ============================================================ */
+(function imageLightbox() {
+  const lb      = document.getElementById('img-lightbox');
+  const lbBg    = document.getElementById('lb-bg');
+  const lbClose = document.getElementById('lb-close');
+  const lbImg   = document.getElementById('lb-img');
+  const lbCap   = document.getElementById('lb-caption');
+  if (!lb) return;
+
+  function open(src, caption) {
+    lbImg.src        = src;
+    lbImg.alt        = caption || '';
+    lbCap.textContent = caption || '';
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    setTimeout(() => { lbImg.src = ''; }, 260);
+  }
+
+  document.querySelectorAll('.visual-real img').forEach(img => {
+    img.addEventListener('click', () => {
+      const caption = img.closest('.visual-ph')
+        ?.querySelector('.visual-caption')
+        ?.textContent?.trim()
+        || img.alt || '';
+      open(img.src, caption);
+    });
+  });
+
+  lbClose.addEventListener('click', close);
+  lbBg.addEventListener('click', close);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && lb.classList.contains('open')) close();
+  });
+})();
