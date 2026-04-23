@@ -1,1242 +1,717 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
-  <meta name="description" content="E-Portfolio de Titouan Badolle – Étudiant en BUT Réseaux & Télécommunications, Parcours Cybersécurité à l'IUT de Roanne. SAÉ, compétences et réflexion professionnelle." />
-  <meta name="author" content="Titouan Badolle" />
-  <meta property="og:title" content="E-Portfolio – Titouan Badolle | BUT RT Cybersécurité" />
-  <meta property="og:description" content="Portfolio académique BUT RT Cybersécurité – IUT de Roanne" />
-  <title>E-Portfolio – Titouan Badolle | BUT RT Cybersécurité</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Titouan Badolle — Cybersécurité & Réseaux</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #080808;
+    --white: #f5f0e8;
+    --cream: #ede8dc;
+    --accent: #c8b89a;
+    --accent2: #8b7355;
+    --dim: #3a3530;
+    --dimmer: #111010;
+    --line: rgba(245,240,232,0.08);
+    --mono: 'DM Mono', monospace;
+    --sans: 'Syne', sans-serif;
+    --serif: 'Instrument Serif', serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: var(--sans); overflow-x: hidden; cursor: none; }
+
+  /* CURSOR */
+  .cursor { width: 8px; height: 8px; background: var(--white); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; mix-blend-mode: difference; }
+  .cursor-ring { width: 36px; height: 36px; border: 1px solid rgba(245,240,232,0.4); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transition: width 0.15s, height 0.15s, border-color 0.15s; transform: translate(-18px,-18px); }
+  .cursor-ring.hover { width: 56px; height: 56px; border-color: var(--accent); transform: translate(-28px,-28px); }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); opacity: 0.025; pointer-events: none; z-index: 100; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; padding: 22px 48px; display: flex; justify-content: space-between; align-items: center; background: rgba(8,8,8,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  .nav-logo { font-family: var(--mono); font-size: 13px; color: var(--accent); text-decoration: none; letter-spacing: 0.05em; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 11px; color: rgba(245,240,232,0.4); text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--white); }
+
+  /* NAV PROGRESS */
+  .nav-progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent); z-index: 200; transition: width 0.1s; }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
+  .hero-left { padding: 160px 48px 80px; display: flex; flex-direction: column; justify-content: flex-end; }
+  .hero-eyebrow { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 28px; display: flex; align-items: center; gap: 12px; }
+  .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); }
+  h1 { font-family: var(--sans); font-size: clamp(72px, 9vw, 140px); font-weight: 800; line-height: 0.9; letter-spacing: -0.03em; }
+  h1 .first { display: block; }
+  h1 .last { display: block; color: transparent; -webkit-text-stroke: 1px rgba(245,240,232,0.45); font-style: italic; font-family: var(--serif); font-size: clamp(80px, 10vw, 155px); }
+  .hero-desc { margin-top: 48px; font-family: var(--mono); font-size: 13px; line-height: 1.9; color: rgba(245,240,232,0.5); max-width: 380px; }
+  .hero-ctas { margin-top: 40px; display: flex; gap: 16px; align-items: center; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; background: var(--white); color: var(--black); font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: background 0.3s, transform 0.2s; }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+  .btn-primary .arr { display: inline-block; transition: transform 0.3s; }
+  .btn-primary:hover .arr { transform: translateX(4px); }
+  .btn-ghost { display: inline-flex; align-items: center; gap: 8px; padding: 14px 24px; background: transparent; color: rgba(245,240,232,0.5); font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--line); transition: border-color 0.3s, color 0.3s; }
+  .btn-ghost:hover { border-color: rgba(245,240,232,0.25); color: var(--white); }
+
+  /* HERO SCROLL CUE */
+  .scroll-hint { position: absolute; bottom: 40px; left: 48px; display: flex; align-items: center; gap: 12px; font-family: var(--mono); font-size: 10px; color: rgba(245,240,232,0.25); letter-spacing: 0.12em; text-transform: uppercase; }
+  .scroll-line { width: 40px; height: 1px; background: rgba(245,240,232,0.15); position: relative; overflow: hidden; }
+  .scroll-line::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--accent); animation: slide 2s ease-in-out infinite; }
+  @keyframes slide { 0% { left: -100%; } 50% { left: 0; } 100% { left: 100%; } }
+
+  /* HERO RIGHT */
+  .hero-right { border-left: 1px solid var(--line); display: flex; flex-direction: column; justify-content: flex-end; padding: 80px 48px; position: relative; overflow: hidden; }
+  .hero-right::before { content: ''; position: absolute; top: 160px; left: 50%; width: 320px; height: 320px; background: radial-gradient(circle, rgba(200,184,154,0.07) 0%, transparent 70%); transform: translateX(-50%); border-radius: 50%; }
+  .hero-big-num { font-family: var(--serif); font-size: 200px; font-weight: 400; font-style: italic; color: transparent; -webkit-text-stroke: 1px rgba(245,240,232,0.06); line-height: 1; position: absolute; top: 100px; right: -10px; user-select: none; }
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); margin-bottom: 32px; }
+  .stat { background: var(--black); padding: 28px 24px; transition: background 0.3s; }
+  .stat:hover { background: var(--dimmer); }
+  .stat-num { font-family: var(--serif); font-size: 48px; font-style: italic; color: var(--accent); line-height: 1; margin-bottom: 6px; }
+  .stat-label { font-family: var(--mono); font-size: 10px; color: rgba(245,240,232,0.35); text-transform: uppercase; letter-spacing: 0.12em; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 12px; border: 1px solid var(--line); color: rgba(245,240,232,0.35); transition: border-color 0.3s, color 0.3s; }
+  .tag:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* SECTION ANCHORS (offset for fixed nav) */
+  .anchor { display: block; height: 80px; margin-top: -80px; visibility: hidden; }
+
+  /* SECTION COMMON */
+  section, .about-section { position: relative; }
+  .section-inner { padding: 100px 48px; }
+  .section-label { font-family: var(--mono); font-size: 10px; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 60px; display: flex; align-items: center; gap: 16px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+  h2 { font-family: var(--sans); font-size: clamp(40px, 5vw, 72px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; }
+
+  /* PROJECTS */
+  .projects-section { border-top: 1px solid var(--line); }
+  .projects-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; }
+  .projects-header h2 em { font-family: var(--serif); font-weight: 400; color: var(--accent); }
+  .projects-count { font-family: var(--mono); font-size: 11px; color: rgba(245,240,232,0.25); letter-spacing: 0.1em; }
+  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); }
+  .project-card { background: var(--black); padding: 48px 40px; transition: background 0.4s; position: relative; overflow: hidden; text-decoration: none; color: inherit; display: block; cursor: none; }
+  .project-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(200,184,154,0.06) 0%, transparent 60%); opacity: 0; transition: opacity 0.4s; }
+  .project-card:hover::before { opacity: 1; }
+  .project-card:hover { background: #0d0c0a; }
+  .project-num { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 28px; opacity: 0.5; }
+  .project-title { font-family: var(--sans); font-size: 26px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 14px; transition: color 0.3s; }
+  .project-card:hover .project-title { color: var(--accent); }
+  .project-desc { font-family: var(--mono); font-size: 12px; line-height: 1.85; color: rgba(245,240,232,0.4); margin-bottom: 28px; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 28px; }
+  .project-tag { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border: 1px solid rgba(245,240,232,0.07); color: rgba(245,240,232,0.3); }
+  .project-footer { display: flex; align-items: center; justify-content: space-between; }
+  .project-link-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245,240,232,0.25); transition: color 0.3s; }
+  .project-card:hover .project-link-label { color: var(--accent); }
+  .project-arrow { font-size: 18px; color: var(--accent); opacity: 0; transform: translateX(-8px); transition: opacity 0.3s, transform 0.3s; }
+  .project-card:hover .project-arrow { opacity: 1; transform: translateX(0); }
+  .project-card.featured { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 60px 40px; }
+  .project-card.featured .project-title { font-size: 38px; }
+  .project-card.featured .project-desc { font-size: 13px; line-height: 2; color: rgba(245,240,232,0.5); }
+  .featured-badge { position: absolute; top: 32px; right: 40px; font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--black); background: var(--accent); padding: 4px 10px; }
+
+  /* SKILLS */
+  .skills-section { border-top: 1px solid var(--line); background: var(--dimmer); }
+  .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); margin-top: 64px; }
+  .skill-col { background: var(--dimmer); padding: 36px 28px; }
+  .skill-cat { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+  .skill-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid rgba(245,240,232,0.04); font-family: var(--mono); font-size: 12px; color: rgba(245,240,232,0.55); transition: color 0.3s; }
+  .skill-item:hover { color: var(--white); }
+  .skill-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); opacity: 0.45; flex-shrink: 0; }
+  .skill-item:hover .skill-dot { opacity: 1; }
+  .certs-row { display: flex; gap: 1px; background: var(--line); margin-top: 1px; }
+  .cert-card { flex: 1; background: var(--dimmer); padding: 28px 28px; transition: background 0.3s; }
+  .cert-card:hover { background: #1a1714; }
+  .cert-status { font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; padding: 3px 8px; margin-bottom: 12px; display: inline-block; }
+  .cert-status.ongoing { background: rgba(200,184,154,0.12); color: var(--accent); }
+  .cert-status.planned { background: rgba(245,240,232,0.04); color: rgba(245,240,232,0.3); }
+  .cert-name { font-family: var(--sans); font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .cert-org { font-family: var(--mono); font-size: 11px; color: rgba(245,240,232,0.3); }
+
+  /* ABOUT */
+  .about-section { border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1fr; }
+  .about-left { padding: 100px 48px; border-right: 1px solid var(--line); }
+  .about-right { padding: 100px 48px; }
+  .about-text { font-family: var(--serif); font-size: 22px; font-style: italic; line-height: 1.65; color: rgba(245,240,232,0.75); margin-top: 40px; margin-bottom: 36px; }
+  .about-body { font-family: var(--mono); font-size: 13px; line-height: 2; color: rgba(245,240,232,0.4); }
+  .timeline { margin-top: 40px; }
+  .timeline-item { display: grid; grid-template-columns: 80px 1fr; gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+  .timeline-year { font-family: var(--mono); font-size: 11px; color: var(--accent); padding-top: 4px; }
+  .timeline-title { font-family: var(--sans); font-size: 14px; font-weight: 600; margin-bottom: 5px; }
+  .timeline-sub { font-family: var(--mono); font-size: 11px; color: rgba(245,240,232,0.35); line-height: 1.7; }
+  .timeline-badge { display: inline-block; font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); background: var(--accent); padding: 2px 8px; margin-top: 8px; }
+
+  /* CONTACT */
+  .contact-section { border-top: 1px solid var(--line); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); margin-top: 64px; }
+  .contact-card { background: var(--black); padding: 40px 36px; transition: background 0.3s; text-decoration: none; color: inherit; display: block; cursor: none; }
+  .contact-card:hover { background: var(--dimmer); }
+  .contact-card-icon { font-family: var(--mono); font-size: 18px; color: var(--accent); margin-bottom: 20px; display: block; }
+  .contact-card-title { font-family: var(--sans); font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+  .contact-card-sub { font-family: var(--mono); font-size: 12px; color: rgba(245,240,232,0.4); line-height: 1.7; margin-bottom: 20px; }
+  .contact-card-link { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.08em; display: flex; align-items: center; gap: 6px; }
+  .contact-card-link::after { content: '↗'; }
+
+  /* FORM */
+  .contact-form-wrap { background: var(--dimmer); padding: 40px 36px; }
+  .form-title { font-family: var(--sans); font-size: 20px; font-weight: 700; margin-bottom: 28px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245,240,232,0.4); }
+  .form-group input,
+  .form-group textarea {
+    background: rgba(245,240,232,0.04);
+    border: 1px solid rgba(245,240,232,0.08);
+    color: var(--white);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 12px 16px;
+    outline: none;
+    transition: border-color 0.3s;
+    width: 100%;
+    resize: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus { border-color: var(--accent); }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(245,240,232,0.2); }
+  .form-group textarea { min-height: 120px; }
+  .form-submit { display: flex; align-items: center; gap: 12px; margin-top: 20px; }
+  .btn-send { display: inline-flex; align-items: center; gap: 10px; padding: 13px 28px; background: var(--white); color: var(--black); font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; border: none; cursor: pointer; transition: background 0.3s; }
+  .btn-send:hover { background: var(--accent); }
+  .form-note { font-family: var(--mono); font-size: 10px; color: rgba(245,240,232,0.25); }
+
+  .contact-dispo { font-family: var(--mono); font-size: 12px; color: rgba(245,240,232,0.35); display: flex; align-items: center; gap: 10px; margin-top: 48px; }
+  .dispo-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; flex-shrink: 0; animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  /* AC badges */
+  .ac-row { font-family: var(--mono); font-size: 10px; color: var(--accent); opacity: 0.55; letter-spacing: 0.06em; margin-bottom: 16px; }
+
+  /* REFLEXION */
+  .gibbs-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--line); margin-top: 64px; }
+  .gibbs-step { background: var(--black); padding: 32px 24px; transition: background 0.3s; }
+  .gibbs-step:hover { background: var(--dimmer); }
+  .gibbs-num { font-family: var(--serif); font-size: 64px; font-style: italic; color: transparent; -webkit-text-stroke: 1px rgba(245,240,232,0.07); line-height: 1; margin-bottom: 16px; }
+  .gibbs-step:hover .gibbs-num { -webkit-text-stroke-color: rgba(200,184,154,0.18); }
+  .gibbs-title { font-family: var(--sans); font-size: 13px; font-weight: 700; margin-bottom: 10px; }
+  .gibbs-body { font-family: var(--mono); font-size: 11px; line-height: 1.8; color: rgba(245,240,232,0.4); }
+  .reflexion-intro { font-family: var(--serif); font-size: 20px; font-style: italic; line-height: 1.65; color: rgba(245,240,232,0.7); max-width: 640px; margin-top: 40px; margin-bottom: 32px; }
+  .reflexion-body { font-family: var(--mono); font-size: 13px; line-height: 2; color: rgba(245,240,232,0.4); max-width: 720px; margin-bottom: 16px; }
+
+  /* CONCLUSION */
+  .conclusion-section { border-top: 1px solid var(--line); background: var(--dimmer); }
+  .ac-table { width: 100%; margin-top: 56px; border-collapse: collapse; }
+  .ac-table tr { background: var(--dimmer); transition: background 0.2s; }
+  .ac-table tr:hover { background: #1a1714; }
+  .ac-table td, .ac-table th { padding: 14px 20px; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 12px; text-align: left; }
+  .ac-table th { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245,240,232,0.25); background: #0d0c0a; }
+  .comp-badge { display: inline-block; padding: 2px 8px; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; color: var(--black); background: var(--accent); margin-right: 6px; }
+  .status-ok { color: #4ade80; font-size: 10px; }
+  .status-prog { color: var(--accent); font-size: 10px; }
+  .ac-desc { color: rgba(245,240,232,0.45); }
+  .conclusion-quote { font-family: var(--serif); font-size: 26px; font-style: italic; line-height: 1.55; color: rgba(245,240,232,0.65); max-width: 680px; margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--line); }
+
+  /* FOOTER */
+  footer { padding: 28px 48px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-family: var(--mono); font-size: 11px; color: rgba(245,240,232,0.18); }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(245,240,232,0.12); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-up { opacity: 0; animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  .fade-up.d1 { animation-delay: 0.1s; } .fade-up.d2 { animation-delay: 0.25s; }
+  .fade-up.d3 { animation-delay: 0.4s; } .fade-up.d4 { animation-delay: 0.55s; }
+  .fade-up.d5 { animation-delay: 0.7s; }
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* SECTION INDICATOR — montre où on est */
+  .side-indicator { position: fixed; right: 32px; top: 50%; transform: translateY(-50%); z-index: 40; display: flex; flex-direction: column; gap: 10px; }
+  .side-dot { width: 6px; height: 6px; border-radius: 50%; border: 1px solid rgba(245,240,232,0.2); transition: background 0.3s, border-color 0.3s, height 0.3s; cursor: pointer; }
+  .side-dot.active { background: var(--accent); border-color: var(--accent); height: 20px; border-radius: 3px; }
+  .side-dot:hover { border-color: var(--white); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { border-left: none; border-top: 1px solid var(--line); }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .about-section { grid-template-columns: 1fr; }
+    .about-left { border-right: none; border-bottom: 1px solid var(--line); }
+    .contact-grid { grid-template-columns: 1fr; }
+    nav { padding: 18px 24px; }
+    .section-inner { padding: 72px 24px; }
+    .hero-left { padding: 120px 24px 60px; }
+    .hero-right { padding: 60px 24px; }
+    .form-row { grid-template-columns: 1fr; }
+    .side-indicator { display: none; }
+    .about-left, .about-right { padding: 72px 24px; }
+    footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- ===================== PRELOADER ===================== -->
-  <div id="preloader">
-    <div class="preloader-inner">
-      <div class="preloader-hex">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="50,5 93,27.5 93,72.5 50,95 7,72.5 7,27.5" fill="none" stroke="rgba(99,102,241,0.9)" stroke-width="2" class="pl-hex-outer"/>
-          <polygon points="50,20 80,36.5 80,63.5 50,80 20,63.5 20,36.5" fill="rgba(99,102,241,0.06)" stroke="rgba(34,211,238,0.6)" stroke-width="1.5" class="pl-hex-inner"/>
-          <text x="50" y="55" text-anchor="middle" fill="#a5b4fc" font-size="14" font-weight="700" font-family="monospace">&lt;/&gt;</text>
-        </svg>
-      </div>
-      <div class="preloader-logo">Portfolio.init()</div>
-      <div class="preloader-bar-wrap">
-        <div class="preloader-bar"><div class="preloader-fill" id="preloader-fill"></div></div>
-        <span class="preloader-percent" id="preloader-percent">0%</span>
-      </div>
-      <p class="preloader-status" id="preloader-status">Chargement des modules...</p>
-      <div class="preloader-dots"><span></span><span></span><span></span></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="nav-progress" id="navProgress"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">E-Portfolio</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projets</a></li>
+    <li><a href="#skills">Compétences</a></li>
+    <li><a href="#about">Parcours</a></li>
+    <li><a href="#reflexion">Réflexion</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- SIDE INDICATOR -->
+<div class="side-indicator" id="sideIndicator">
+  <div class="side-dot active" data-section="hero" title="Accueil"></div>
+  <div class="side-dot" data-section="projects" title="Projets"></div>
+  <div class="side-dot" data-section="skills" title="Compétences"></div>
+  <div class="side-dot" data-section="about" title="Parcours"></div>
+  <div class="side-dot" data-section="reflexion" title="Réflexion"></div>
+  <div class="side-dot" data-section="conclusion" title="Conclusion"></div>
+  <div class="side-dot" data-section="contact" title="Contact"></div>
+</div>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow fade-up d1">BUT RT · Cybersécurité · IUT Roanne</div>
+    <h1>
+      <span class="first fade-up d2">Titouan</span>
+      <span class="last fade-up d3">Badolle</span>
+    </h1>
+    <p class="hero-desc fade-up d4">Infrastructure réseau, sécurité offensive et défensive.<br>De l'IoT LoRaWAN au pentest, je construis et je compromets des systèmes pour mieux les comprendre.</p>
+    <div class="hero-ctas fade-up d5">
+      <a href="#projects" class="btn-primary">Voir les projets <span class="arr">→</span></a>
+      <a href="https://titouan-badolle.github.io/CV%20-%20Titouan%20Badolle.pdf" class="btn-ghost" target="_blank">CV PDF</a>
+    </div>
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      Défiler
     </div>
   </div>
-
-  <!-- ===================== CURSOR ===================== -->
-  <div class="cursor-ring" id="cursor-ring"></div>
-  <div class="cursor-dot"  id="cursor-dot"></div>
-
-  <!-- ===================== SCROLL PROGRESS ===================== -->
-  <div class="scroll-progress-bar" id="scroll-progress"></div>
-
-  <!-- ===================== NAVBAR ===================== -->
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="#accueil" class="nav-logo">&lt;Portfolio /&gt;</a>
-      <ul class="nav-menu" id="nav-menu">
-        <li><a href="#accueil"     class="nav-link">Accueil</a></li>
-        <li><a href="#about"       class="nav-link">À propos</a></li>
-        <li><a href="#parcours"    class="nav-link">Parcours</a></li>
-        <li><a href="#competences" class="nav-link">Compétences</a></li>
-        <li><a href="#outils"      class="nav-link">Outils</a></li>
-        <li><a href="#preuves"     class="nav-link">Preuves</a></li>
-        <li><a href="#reflexion"   class="nav-link">Réflexion</a></li>
-        <li><a href="#conclusion"  class="nav-link">Conclusion</a></li>
-        <li><a href="#contact"     class="nav-link">Contact</a></li>
-      </ul>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+  <div class="hero-right">
+    <div class="hero-big-num">24</div>
+    <div class="hero-stats fade-up d3">
+      <div class="stat"><div class="stat-num">5</div><div class="stat-label">SAÉ réalisées</div></div>
+      <div class="stat"><div class="stat-num">5</div><div class="stat-label">Blocs de compétences</div></div>
+      <div class="stat"><div class="stat-num">B2</div><div class="stat-label">Niveau anglais</div></div>
+      <div class="stat"><div class="stat-num">2</div><div class="stat-label">Certifs en cours</div></div>
     </div>
-  </nav>
-
-  <!-- ===================== FLOATING SOCIAL ===================== -->
-  <div class="floating-social">
-    <a href="https://github.com/Titouan-Badolle" target="_blank" rel="noopener noreferrer" class="fs-btn" title="GitHub"><i class="fab fa-github"></i></a>
-    <a href="https://www.linkedin.com/in/titouan-badolle-40031935a/" target="_blank" rel="noopener noreferrer" class="fs-btn" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-    <a href="mailto:badolletitouanpro@gmail.com" class="fs-btn" title="Email"><i class="fas fa-envelope"></i></a>
-    <div class="fs-line"></div>
+    <div class="hero-tags fade-up d4">
+      <span class="tag">Cisco IOS</span>
+      <span class="tag">FortiGate</span>
+      <span class="tag">Kali Linux</span>
+      <span class="tag">Metasploit</span>
+      <span class="tag">Active Directory</span>
+      <span class="tag">Docker</span>
+      <span class="tag">Python</span>
+      <span class="tag">LoRaWAN</span>
+      <span class="tag">Wireshark</span>
+      <span class="tag">Nmap</span>
+    </div>
   </div>
+</div>
 
-  <!-- ===================== HERO ===================== -->
-  <section id="accueil" class="hero">
-    <canvas id="hero-canvas"></canvas>
-    <div class="hero-bg-grid"></div>
-    <div class="hero-content">
-      <p class="hero-greeting">
-        <span class="hero-ping"></span>
-        Bienvenue sur mon
-      </p>
-      <h1 class="hero-title glitch" data-text="E-Portfolio">E-Portfolio</h1>
-      <h2 class="hero-subtitle">
-        <span class="mono-prefix">~$ </span><span id="typing-text"></span><span class="cursor-blink">▋</span>
-      </h2>
-      <p class="hero-desc">
-        <strong>Titouan Badolle</strong> — Étudiant en <strong>BUT Réseaux &amp; Télécommunications</strong> – Parcours Cybersécurité<br />
-        Ce portfolio témoigne de mes apprentissages, compétences et projets acquis lors de la 2ème année de formation.
-      </p>
-      <div class="hero-btns">
-        <a href="#preuves" class="btn btn-primary"><i class="fas fa-folder-open"></i> Voir mes preuves</a>
-        <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i> Me contacter</a>
-        <button class="btn btn-video" data-modal-video="video/portfolio-intro.mp4" data-modal-title="Présentation — E-Portfolio Titouan Badolle">
-          <span class="play-ring"></span><i class="fas fa-play"></i> Voir l'intro vidéo
-        </button>
+<!-- PROJECTS -->
+<div class="anchor" id="projects"></div>
+<section class="projects-section">
+  <div class="section-inner reveal">
+    <div class="section-label">Travaux · SAÉ</div>
+    <div class="projects-header">
+      <h2>Projets <em>concrets</em></h2>
+      <span class="projects-count">05 SAÉ documentées</span>
+    </div>
+    <div class="projects-grid">
+      <!-- Featured -->
+      <a class="project-card featured" href="https://titouan-badolle.github.io/cr/Cyber.03.pdf" target="_blank">
+        <div class="featured-badge">Projet phare</div>
+        <div>
+          <div class="project-num">Cyber.03 · S3 · <span style="color:var(--accent);opacity:0.7">CyberA · CCA · CCB</span></div>
+          <div class="project-title">Infrastructure réseau sécurisée multi-services</div>
+          <div class="project-tags">
+            <span class="project-tag">Active Directory</span><span class="project-tag">RADIUS 802.1X</span><span class="project-tag">OSPFv2</span><span class="project-tag">vCenter</span><span class="project-tag">WPA2-Enterprise</span><span class="project-tag">Grafana</span>
+          </div>
+          <div class="ac-row">AC21.01 · AC21.02 · AC21.03 · AC21.04 · AC21.06 · AC22.01 · AC22.02 · AC22.05 · AC24.01 · AC24.02 · AC24.03</div>
+        </div>
+        <div>
+          <div class="project-desc">Modernisation complète d'une infrastructure réseau entreprise : virtualisation vCenter, domaine AD-DS, routage dynamique OSPFv2 sur Cisco physique, Wi-Fi WPA2-Enterprise avec RADIUS, RemoteApp et cloisonnement réseau invité par ACL.</div>
+          <div class="project-footer"><span class="project-link-label">Voir le compte rendu</span><span class="project-arrow">↗</span></div>
+        </div>
+      </a>
+      <a class="project-card" href="https://titouan-badolle.github.io/cr/Cyber.04.pdf" target="_blank">
+        <div class="project-num">Cyber.04 · S3 · <span style="color:var(--accent);opacity:0.7">CyberB</span></div>
+        <div class="project-title">Pentest — Tests d'intrusion éthiques</div>
+        <div class="project-tags"><span class="project-tag">Kali Linux</span><span class="project-tag">Metasploit</span><span class="project-tag">CVE exploitation</span><span class="project-tag">Gobuster</span></div>
+        <div class="ac-row">AC22.05 · AC24.01 · AC24.05 · AC24.06 · AC25.01 · AC25.02</div>
+        <div class="project-desc">Compromission de VMs VulnHub (Kioptrix, SickOs) : Nmap, exploit Samba CVE-2003-0201, reverse shell PHP via HTTP PUT, élévation de privilèges chkrootkit.</div>
+        <div class="project-footer"><span class="project-link-label">Voir le compte rendu</span><span class="project-arrow">↗</span></div>
+      </a>
+      <a class="project-card" href="https://titouan-badolle.github.io/cr/SAE3.01.pdf" target="_blank">
+        <div class="project-num">SAÉ 3.01 · S3 · <span style="color:var(--accent);opacity:0.7">CCA · CCB</span></div>
+        <div class="project-title">Infrastructure IoT LoRaWAN GPS</div>
+        <div class="project-tags"><span class="project-tag">LoRaWAN</span><span class="project-tag">ChirpStack v4</span><span class="project-tag">Docker</span><span class="project-tag">Arduino C++</span></div>
+        <div class="ac-row">AC21.03 · AC21.04 · AC21.06 · AC22.01 · AC22.05 · AC23.02 · AC23.03</div>
+        <div class="project-desc">Stack IoT privée sur VPS Digital Ocean pour suivi GPS temps réel de balises en course d'orientation. Payload decoder JS, passerelle Dragino LPS8N.</div>
+        <div class="project-footer"><span class="project-link-label">Voir le compte rendu</span><span class="project-arrow">↗</span></div>
+      </a>
+      <a class="project-card" href="https://titouan-badolle.github.io/cr/SAE3.02.pdf" target="_blank">
+        <div class="project-num">SAÉ 3.02 · S3 · <span style="color:var(--accent);opacity:0.7">CCC</span></div>
+        <div class="project-title">Application Android Client/Serveur</div>
+        <div class="project-tags"><span class="project-tag">Java Android</span><span class="project-tag">TCP/UDP</span><span class="project-tag">RBAC</span><span class="project-tag">Multithreading</span></div>
+        <div class="ac-row">AC21.06 · AC22.05 · AC23.02 · AC23.03 · AC24.01 · AC24.03</div>
+        <div class="project-desc">App Android avec architecture client/serveur hybride TCP+UDP, authentification sécurisée et contrôle d'accès par rôles (Admin/Étudiant).</div>
+        <div class="project-footer"><span class="project-link-label">Voir le compte rendu</span><span class="project-arrow">↗</span></div>
+      </a>
+      <a class="project-card" href="https://titouan-badolle.github.io/cr/SAE4.pdf" target="_blank">
+        <div class="project-num">SAÉ4 · S4 · <span style="color:var(--accent);opacity:0.7">CyberA · CyberB</span></div>
+        <div class="project-title">Sécurité Fortinet & Bastion SSH/RDP</div>
+        <div class="project-tags"><span class="project-tag">FortiGate NGFW</span><span class="project-tag">IPS / Antivirus</span><span class="project-tag">Jump Server</span><span class="project-tag">SSL Inspection</span></div>
+        <div class="ac-row">AC24.01 · AC24.02 · AC24.03 · AC25.01 · AC25.02</div>
+        <div class="project-desc">FortiGate pour bloquer cyberattaques (IPS, filtrage applicatif), déploiement d'un serveur Bastion pour centraliser les accès SSH/RDP d'administration.</div>
+        <div class="project-footer"><span class="project-link-label">Voir le compte rendu</span><span class="project-arrow">↗</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<div class="anchor" id="skills"></div>
+<section class="skills-section">
+  <div class="section-inner reveal">
+    <div class="section-label">Stack · Outils</div>
+    <h2>Ce que je<br>maîtrise</h2>
+    <div class="skills-grid">
+      <div class="skill-col">
+        <div class="skill-cat">Réseau & Infra</div>
+        <div class="skill-item"><span class="skill-dot"></span>Cisco IOS / IOS-XE</div>
+        <div class="skill-item"><span class="skill-dot"></span>OSPFv2 / BGP / VLANs</div>
+        <div class="skill-item"><span class="skill-dot"></span>Ubiquiti UniFi</div>
+        <div class="skill-item"><span class="skill-dot"></span>Windows Server 2019</div>
+        <div class="skill-item"><span class="skill-dot"></span>Debian / Linux</div>
+        <div class="skill-item"><span class="skill-dot"></span>VMware vCenter / ESXi</div>
+        <div class="skill-item"><span class="skill-dot"></span>Docker Compose</div>
       </div>
-      <div class="hero-stats">
-        <div class="stat"><span class="stat-num" data-count="5">0</span><span class="stat-lbl">SAÉ réalisées</span></div>
-        <div class="stat"><span class="stat-num" data-count="5">0</span><span class="stat-lbl">Compétences</span></div>
-        <div class="stat"><span class="stat-num" data-count="2">0</span><span class="stat-lbl">Ans de formation</span></div>
-        <div class="stat"><span class="stat-num" data-count="12">0</span><span class="stat-lbl">Technologies</span></div>
+      <div class="skill-col">
+        <div class="skill-cat">Cybersécurité</div>
+        <div class="skill-item"><span class="skill-dot"></span>Kali Linux</div>
+        <div class="skill-item"><span class="skill-dot"></span>Nmap / Gobuster</div>
+        <div class="skill-item"><span class="skill-dot"></span>Metasploit Framework</div>
+        <div class="skill-item"><span class="skill-dot"></span>FortiGate NGFW</div>
+        <div class="skill-item"><span class="skill-dot"></span>PKI / IPSec / DMZ</div>
+        <div class="skill-item"><span class="skill-dot"></span>RADIUS 802.1X</div>
+        <div class="skill-item"><span class="skill-dot"></span>Wireshark</div>
+      </div>
+      <div class="skill-col">
+        <div class="skill-cat">Développement</div>
+        <div class="skill-item"><span class="skill-dot"></span>Python</div>
+        <div class="skill-item"><span class="skill-dot"></span>Java / Android Studio</div>
+        <div class="skill-item"><span class="skill-dot"></span>C++ (Arduino)</div>
+        <div class="skill-item"><span class="skill-dot"></span>JavaScript</div>
+        <div class="skill-item"><span class="skill-dot"></span>Git / GitHub</div>
+        <div class="skill-item"><span class="skill-dot"></span>Bash scripting</div>
+        <div class="skill-item"><span class="skill-dot"></span>REST API</div>
+      </div>
+      <div class="skill-col">
+        <div class="skill-cat">IoT & Supervision</div>
+        <div class="skill-item"><span class="skill-dot"></span>ChirpStack v4</div>
+        <div class="skill-item"><span class="skill-dot"></span>Grafana / Prometheus</div>
+        <div class="skill-item"><span class="skill-dot"></span>Mosquitto MQTT</div>
+        <div class="skill-item"><span class="skill-dot"></span>PostgreSQL / Redis</div>
+        <div class="skill-item"><span class="skill-dot"></span>Digital Ocean VPS</div>
+        <div class="skill-item"><span class="skill-dot"></span>Datacake</div>
+        <div class="skill-item"><span class="skill-dot"></span>Active Directory DS</div>
       </div>
     </div>
-    <a class="hero-scroll" href="#about"><i class="fas fa-chevron-down"></i></a>
-  </section>
-
-  <!-- ===================== À PROPOS ===================== -->
-  <section id="about" class="section about">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-photo" data-aos>
-          <div class="photo-frame">
-            <div class="photo-placeholder"><img src="image/Profile.jpg" alt="Titouan Badolle" /></div>
-          </div>
-          <div class="photo-badges">
-            <div class="photo-badge cyber-badge-ph"><i class="fas fa-shield-halved"></i> Cyber</div>
-            <div class="photo-badge net-badge-ph"><i class="fas fa-network-wired"></i> RT</div>
-          </div>
-        </div>
-        <div class="about-text" data-aos>
-          <span class="section-tag">À propos</span>
-          <h2 class="section-title">Qui suis-je ?</h2>
-          <p>
-            Je suis <strong>Titouan Badolle</strong>, étudiant en 2ème année de BUT Réseaux &amp; Télécommunications,
-            parcours Cybersécurité, à l'<strong>IUT de Roanne</strong>. Passionné par les réseaux, la sécurité
-            informatique et les nouvelles technologies, je développe mes compétences à travers des projets concrets
-            et des mises en situation professionnelle – de l'IoT LoRaWAN au pentesting.
-          </p>
-          <p>
-            Ce portfolio rassemble mes travaux, mes analyses réflexives et les preuves de l'acquisition
-            de mes compétences tout au long de cette formation (Semestres 3 &amp; 4).
-          </p>
-          <div class="info-grid">
-            <div class="info-item"><i class="fas fa-graduation-cap"></i> BUT RT – Cybersécurité</div>
-            <div class="info-item"><i class="fas fa-university"></i> IUT de Roanne, Loire (42)</div>
-            <div class="info-item"><i class="fas fa-calendar-alt"></i> 2024 – 2026</div>
-            <div class="info-item"><i class="fas fa-map-marker-alt"></i> Roanne, Auvergne-Rhône-Alpes</div>
-            <div class="info-item"><i class="fas fa-language"></i> Français, Anglais (B2)</div>
-            <div class="info-item"><i class="fas fa-trophy"></i> Bac STI2D SIN – Mention Bien</div>
-          </div>
-          <a href="CV%20-%20Titouan%20Badolle.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="cv-download-btn">
-            <i class="fas fa-download"></i> Télécharger mon CV
-          </a>
-        </div>
-      </div>
+    <div class="certs-row">
+      <div class="cert-card"><span class="cert-status ongoing">En cours</span><div class="cert-name">Cisco CyberOps Associate</div><div class="cert-org">Cisco Networking Academy</div></div>
+      <div class="cert-card"><span class="cert-status ongoing">En cours</span><div class="cert-name">Fortinet NSE 1 & 2</div><div class="cert-org">Fortinet Training Institute</div></div>
+      <div class="cert-card"><span class="cert-status planned">Planifié</span><div class="cert-name">Google IT Support Certificate</div><div class="cert-org">Google / Coursera</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===================== PARCOURS / TIMELINE ===================== -->
-  <section id="parcours" class="section parcours">
-    <div class="container">
-      <span class="section-tag" data-aos>Formation</span>
-      <h2 class="section-title centered" data-aos>Mon Parcours</h2>
-      <p class="section-desc" data-aos>
-        De la découverte des systèmes numériques à la spécialisation en cybersécurité,
-        les étapes clés de ma formation et de mon développement professionnel.
-      </p>
-
-      <div class="timeline">
-
-        <div class="tl-item" data-aos>
-          <div class="tl-dot tl-dot-cyber"><i class="fas fa-fire-alt"></i></div>
-          <div class="tl-content tl-content-cyber">
-            <div class="tl-header">
-              <span class="tl-date"><i class="fas fa-calendar"></i> 2025 – 2026</span>
-              <span class="tl-badge ongoing">En cours</span>
-            </div>
-            <h3 class="tl-title">Semestre 4 – Approfondissement Cybersécurité</h3>
-            <p>SAÉ Fortinet (FortiGate NGFW, Bastion SSH/RDP), préparation certifications Cisco CyberOps Associate et Fortinet NSE. Consolidation de l'expertise en sécurité réseau niveau entreprise.</p>
-            <div class="tl-tags">
-              <span>FortiGate</span><span>Bastion</span><span>NGFW</span><span>CyberOps</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="tl-item right" data-aos>
-          <div class="tl-dot"><i class="fas fa-shield-halved"></i></div>
-          <div class="tl-content">
-            <div class="tl-header">
-              <span class="tl-date"><i class="fas fa-calendar"></i> 2024 – 2025</span>
-              <span class="tl-badge done">Validé</span>
-            </div>
-            <h3 class="tl-title">Semestre 3 – Projets Techniques Avancés</h3>
-            <p>Infrastructure IoT LoRaWAN sur VPS Digital Ocean, application Android Client/Serveur avec RBAC, infrastructure réseau sécurisée multi-services (AD-DS, RADIUS, RDS) et pentesting (Kioptrix, SickOs).</p>
-            <div class="tl-tags">
-              <span>LoRaWAN</span><span>Android</span><span>Pentesting</span><span>Active Directory</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="tl-item" data-aos>
-          <div class="tl-dot"><i class="fas fa-network-wired"></i></div>
-          <div class="tl-content">
-            <div class="tl-header">
-              <span class="tl-date"><i class="fas fa-calendar"></i> 2023 – 2024</span>
-              <span class="tl-badge done">Validé</span>
-            </div>
-            <h3 class="tl-title">Semestres 1 &amp; 2 – Fondamentaux RT</h3>
-            <p>Réseaux TCP/IP, routage statique/dynamique, commutation Ethernet, administration Linux et Windows Server, programmation Python, mathématiques pour les RT et premiers TP Cisco en salle de TP.</p>
-            <div class="tl-tags">
-              <span>TCP/IP</span><span>Python</span><span>Linux</span><span>Cisco Packet Tracer</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="tl-item right" data-aos>
-          <div class="tl-dot tl-dot-gold"><i class="fas fa-graduation-cap"></i></div>
-          <div class="tl-content">
-            <div class="tl-header">
-              <span class="tl-date"><i class="fas fa-calendar"></i> 2023</span>
-              <span class="tl-badge done">Obtenu</span>
-            </div>
-            <h3 class="tl-title">Baccalauréat STI2D – Mention Bien</h3>
-            <p>Spécialité SIN (Systèmes d'Information et Numérique). Premier contact avec les systèmes embarqués, la programmation et l'électronique numérique.</p>
-            <div class="tl-tags">
-              <span>STI2D</span><span>SIN</span><span>Mention Bien</span>
-            </div>
-          </div>
-        </div>
-
+<!-- ABOUT -->
+<div class="anchor" id="about"></div>
+<div class="about-section">
+  <div class="about-left reveal">
+    <div class="section-label">À propos</div>
+    <h2>Parcours</h2>
+    <p class="about-text">"Je construis des systèmes robustes pour mieux comprendre comment les briser."</p>
+    <p class="about-body">Étudiant en 2ème année de BUT Réseaux & Télécommunications, parcours Cybersécurité à l'IUT de Roanne. Passionné par les deux faces du réseau : architecture sécurisée et attaque offensive. De la config Cisco physique au reverse shell PHP, en passant par l'IoT LoRaWAN sur VPS.</p>
+    <p class="about-body" style="margin-top:16px;">Bac STI2D SIN mention Bien · Français, Anglais B2.</p>
+  </div>
+  <div class="about-right reveal">
+    <div class="section-label">Chronologie</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">2026</div>
+        <div><div class="timeline-title">Stage entreprise</div><div class="timeline-sub">Depuis avril 2026 · Sécurité réseau en contexte réel</div><span class="timeline-badge">En cours</span></div>
       </div>
-    </div>
-  </section>
-
-  <!-- ===================== COMPÉTENCES ===================== -->
-  <section id="competences" class="section competences">
-    <div class="container">
-      <span class="section-tag" data-aos>Référentiel BUT RT</span>
-      <h2 class="section-title centered" data-aos>Mes Compétences</h2>
-      <p class="section-desc" data-aos>
-        Mon parcours est structuré autour de 5 blocs de compétences définis par le référentiel
-        du BUT RT – Parcours Cybersécurité.
-      </p>
-
-      <div class="comp-grid">
-
-        <div class="comp-card tilt-card" data-aos>
-          <div class="comp-head">
-            <div class="comp-icon"><i class="fas fa-network-wired"></i></div>
-            <span class="comp-badge">CCA</span>
-          </div>
-          <h3>Administrer les réseaux</h3>
-          <p>Configurer et maintenir des équipements réseau, assurer leur performance et disponibilité.</p>
-          <div class="comp-tags"><span>Cisco IOS</span><span>VLAN</span><span>OSPF</span><span>STP</span></div>
-          <div class="progress-wrap"><div class="progress-bar" data-p="75"></div></div>
-          <div class="comp-footer"><span class="comp-level">Avancé</span><span class="comp-percent">75%</span></div>
-        </div>
-
-        <div class="comp-card tilt-card" data-aos>
-          <div class="comp-head">
-            <div class="comp-icon"><i class="fas fa-globe"></i></div>
-            <span class="comp-badge">CCB</span>
-          </div>
-          <h3>Connecter les entreprises</h3>
-          <p>Concevoir et déployer des solutions de connectivité WAN pour relier sites et utilisateurs.</p>
-          <div class="comp-tags"><span>VPN</span><span>BGP</span><span>WAN</span><span>QoS</span></div>
-          <div class="progress-wrap"><div class="progress-bar" data-p="70"></div></div>
-          <div class="comp-footer"><span class="comp-level">Intermédiaire</span><span class="comp-percent">70%</span></div>
-        </div>
-
-        <div class="comp-card tilt-card" data-aos>
-          <div class="comp-head">
-            <div class="comp-icon"><i class="fas fa-code"></i></div>
-            <span class="comp-badge">CCC</span>
-          </div>
-          <h3>Créer des applications</h3>
-          <p>Développer des outils et applications adaptés aux besoins du réseau et des utilisateurs.</p>
-          <div class="comp-tags"><span>Python</span><span>API REST</span><span>Socket</span><span>Git</span></div>
-          <div class="progress-wrap"><div class="progress-bar" data-p="65"></div></div>
-          <div class="comp-footer"><span class="comp-level">Intermédiaire</span><span class="comp-percent">65%</span></div>
-        </div>
-
-        <div class="comp-card cyber tilt-card" data-aos>
-          <div class="comp-head">
-            <div class="comp-icon"><i class="fas fa-shield-halved"></i></div>
-            <span class="comp-badge cyber-badge">CyberA</span>
-          </div>
-          <h3>Sécuriser les réseaux</h3>
-          <p>Concevoir des architectures sécurisées avec pare-feux, VPN, PKI et contrôle d'accès.</p>
-          <div class="comp-tags"><span>Firewall</span><span>IPSec</span><span>PKI</span><span>DMZ</span></div>
-          <div class="progress-wrap"><div class="progress-bar" data-p="80"></div></div>
-          <div class="comp-footer"><span class="comp-level">Avancé</span><span class="comp-percent">80%</span></div>
-        </div>
-
-        <div class="comp-card cyber tilt-card" data-aos>
-          <div class="comp-head">
-            <div class="comp-icon"><i class="fas fa-bug"></i></div>
-            <span class="comp-badge cyber-badge">CyberB</span>
-          </div>
-          <h3>Analyser les menaces</h3>
-          <p>Évaluer la sécurité par des audits et tests d'intrusion pour identifier les vulnérabilités.</p>
-          <div class="comp-tags"><span>Kali Linux</span><span>Nmap</span><span>Metasploit</span><span>OSINT</span></div>
-          <div class="progress-wrap"><div class="progress-bar" data-p="72"></div></div>
-          <div class="comp-footer"><span class="comp-level">Avancé</span><span class="comp-percent">72%</span></div>
-        </div>
-
+      <div class="timeline-item">
+        <div class="timeline-year">S4</div>
+        <div><div class="timeline-title">Semestre 4 — Fortinet & Bastion</div><div class="timeline-sub">FortiGate NGFW, inspection SSL, accès SSH/RDP centralisé, préparation Cisco CyberOps</div></div>
       </div>
-
-      <!-- Radar chart -->
-      <div class="radar-wrap" data-aos>
-        <h3 class="radar-title"><i class="fas fa-chart-radar"></i> Vue globale – Radar des compétences</h3>
-        <canvas id="radar-chart" width="460" height="460" aria-label="Radar des 5 blocs de compétences BUT RT Cybersécurité"></canvas>
+      <div class="timeline-item">
+        <div class="timeline-year">S3</div>
+        <div><div class="timeline-title">Semestre 3 — Projets avancés</div><div class="timeline-sub">IoT LoRaWAN · Android RBAC · Infra AD/RADIUS · Pentesting VulnHub</div></div>
       </div>
-
-      <!-- Certifications -->
-      <div class="certs-section" data-aos>
-        <h3 class="certs-title"><i class="fas fa-certificate"></i> Certifications visées</h3>
-        <div class="certs-grid">
-          <div class="cert-card tilt-card">
-            <div class="cert-icon"><i class="fas fa-shield-alt"></i></div>
-            <div class="cert-info">
-              <span class="cert-name">Cisco CyberOps Associate</span>
-              <span class="cert-org">Cisco Networking Academy</span>
-            </div>
-            <div class="cert-status in-progress"><i class="fas fa-spinner fa-spin"></i> En cours</div>
-          </div>
-          <div class="cert-card tilt-card">
-            <div class="cert-icon" style="color:#e25822"><i class="fas fa-fire"></i></div>
-            <div class="cert-info">
-              <span class="cert-name">Fortinet NSE 1 / NSE 2</span>
-              <span class="cert-org">Fortinet Training Institute</span>
-            </div>
-            <div class="cert-status in-progress"><i class="fas fa-spinner fa-spin"></i> En cours</div>
-          </div>
-          <div class="cert-card tilt-card">
-            <div class="cert-icon" style="color:#4285f4"><i class="fab fa-google"></i></div>
-            <div class="cert-info">
-              <span class="cert-name">Google IT Support Certificate</span>
-              <span class="cert-org">Google / Coursera</span>
-            </div>
-            <div class="cert-status planned"><i class="fas fa-clock"></i> Planifié</div>
-          </div>
-        </div>
+      <div class="timeline-item">
+        <div class="timeline-year">S1–2</div>
+        <div><div class="timeline-title">Fondamentaux RT</div><div class="timeline-sub">TCP/IP, routage, Linux, Python, Cisco Packet Tracer</div></div>
       </div>
-    </div>
-  </section>
-
-  <!-- ===================== OUTILS & TECHNOLOGIES ===================== -->
-  <section id="outils" class="section outils">
-    <div class="container">
-      <span class="section-tag" data-aos>Stack Technique</span>
-      <h2 class="section-title centered" data-aos>Outils &amp; Technologies</h2>
-      <p class="section-desc" data-aos>
-        Les technologies que j'utilise au quotidien dans mes projets réseau et cybersécurité.
-      </p>
-
-      <div class="tools-categories">
-
-        <div class="tool-cat" data-aos>
-          <h3 class="tool-cat-title"><i class="fas fa-network-wired"></i> Réseaux &amp; Infrastructure</h3>
-          <div class="tools-row">
-            <div class="tool-item"><div class="tool-icon-wrap"><i class="fas fa-router"></i></div><span>Cisco IOS</span></div>
-            <div class="tool-item"><div class="tool-icon-wrap"><i class="fas fa-wifi"></i></div><span>Ubiquiti Unifi</span></div>
-            <div class="tool-item"><div class="tool-icon-wrap"><i class="fas fa-server"></i></div><span>Windows Server 2019</span></div>
-            <div class="tool-item"><div class="tool-icon-wrap"><i class="fab fa-linux"></i></div><span>Debian Linux</span></div>
-            <div class="tool-item"><div class="tool-icon-wrap"><i class="fas fa-cloud"></i></div><span>vCenter / ESXi</span></div>
-            <div class="tool-item"><div class="tool-icon-wrap"><i class="fab fa-docker"></i></div><span>Docker</span></div>
-          </div>
-        </div>
-
-        <div class="tool-cat cyber-cat-wrap" data-aos>
-          <h3 class="tool-cat-title cyber-cat-h"><i class="fas fa-shield-halved"></i> Cybersécurité</h3>
-          <div class="tools-row">
-            <div class="tool-item cyber"><div class="tool-icon-wrap"><i class="fas fa-dragon"></i></div><span>Kali Linux</span></div>
-            <div class="tool-item cyber"><div class="tool-icon-wrap"><i class="fas fa-map-marked-alt"></i></div><span>Nmap</span></div>
-            <div class="tool-item cyber"><div class="tool-icon-wrap"><i class="fas fa-bolt"></i></div><span>Metasploit</span></div>
-            <div class="tool-item cyber"><div class="tool-icon-wrap"><i class="fas fa-search"></i></div><span>Gobuster</span></div>
-            <div class="tool-item cyber"><div class="tool-icon-wrap"><i class="fas fa-fire"></i></div><span>FortiGate</span></div>
-            <div class="tool-item cyber"><div class="tool-icon-wrap"><i class="fas fa-eye"></i></div><span>Wireshark</span></div>
-          </div>
-        </div>
-
-        <div class="tool-cat dev-cat-wrap" data-aos>
-          <h3 class="tool-cat-title dev-cat-h"><i class="fas fa-code"></i> Développement</h3>
-          <div class="tools-row">
-            <div class="tool-item dev"><div class="tool-icon-wrap"><i class="fab fa-python"></i></div><span>Python</span></div>
-            <div class="tool-item dev"><div class="tool-icon-wrap"><i class="fab fa-java"></i></div><span>Java / Android</span></div>
-            <div class="tool-item dev"><div class="tool-icon-wrap"><i class="fas fa-microchip"></i></div><span>Arduino C++</span></div>
-            <div class="tool-item dev"><div class="tool-icon-wrap"><i class="fab fa-git-alt"></i></div><span>Git / GitHub</span></div>
-            <div class="tool-item dev"><div class="tool-icon-wrap"><i class="fas fa-terminal"></i></div><span>Bash</span></div>
-            <div class="tool-item dev"><div class="tool-icon-wrap"><i class="fab fa-js"></i></div><span>JavaScript</span></div>
-          </div>
-        </div>
-
-        <div class="tool-cat iot-cat-wrap" data-aos>
-          <h3 class="tool-cat-title iot-cat-h"><i class="fas fa-broadcast-tower"></i> IoT &amp; Supervision</h3>
-          <div class="tools-row">
-            <div class="tool-item iot"><div class="tool-icon-wrap"><i class="fas fa-chart-line"></i></div><span>Grafana</span></div>
-            <div class="tool-item iot"><div class="tool-icon-wrap"><i class="fas fa-satellite-dish"></i></div><span>ChirpStack</span></div>
-            <div class="tool-item iot"><div class="tool-icon-wrap"><i class="fas fa-map"></i></div><span>Datacake</span></div>
-            <div class="tool-item iot"><div class="tool-icon-wrap"><i class="fas fa-database"></i></div><span>PostgreSQL/Redis</span></div>
-            <div class="tool-item iot"><div class="tool-icon-wrap"><i class="fas fa-envelope-open-text"></i></div><span>Mosquitto MQTT</span></div>
-            <div class="tool-item iot"><div class="tool-icon-wrap"><i class="fas fa-cloud-upload-alt"></i></div><span>Digital Ocean VPS</span></div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== PREUVES / SAÉ ===================== -->
-  <section id="preuves" class="section preuves">
-    <div class="container">
-      <span class="section-tag" data-aos>Travaux</span>
-      <h2 class="section-title centered" data-aos>Preuves de Compétences</h2>
-      <p class="section-desc" data-aos>
-        Chaque SAÉ constitue une preuve concrète de l'acquisition de mes compétences,
-        documentée selon le cadre : contexte · savoirs · tâches · visuels · problèmes.
-      </p>
-
-      <div class="tab-nav" role="tablist">
-        <button class="tab-btn active" data-tab="sae301" role="tab" aria-selected="true">
-          <span class="tab-num">SAÉ 3.01</span><span class="tab-name">Transmission</span>
-        </button>
-        <button class="tab-btn" data-tab="sae302" role="tab">
-          <span class="tab-num">SAÉ 3.02</span><span class="tab-name">Applications</span>
-        </button>
-        <button class="tab-btn" data-tab="cyber03" role="tab">
-          <span class="tab-num">Cyber.03</span><span class="tab-name">Réseau sécurisé</span>
-        </button>
-        <button class="tab-btn" data-tab="cyber04" role="tab">
-          <span class="tab-num">Cyber.04</span><span class="tab-name">Pentesting</span>
-        </button>
-        <button class="tab-btn" data-tab="stage" role="tab">
-          <span class="tab-num">S4</span><span class="tab-name">SAÉ4 – Cyber</span>
-        </button>
-      </div>
-
-      <div class="tab-body">
-
-        <!-- ---- SAÉ 3.01 ---- -->
-        <div class="tab-pane active" id="tab-sae301" role="tabpanel">
-          <div class="sae-header">
-            <div>
-              <h3>SAÉ 3.01 – Infrastructure IoT LoRaWAN</h3>
-              <div class="sae-tags"><span class="tag-c">CCA</span><span class="tag-c">CCB</span><span class="tag-s">Semestre 3</span></div>
-              <div class="ac-tags">
-                <span class="tag-ac" title="Déployer des postes clients et des solutions virtualisées">AC21.03</span>
-                <span class="tag-ac" title="Déployer des services réseaux avancés">AC21.04</span>
-                <span class="tag-ac" title="Travailler en équipe pour développer ses compétences professionnelles">AC21.06</span>
-                <span class="tag-ac" title="Déployer et caractériser des systèmes de transmissions complexes">AC22.01</span>
-                <span class="tag-ac" title="Capacité à questionner un cahier des charges R&T">AC22.05</span>
-                <span class="tag-ac" title="Développer une application à partir d'un cahier des charges, pour le Web ou périphériques mobiles">AC23.02</span>
-                <span class="tag-ac" title="Utiliser un protocole réseau pour programmer une application client/serveur">AC23.03</span>
-              </div>
-            </div>
-            <div class="sae-icon"><i class="fas fa-broadcast-tower"></i></div>
-          </div>
-          <div class="proof-grid">
-
-            <div class="proof-card">
-              <div class="proof-head"><i class="fas fa-map-marker-alt"></i><h4>Contexte</h4></div>
-              <p>Réalisé en binôme avec <strong>Abel Raquin</strong>, l'objectif de cette SAÉ était de concevoir
-              et déployer une <strong>infrastructure IoT LoRaWAN complète</strong> pour le suivi GPS en temps réel de
-              balises lors d'une course d'orientation dans la forêt autour de Roanne. Le défi principal était la
-              transmission fiable de coordonnées GPS toutes les 10 secondes dans un environnement forestier dense,
-              contraignant l'utilisation du <em>Data Rate 0 ("Mode Forêt")</em> pour maximiser la portée.</p>
-            </div>
-
-            <div class="proof-card">
-              <div class="proof-head"><i class="fas fa-brain"></i><h4>Savoirs mobilisés</h4></div>
-              <div class="savoirs">
-                <div class="savoir-item"><span class="stag">Savoir</span><p>Protocole LoRaWAN (OTAA, DR0, EU868), architecture IoT (capteur → gateway → serveur → dashboard), cryptographie symétrique (AppKey AES-128), modèle OSI couches physique et réseau, Docker et VPS Linux.</p></div>
-                <div class="savoir-item"><span class="stag">Savoir-faire</span><p>Programmation Arduino (C++) pour SeeedStudio, débogage matériel (correction de bugs de pilotage Pin 38/Serial2), déploiement ChirpStack v4 via Docker Compose (Mosquitto, PostgreSQL, Redis) sur Digital Ocean, écriture d'un payload decoder JavaScript.</p></div>
-                <div class="savoir-item"><span class="stag">Savoir-être</span><p>Travail en binôme, répartition des tâches (développement embarqué / infrastructure serveur), rigueur dans la documentation technique, gestion du temps sur un projet en deux phases distinctes.</p></div>
-              </div>
-            </div>
-
-            <div class="proof-card">
-              <div class="proof-head"><i class="fas fa-tasks"></i><h4>Tâches réalisées &amp; Résultats</h4></div>
-              <ul class="task-list">
-                <li><i class="fas fa-check-circle"></i> <strong>Phase 1 – POC sur TTN :</strong> code Arduino validé (OTAA, fix GPS, envoi encodé), visualisation sur Datacake avec décodeur JS (÷ 1 000 000).</li>
-                <li><i class="fas fa-check-circle"></i> <strong>Phase 2 – Infrastructure privée :</strong> VPS Digital Ocean, stack ChirpStack v4 sous Docker Compose, reconfiguration passerelle Dragino LPS8N.</li>
-                <li><i class="fas fa-check-circle"></i> Enregistrement du Device (DevEUI <code>8CF9572000065F6A</code>) avec mode OTAA et validation de la séquence JoinRequest/JoinAccept dans l'onglet Events ChirpStack.</li>
-                <li><i class="fas fa-check-circle"></i> Test réel en extérieur : déplacement GPS visible en temps réel sur le dashboard Datacake (vidéo de démonstration produite).</li>
-              </ul>
-            </div>
-
-
-
-            <div class="proof-card cr-card">
-              <div class="proof-head"><i class="fas fa-file-pdf"></i><h4>Compte Rendu complet</h4></div>
-              <iframe src="cr/SAE3.01.pdf" class="cr-iframe" title="Compte rendu SAÉ 3.01"></iframe>
-              <div class="cr-actions">
-                <a href="cr/SAE3.01.pdf" target="_blank" class="btn-cr-open"><i class="fas fa-external-link-alt"></i> Ouvrir</a>
-                <a href="cr/SAE3.01.pdf" download class="btn-cr-dl"><i class="fas fa-download"></i> Télécharger</a>
-              </div>
-            </div>
-
-            <div class="proof-card">
-              <div class="proof-head"><i class="fas fa-exclamation-triangle"></i><h4>Problèmes &amp; Solutions</h4></div>
-              <div class="pb-list">
-                <div class="pb-item">
-                  <p class="pb-label"><i class="fas fa-times-circle"></i> Problème #1 – Crash matériel de la carte</p>
-                  <p>L'activation de la <strong>Pin 50</strong> selon la documentation officielle SeeedStudio provoquait un plantage immédiat de la carte.</p>
-                  <p class="sol-label"><i class="fas fa-lightbulb"></i> Solution</p>
-                  <p>Après analyse du schéma électrique, nous avons piloté uniquement la <strong>Pin 38</strong> pour l'alimentation GPS et utilisé <strong>Serial2</strong> pour la communication, contournant le bug matériel.</p>
-                </div>
-                <div class="pb-item">
-                  <p class="pb-label"><i class="fas fa-times-circle"></i> Problème #2 – Migration vers le serveur privé</p>
-                  <p>Les données reçues par ChirpStack étaient encodées (octets bruts) et illisibles directement dans Datacake.</p>
-                  <p class="sol-label"><i class="fas fa-lightbulb"></i> Solution</p>
-                  <p>Rédaction d'un <strong>payload decoder JavaScript</strong> divisant les octets par 1 000 000 pour retrouver les coordonnées float (latitude/longitude) et création d'un champ <em>Geopoint</em> dans Datacake.</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- ---- SAÉ 3.02 ---- -->
-        <div class="tab-pane" id="tab-sae302" role="tabpanel">
-          <div class="sae-header">
-            <div>
-              <h3>SAÉ 3.02 – Application Android Client/Serveur</h3>
-              <div class="sae-tags"><span class="tag-c">CCC</span><span class="tag-s">Semestre 3</span></div>
-              <div class="ac-tags">
-                <span class="tag-ac" title="Travailler en équipe pour développer ses compétences professionnelles">AC21.06</span>
-                <span class="tag-ac" title="Capacité à questionner un cahier des charges R&T">AC22.05</span>
-                <span class="tag-ac" title="Développer une application à partir d'un cahier des charges, pour le Web ou périphériques mobiles">AC23.02</span>
-                <span class="tag-ac" title="Utiliser un protocole réseau pour programmer une application client/serveur">AC23.03</span>
-                <span class="tag-ac tag-ac-cyber" title="Connaître et utiliser les bonnes pratiques et recommandations de cybersécurité">AC24.01Cyber</span>
-                <span class="tag-ac tag-ac-cyber" title="Sécuriser les services">AC24.03Cyber</span>
-              </div>
-            </div>
-            <div class="sae-icon"><i class="fas fa-code"></i></div>
-          </div>
-          <div class="proof-grid">
-
-            <div class="proof-card">
-              <div class="proof-head"><i class="fas fa-map-marker-alt"></i><h4>Contexte</h4></div>
-              <p>Projet individuel consistant à concevoir une <strong>application Android complète</strong> implémentant
-              une architecture Client/Serveur. Les contraintes techniques imposées étaient fortes :
-              gestion des protocoles <strong>TCP et UDP</strong>, <strong>multithreading</strong> pour gérer plusieurs
-              clients simultanément, sérialisation Java des données et mise en place d'un système de
-              <strong>contrôle d'accès basé sur les rôles (RBAC)</strong> avec authentification sécurisée. Développé sous
-              Android Studio (Java).</p>
-            </div>
-
-            <div class="proof-card">
-              <div class="proof-head"><i class="fas fa-brain"></i><h4>Savoirs mobilisés</h4></div>
-              <div class="savoirs">
-                <div class="savoir-item"><span class="stag">Savoir</span><p>Architecture Client/Serveur, protocoles TCP (fiable) vs UDP (rapide), sérialisation Java (<code>Serializable</code>), gestion du cycle de vie des <code>Activity</code> Android, sécurité RBAC.</p></div>
-                <div class="savoir-item"><span class="stag">Savoir-faire</span><p>Développement Android (Java) sous Android Studio, sockets TCP/UDP, <code>ObjectOutputStream</code>/<code>ObjectInputStream</code>, <code>Thread</code> séparés pour les opérations réseau, passage de données entre <code>Activity</code> par <code>Intent</code>.</p></div>
-                <div class="savoir-item"><span class="stag">Savoir-être</span><p>Rigueur dans les tests (émulateur + téléphone réel), documentation du code, respect des contraintes Android (interdiction opérations réseau sur le thread principal).</p></div>
-              </div>
-            </div>
-
-            <div class="proof-card">
-              <div class="proof-head"><i class="fas fa-tasks"></i><h4>Tâches réalisées &amp; Résultats</h4></div>
-              <ul class="task-list">
-                <li><i class="fas fa-check-circle"></i> <strong>LoginActivity :</strong> authentification sécurisée avec gestion des rôles (Admin / Étudiant) — accès refusé avec message Toast en cas d'identifiant incorrect.</li>
-                <li><i class="fas fa-check-circle"></i> <strong>ServerActivity :</strong> serveur hybride TCP+UDP sur port 8080 avec threads dédiés par client, logs en temps réel.</li>
-                <li><i class="fas fa-check-circle"></i> <strong>RBAC :</strong> le bouton "Panneau Admin (Serveur)" est masqué (<code>View.GONE</code>) pour les étudiants, empêchant physiquement tout accès non autorisé.</li>
-                <li><i class="fas fa-check-circle"></i> Classe <code>MessagePacket implements Serializable</code> encapsulant type, user et content pour un transport réseau fidèle.</li>
-                <li><i class="fas fa-check-circle"></i> Tests validés : envoi UDP (<em>"[UDP] Etu1 : Bonjour"</em>), connexion multi-clients simultanés, scénario de mauvais mot de passe.</li>
-              </ul>
-            </div>
-
-
-
-            <div class="proof-card cr-card">
-              <div class="proof-head"><i class="fas fa-file-pdf"></i><h4>Compte Rendu complet</h4></div>
-              <iframe src="cr/SAE3.02.pdf" class="cr-iframe" title="Compte rendu SAÉ 3.02"></iframe>
-              <div class="cr-actions">
-                <a href="cr/SAE3.02.pdf" target="_blank" class="btn-cr-open"><i class="fas fa-external-link-alt"></i> Ouvrir</a>
-                <a href="cr/SAE3.02.pdf" download class="btn-cr-dl"><i class="fas fa-download"></i> Télécharger</a>
-              </div>
-            </div>
-
-            <div class="proof-card">
-              <div class="proof-head"><i class="fas fa-exclamation-triangle"></i><h4>Problèmes &amp; Solutions</h4></div>
-              <div class="pb-list">
-                <div class="pb-item">
-                  <p class="pb-label"><i class="fas fa-times-circle"></i> Problème – NetworkOnMainThreadException</p>
-                  <p>Android interdit les opérations réseau sur le thread principal, provoquant une <code>NetworkOnMainThreadException</code> lors des premières tentatives de connexion socket.</p>
-                  <p class="sol-label"><i class="fas fa-lightbulb"></i> Solution</p>
-                  <p>Toutes les opérations réseau (écoute serveur, envoi client) ont été déplacées dans des <strong>threads dédiés</strong>. Le serveur instancie un nouveau thread TCP par client accepté, garantissant la gestion parallèle sans bloquer l'interface.</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- ---- SAÉ Cyber.03 ---- -->
-        <div class="tab-pane" id="tab-cyber03" role="tabpanel">
-          <div class="sae-header">
-            <div>
-              <h3>SAÉ Cyber.03 – Infrastructure réseau sécurisée multi-services</h3>
-              <div class="sae-tags">
-                <span class="tag-c tag-cyber">CyberA</span>
-                <span class="tag-c">CCA</span><span class="tag-c">CCB</span>
-                <span class="tag-s">Semestre 3</span>
-              </div>
-              <div class="ac-tags">
-                <span class="tag-ac" title="Configurer et dépanner le routage dynamique dans un réseau">AC21.01</span>
-                <span class="tag-ac" title="Configurer et expliquer une politique simple de QoS et fonctions de base de sécurité">AC21.02</span>
-                <span class="tag-ac" title="Déployer des postes clients et des solutions virtualisées">AC21.03</span>
-                <span class="tag-ac" title="Déployer des services réseaux avancés">AC21.04</span>
-                <span class="tag-ac" title="Travailler en équipe pour développer ses compétences professionnelles">AC21.06</span>
-                <span class="tag-ac" title="Déployer et caractériser des systèmes de transmissions complexes">AC22.01</span>
-                <span class="tag-ac" title="Mettre en place un accès distant sécurisé">AC22.02</span>
-                <span class="tag-ac" title="Capacité à questionner un cahier des charges R&T">AC22.05</span>
-                <span class="tag-ac" title="Automatiser l'administration système avec des scripts">AC23.01</span>
-                <span class="tag-ac tag-ac-cyber" title="Connaître et utiliser les bonnes pratiques et recommandations de cybersécurité">AC24.01Cyber</span>
-                <span class="tag-ac tag-ac-cyber" title="Mettre en œuvre les outils fondamentaux de sécurisation d'une infrastructure réseau">AC24.02Cyber</span>
-                <span class="tag-ac tag-ac-cyber" title="Sécuriser les services">AC24.03Cyber</span>
-              </div>
-            </div>
-            <div class="sae-icon"><i class="fas fa-shield-halved"></i></div>
-          </div>
-          <div class="proof-grid">
-
-            <div class="proof-card">
-              <div class="proof-head"><i class="fas fa-map-marker-alt"></i><h4>Contexte</h4></div>
-              <p>Projet individuel (Etu7) visant à <strong>moderniser l'infrastructure réseau vieillissante</strong>
-              d'une entreprise fictive (Windows 2008/Debian 7) vers un environnement actuel et sécurisé
-              (Windows Server 2019/Debian 11). Le projet couvrait la virtualisation sous <strong>vCenter</strong>,
-              le routage dynamique <strong>OSPFv2</strong>, la gestion centralisée des identités (<strong>AD-DS</strong>),
-              la mobilité Wi-Fi sécurisée (<strong>WPA2-Enterprise / RADIUS 802.1X</strong>),
-              la publication d'applications <strong>RemoteApp (RDS)</strong> et la supervision
-              (<strong>Grafana</strong>). Réseau : Domaine <code>etu7.sae</code> – LAN <code>172.32.68.0/24</code> – VLAN 8.</p>
-            </div>
-
-            <div class="proof-card">
-              <div class="proof-head"><i class="fas fa-brain"></i><h4>Savoirs mobilisés</h4></div>
-              <div class="savoirs">
-                <div class="savoir-item"><span class="stag">Savoir</span><p>Active Directory (AD-DS, DNS, OU), protocole 802.1X / WPA2-Enterprise, OSPFv2 (area 0), VLAN et segmentation réseau, PKI et PEAP/MS-CHAPv2, virtualisation vCenter (Thin Provisioning), supervision Grafana/Prometheus.</p></div>
-                <div class="savoir-item"><span class="stag">Savoir-faire</span><p>Déploiement Windows Server 2019 sur vCenter, configuration AD-DS + DNS (<code>nslookup</code>), installation NPS (RADIUS), configuration Unifi (SSID WPA2-Enterprise + Visiteur isolé avec QoS 2 Mbps), ACL Cisco pour cloisonnement réseau invité, SSH v2 sur tous les équipements Cisco.</p></div>
-                <div class="savoir-item"><span class="stag">Savoir-être</span><p>Autonomie et prise d'initiative face aux incidents, démarche de diagnostic logique (logs, identification conflits de ports), justification des choix techniques par matrices de décision (Ubiquiti vs Cisco, Grafana vs Zabbix).</p></div>
-              </div>
-            </div>
-
-            <div class="proof-card">
-              <div class="proof-head"><i class="fas fa-tasks"></i><h4>Tâches réalisées &amp; Résultats</h4></div>
-              <ul class="task-list">
-                <li><i class="fas fa-check-circle"></i> Déploiement VM Windows Server 2019 sur vCenter (Thin Provisioning, 60 Go), configuration AD-DS et DNS pour le domaine <code>etu7.sae</code>, organisation en Unités d'Organisation (OU).</li>
-                <li><i class="fas fa-check-circle"></i> Routage dynamique OSPFv2 sur deux routeurs Cisco physiques (R0 et R1), interconnexion via réseau <code>172.32.128.0/30</code>, DHCP sécurisé confiné au VLAN 8.</li>
-                <li><i class="fas fa-check-circle"></i> Publication d'applications RemoteApp (LibreOffice Calc + Acrylic Wi-Fi) via portail RDWeb, accessible depuis une machine cliente du domaine.</li>
-                <li><i class="fas fa-check-circle"></i> Wi-Fi sécurisé : SSID <em>Entreprise_Etu7</em> (WPA2-Enterprise, auth RADIUS/NPS avec compte AD <code>ttproduction</code>) + SSID <em>Visiteur_Etu7</em> (isolé, 2 Mbps).</li>
-                <li><i class="fas fa-check-circle"></i> ACL Cisco pour cloisonnement strict réseau invité → LAN collaborateur, SSH v2 sur tous les équipements.</li>
-              </ul>
-            </div>
-
-
-
-            <div class="proof-card cr-card">
-              <div class="proof-head"><i class="fas fa-file-pdf"></i><h4>Compte Rendu complet</h4></div>
-              <iframe src="cr/Cyber.03.pdf" class="cr-iframe" title="Compte rendu SAÉ Cyber.03"></iframe>
-              <div class="cr-actions">
-                <a href="cr/Cyber.03.pdf" target="_blank" class="btn-cr-open"><i class="fas fa-external-link-alt"></i> Ouvrir</a>
-                <a href="cr/Cyber.03.pdf" download class="btn-cr-dl"><i class="fas fa-download"></i> Télécharger</a>
-              </div>
-            </div>
-
-            <div class="proof-card">
-              <div class="proof-head"><i class="fas fa-exclamation-triangle"></i><h4>Problèmes &amp; Solutions</h4></div>
-              <div class="pb-list">
-                <div class="pb-item">
-                  <p class="pb-label"><i class="fas fa-times-circle"></i> Problème – Conflit de port sur le contrôleur Unifi</p>
-                  <p>Lors du démarrage du contrôleur Unifi, une erreur empêchait son lancement : le <strong>port 8080</strong> était déjà utilisé par un autre service sur la machine.</p>
-                  <p class="sol-label"><i class="fas fa-lightbulb"></i> Solution</p>
-                  <p>Identification du processus bloquant via le <strong>Gestionnaire des tâches (PID)</strong>, arrêt du service concurrent, puis relance réussie du contrôleur Unifi. Cette approche méthodique (analyse des logs → identification du conflit → résolution ciblée) a évité une réinstallation inutile.</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- ---- SAÉ Cyber.04 ---- -->
-        <div class="tab-pane" id="tab-cyber04" role="tabpanel">
-          <div class="sae-header">
-            <div>
-              <h3>SAÉ Cyber.04 – Pentesting (Tests d'intrusion)</h3>
-              <div class="sae-tags">
-                <span class="tag-c tag-cyber">CyberB</span>
-                <span class="tag-s">Semestre 3</span>
-              </div>
-              <div class="ac-tags">
-                <span class="tag-ac" title="Capacité à questionner un cahier des charges R&T">AC22.05</span>
-                <span class="tag-ac tag-ac-cyber" title="Connaître et utiliser les bonnes pratiques et recommandations de cybersécurité">AC24.01Cyber</span>
-                <span class="tag-ac tag-ac-cyber" title="Mettre en œuvre les outils fondamentaux de sécurisation d'une infrastructure réseau">AC24.02Cyber</span>
-                <span class="tag-ac tag-ac-cyber" title="Connaître les différents types d'attaque">AC24.05Cyber</span>
-                <span class="tag-ac tag-ac-cyber" title="Comprendre des documents techniques en anglais">AC24.06Cyber</span>
-                <span class="tag-ac tag-ac-cyber" title="Administrer les protections contre les logiciels malveillants">AC25.01Cyber</span>
-                <span class="tag-ac tag-ac-cyber" title="Prendre en main des outils de test de pénétration réseau/système">AC25.02Cyber</span>
-              </div>
-            </div>
-            <div class="sae-icon"><i class="fas fa-user-secret"></i></div>
-          </div>
-          <div class="proof-grid">
-
-            <div class="proof-card">
-              <div class="proof-head"><i class="fas fa-map-marker-alt"></i><h4>Contexte</h4></div>
-              <p>SAÉ individuelle de <strong>tests d'intrusion éthiques</strong> réalisés sur des machines virtuelles
-              volontairement vulnérables (VulnHub) dans un réseau <strong>isolé Host-Only</strong> (Kali Linux <code>192.168.195.3</code>).
-              Toutes les manipulations ont été effectuées dans un environnement hors-production.
-              Les cibles sont : <strong>Kioptrix Level 1</strong> (Linux/Samba) et <strong>SickOs 1.2</strong>
-              (lighttpd/PHP). Pour chaque machine, une méthodologie structurée a été suivie :
-              reconnaissance → exploitation → élévation de privilèges → rapport.</p>
-            </div>
-
-            <div class="proof-card">
-              <div class="proof-head"><i class="fas fa-brain"></i><h4>Savoirs mobilisés</h4></div>
-              <div class="savoirs">
-                <div class="savoir-item"><span class="stag">Savoir</span><p>CVE et CVSS (CVE-2003-0201, CVE-2017-0238), catégories OWASP (mauvaise configuration serveur, upload de fichier non restreint), mécanismes de débordement de tampon (<em>buffer overflow</em>), cronjobs Linux et permissions SUID, Egress Filtering.</p></div>
-                <div class="savoir-item"><span class="stag">Savoir-faire</span><p>Scan de ports Nmap (<code>-sV</code>, <code>-sC</code>, <code>-p-</code>), énumération web Gobuster, exploitation Metasploit (<code>exploit/linux/samba/trans2open</code>), upload de reverse shell PHP via <code>curl -T</code> (HTTP PUT), élévation de privilèges via chkrootkit 0.49 (script <code>/tmp/update</code> + SUID bash).</p></div>
-                <div class="savoir-item"><span class="stag">Savoir-être</span><p>Éthique professionnelle et respect strict du cadre légal (lab isolé, autorisations explicites), rédaction de rapports techniques clairs avec preuves de compromission, formulation de recommandations de sécurisation.</p></div>
-              </div>
-            </div>
-
-            <div class="proof-card">
-              <div class="proof-head"><i class="fas fa-tasks"></i><h4>Tâches réalisées &amp; Résultats</h4></div>
-              <ul class="task-list">
-                <li><i class="fas fa-check-circle"></i> <strong>Kioptrix Level 1 :</strong> scan Nmap → Samba 2.2.1a identifié via Metasploit (<code>smb_version</code>) → exploit <code>trans2open</code> (CVE-2003-0201) → shell root direct → flag lu dans <code>/var/spool/mail/root</code>.</li>
-                <li><i class="fas fa-check-circle"></i> <strong>SickOs 1.2 :</strong> scan Nmap → lighttpd 1.4.28 → Gobuster → <code>/test/</code> → méthode HTTP PUT activée → upload reverse shell PHP (port 443 pour contourner l'Egress Filtering) → shell <code>www-data</code>.</li>
-                <li><i class="fas fa-check-circle"></i> <strong>Élévation de privilèges (SickOs) :</strong> chkrootkit 0.49 (CVE-2017-0238) → cronjob daily → création de <code>/tmp/update</code> (<code>chmod +s /bin/bash</code>) → SUID bash → <code>/bin/bash -p</code> → root + flag.</li>
-                <li><i class="fas fa-check-circle"></i> Rédaction de rapports de pentest complets avec résumé d'attaque et recommandations de sécurité détaillées.</li>
-              </ul>
-            </div>
-
-
-
-            <div class="proof-card">
-              <div class="proof-head"><i class="fas fa-exclamation-triangle"></i><h4>Problèmes &amp; Solutions</h4></div>
-              <div class="pb-list">
-                <div class="pb-item">
-                  <p class="pb-label"><i class="fas fa-times-circle"></i> Problème – Reverse shell bloqué (SickOs)</p>
-                  <p>Après l'upload du shell PHP, la connexion <code>netcat</code> sur le port standard <strong>4444</strong>
-                  n'aboutissait jamais : la machine cible filtrait les connexions sortantes sur les ports non-standards
-                  (Egress Filtering/pare-feu sortant).</p>
-                  <p class="sol-label"><i class="fas fa-lightbulb"></i> Solution</p>
-                  <p>Modification du script PHP pour utiliser le <strong>port 443</strong> (HTTPS), considéré comme
-                  légitime pour le trafic sortant et donc non filtré. Écoute avec <code>sudo nc -lvnp 443</code>
-                  (nécessite les droits root car port &lt; 1024) → connexion réussie.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="proof-card cr-card">
-              <div class="proof-head"><i class="fas fa-file-pdf"></i><h4>Compte Rendu complet</h4></div>
-              <iframe src="cr/Cyber.04.pdf" class="cr-iframe" title="Compte rendu SAÉ Cyber.04"></iframe>
-              <div class="cr-actions">
-                <a href="cr/Cyber.04.pdf" target="_blank" class="btn-cr-open"><i class="fas fa-external-link-alt"></i> Ouvrir</a>
-                <a href="cr/Cyber.04.pdf" download class="btn-cr-dl"><i class="fas fa-download"></i> Télécharger</a>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- ---- Stage / SAÉ S4 ---- -->
-        <div class="tab-pane" id="tab-stage" role="tabpanel">
-          <div class="stage-notice" role="note">
-            <i class="fas fa-clock"></i>
-            <div>
-              <strong>Stage en entreprise – non encore réalisé</strong>
-              <p>Cette section présente les travaux académiques réalisés en Semestre 4 (SAÉ4.Cyber.01 – Fortinet &amp; Bastion). Le stage ou l'alternance en entreprise n'a pas encore eu lieu et sera ajouté à l'issue de la formation.</p>
-            </div>
-          </div>
-          <div class="sae-header">
-            <div>
-              <h3>SAÉ4.Cyber.01 – Sécurité Fortinet &amp; Bastion (Semestre 4)</h3>
-              <div class="sae-tags">
-                <span class="tag-c tag-cyber">CyberA</span>
-                <span class="tag-c tag-cyber">CyberB</span>
-                <span class="tag-s">Semestre 4</span>
-              </div>
-            </div>
-            <div class="sae-icon"><i class="fas fa-shield-alt"></i></div>
-          </div>
-          <div class="proof-grid">
-
-            <div class="proof-card">
-              <div class="proof-head"><i class="fas fa-map-marker-alt"></i><h4>Contexte</h4></div>
-              <p>Travaux dirigés et projet en binôme (avec <strong>Baptiste Feige</strong>) autour de la
-              plateforme <strong>Fortinet</strong> dans le cadre du semestre 4. L'objectif est de maîtriser
-              les équipements pare-feux de niveau entreprise, la mise en place de politiques de blocage
-              des cyberattaques et le déploiement d'un <strong>serveur Bastion</strong> pour sécuriser
-              les accès d'administration.</p>
-            </div>
-
-            <div class="proof-card">
-              <div class="proof-head"><i class="fas fa-brain"></i><h4>Savoirs mobilisés</h4></div>
-              <div class="savoirs">
-                <div class="savoir-item"><span class="stag">Savoir</span><p>Pare-feux Next-Generation (NGFW) Fortinet/FortiGate, principes du zero-trust, architecture Bastion (jump server), politiques de sécurité et inspection SSL/TLS, journalisation et audit des accès.</p></div>
-                <div class="savoir-item"><span class="stag">Savoir-faire</span><p>Configuration de règles de sécurité FortiGate pour bloquer les cyberattaques (IPS, antivirus, filtrage URL), déploiement et configuration d'un Bastion pour centraliser les accès SSH/RDP, gestion des politiques par utilisateur/groupe.</p></div>
-                <div class="savoir-item"><span class="stag">Savoir-être</span><p>Collaboration efficace en binôme, documentation technique rigoureuse, respect des consignes de sécurité de l'environnement de lab.</p></div>
-              </div>
-            </div>
-
-            <div class="proof-card">
-              <div class="proof-head"><i class="fas fa-tasks"></i><h4>Missions réalisées &amp; Résultats</h4></div>
-              <ul class="task-list">
-                <li><i class="fas fa-check-circle"></i> TD 01 – Configuration du FortiGate pour bloquer les cyberattaques connues (Partie 1) : règles IPS, signatures d'attaques.</li>
-                <li><i class="fas fa-check-circle"></i> TD 02 – Configuration du FortiGate pour bloquer les cyberattaques connues (Partie 2) : filtrage applicatif, inspection HTTPS.</li>
-                <li><i class="fas fa-check-circle"></i> TD 04 – Mise en place d'un serveur Bastion (avec Baptiste Feige) : accès centralisé aux équipements d'administration, journalisation des sessions.</li>
-                <li><i class="fas fa-check-circle"></i> Accès aux ressources certifiantes Fortinet dans le cadre de la formation.</li>
-              </ul>
-            </div>
-
-            <div class="proof-card cr-card">
-              <div class="proof-head"><i class="fas fa-file-pdf"></i><h4>Compte Rendu – TD4 Bastion (Badolle, Feige)</h4></div>
-              <iframe src="cr/SAE4.pdf" class="cr-iframe" title="Compte rendu SAÉ4 – Bastion"></iframe>
-              <div class="cr-actions">
-                <a href="cr/SAE4.pdf" target="_blank" class="btn-cr-open"><i class="fas fa-external-link-alt"></i> Ouvrir</a>
-                <a href="cr/SAE4.pdf" download class="btn-cr-dl"><i class="fas fa-download"></i> Télécharger</a>
-              </div>
-            </div>
-
-            <div class="proof-card">
-              <div class="proof-head"><i class="fas fa-exclamation-triangle"></i><h4>Difficultés &amp; Apprentissages</h4></div>
-              <div class="pb-list">
-                <div class="pb-item">
-                  <p class="pb-label"><i class="fas fa-times-circle"></i> Difficulté – Complexité de l'interface FortiGate</p>
-                  <p>La multitude d'options de l'interface FortiOS et la subtilité de l'ordre des règles de sécurité (first-match) rendait difficile la mise en place des politiques sans bloquer le trafic légitime.</p>
-                  <p class="sol-label"><i class="fas fa-lightbulb"></i> Apprentissage tiré</p>
-                  <p>L'importance de tester chaque règle individuellement avant de les combiner, et d'utiliser les logs FortiGate pour diagnostiquer les blocages inattendus. Cette rigueur est directement transposable à tout équipement réseau professionnel.</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </div><!-- /tab-body -->
-    </div>
-  </section>
-
-  <!-- ===================== RÉFLEXION – CYCLE DE GIBBS ===================== -->
-  <section id="reflexion" class="section reflexion">
-    <div class="container">
-      <span class="section-tag" data-aos>Méta-cognition</span>
-      <h2 class="section-title centered" data-aos>Analyse Réflexive</h2>
-      <p class="section-desc" data-aos>
-        Le <strong>Cycle de Gibbs</strong> est un modèle de réflexion structurée qui me permet d'analyser
-        en profondeur mes expériences d'apprentissage et d'améliorer continuellement ma pratique.
-      </p>
-
-      <div class="gibbs-layout">
-
-        <!-- Pentagon SVG -->
-        <div class="gibbs-pentagon-wrap" data-aos>
-          <svg class="gibbs-svg" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <filter id="glow-filter">
-                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-              </filter>
-            </defs>
-            <circle cx="160" cy="160" r="145" fill="none" stroke="rgba(99,102,241,0.1)" stroke-width="1"/>
-            <circle cx="160" cy="160" r="120" fill="none" stroke="rgba(99,102,241,0.06)" stroke-width="1" stroke-dasharray="4 4"/>
-            <polygon points="160,22 289,109 240,258 80,258 31,109"
-              fill="none" stroke="rgba(99,102,241,0.5)" stroke-width="1.5" stroke-dasharray="6 3"/>
-            <!-- Connecting lines -->
-            <line x1="160" y1="44" x2="267" y2="109" stroke="rgba(99,102,241,0.2)" stroke-width="1"/>
-            <line x1="267" y1="109" x2="218" y2="236" stroke="rgba(99,102,241,0.2)" stroke-width="1"/>
-            <line x1="218" y1="236" x2="102" y2="236" stroke="rgba(99,102,241,0.2)" stroke-width="1"/>
-            <line x1="102" y1="236" x2="53" y2="109" stroke="rgba(99,102,241,0.2)" stroke-width="1"/>
-            <line x1="53" y1="109" x2="160" y2="44" stroke="rgba(99,102,241,0.2)" stroke-width="1"/>
-            <!-- Step circles -->
-            <circle cx="160" cy="22" r="22" fill="#1e1b4b" stroke="#6366f1" stroke-width="2" class="g-step-circle" data-step="1" filter="url(#glow-filter)"/>
-            <text x="160" y="27" text-anchor="middle" fill="#a5b4fc" font-size="13" font-weight="700">1</text>
-            <circle cx="289" cy="109" r="22" fill="#1e1b4b" stroke="#ec4899" stroke-width="2" class="g-step-circle" data-step="2" filter="url(#glow-filter)"/>
-            <text x="289" y="114" text-anchor="middle" fill="#f9a8d4" font-size="13" font-weight="700">2</text>
-            <circle cx="240" cy="258" r="22" fill="#1e1b4b" stroke="#22d3ee" stroke-width="2" class="g-step-circle" data-step="3" filter="url(#glow-filter)"/>
-            <text x="240" y="263" text-anchor="middle" fill="#67e8f9" font-size="13" font-weight="700">3</text>
-            <circle cx="80" cy="258" r="22" fill="#1e1b4b" stroke="#10b981" stroke-width="2" class="g-step-circle" data-step="4" filter="url(#glow-filter)"/>
-            <text x="80" y="263" text-anchor="middle" fill="#6ee7b7" font-size="13" font-weight="700">4</text>
-            <circle cx="31" cy="109" r="22" fill="#1e1b4b" stroke="#f59e0b" stroke-width="2" class="g-step-circle" data-step="5" filter="url(#glow-filter)"/>
-            <text x="31" y="114" text-anchor="middle" fill="#fcd34d" font-size="13" font-weight="700">5</text>
-            <!-- Labels -->
-            <text x="160" y="3" text-anchor="middle" fill="#c7d2fe" font-size="9">Description</text>
-            <text x="317" y="100" text-anchor="middle" fill="#f9a8d4" font-size="9">Ressenti</text>
-            <text x="258" y="292" text-anchor="middle" fill="#67e8f9" font-size="9">Analyse</text>
-            <text x="62" y="292" text-anchor="middle" fill="#6ee7b7" font-size="9">Conclusions</text>
-            <text x="4" y="100" text-anchor="middle" fill="#fcd34d" font-size="9">Plan d'action</text>
-            <!-- Center -->
-            <circle cx="160" cy="160" r="40" fill="rgba(99,102,241,0.08)" stroke="rgba(99,102,241,0.35)" stroke-width="1"/>
-            <text x="160" y="155" text-anchor="middle" fill="#a5b4fc" font-size="8" font-weight="600">Cycle de</text>
-            <text x="160" y="168" text-anchor="middle" fill="#a5b4fc" font-size="8" font-weight="600">Gibbs</text>
-          </svg>
-        </div>
-
-        <!-- Detail cards -->
-        <div class="gibbs-cards">
-
-          <div class="gibbs-card" data-step="1" data-aos>
-            <div class="gc-header">
-              <div class="gc-num">1</div>
-              <div class="gc-icon"><i class="fas fa-clipboard-list"></i></div>
-              <div><span class="gc-step-lbl">Étape 1</span><h3>Description des faits</h3></div>
-            </div>
-            <p class="gc-method">Décrire objectivement ce qui s'est passé, sans jugement.</p>
-            <div class="gc-body">
-              <p>Lors de la <strong>SAÉ Cyber.03</strong> (Semestre 3), j'ai dû concevoir seul et déployer
-              une infrastructure réseau complète pour moderniser le système d'information d'une entreprise fictive.
-              En 4 semaines, il m'a fallu virtualiser un Windows Server 2019 sur vCenter, configurer l'Active
-              Directory (domaine <code>etu7.sae</code>), mettre en place OSPFv2 sur du matériel Cisco physique,
-              déployer un réseau Wi-Fi WPA2-Enterprise avec authentification RADIUS et publier des applications
-              RemoteApp. En parallèle, j'ai réalisé des travaux de veille technologique (choix Grafana vs
-              Zabbix, Ubiquiti vs Cisco).</p>
-            </div>
-          </div>
-
-          <div class="gibbs-card" data-step="2" data-aos>
-            <div class="gc-header">
-              <div class="gc-num">2</div>
-              <div class="gc-icon"><i class="fas fa-heart"></i></div>
-              <div><span class="gc-step-lbl">Étape 2</span><h3>Investigation du ressenti</h3></div>
-            </div>
-            <p class="gc-method">Exprimer honnêtement vos émotions et ressentis subjectifs.</p>
-            <div class="gc-body">
-              <p>Au démarrage, j'ai ressenti un mélange d'<strong>enthousiasme</strong> (projet ambitieux
-              et technique) et d'<strong>inquiétude</strong> face à l'ampleur du périmètre à couvrir seul.
-              La multiplication des technologies à maîtriser simultanément (vCenter, AD, OSPF, RADIUS, RDS)
-              a généré du <strong>stress</strong>, notamment lors du blocage causé par le conflit de port 8080
-              sur le contrôleur Unifi. La résolution méthodique de cet incident m'a procuré une vraie
-              <strong>satisfaction</strong> et un regain de confiance. En fin de projet, obtenir
-              la connexion Wi-Fi WPA2-Enterprise validée avec le compte Active Directory a été
-              un moment de véritable <strong>fierté</strong>.</p>
-            </div>
-          </div>
-
-          <div class="gibbs-card" data-step="3" data-aos>
-            <div class="gc-header">
-              <div class="gc-num">3</div>
-              <div class="gc-icon"><i class="fas fa-microscope"></i></div>
-              <div><span class="gc-step-lbl">Étape 3</span><h3>Analyse et évaluation</h3></div>
-            </div>
-            <p class="gc-method">Évaluer objectivement ce qui a bien fonctionné et ce qui aurait pu être amélioré.</p>
-            <div class="gc-body">
-              <p><strong>Points positifs :</strong> Ma démarche de diagnostic face au conflit de port Unifi
-              (analyse des logs → identification du PID → arrêt ciblé) a été efficace et m'a évité une
-              perte de temps. Les choix technologiques justifiés par des matrices de décision ont démontré
-              une capacité à raisonner objectivement plutôt que par habitude. Le cloisonnement réseau
-              (ACL, VLAN, réseaux visités isolés) était fonctionnel.</p>
-              <p style="margin-top:.75rem"><strong>Points à améliorer :</strong> j'aurais dû anticiper davantage
-              les dépendances entre services (ex. : le DNS doit être opérationnel avant de promouvoir le
-              Contrôleur de Domaine). Une meilleure planification initiale via un diagramme de dépendances
-              aurait évité plusieurs allers-retours.</p>
-            </div>
-          </div>
-
-          <div class="gibbs-card" data-step="4" data-aos>
-            <div class="gc-header">
-              <div class="gc-num">4</div>
-              <div class="gc-icon"><i class="fas fa-graduation-cap"></i></div>
-              <div><span class="gc-step-lbl">Étape 4</span><h3>Conclusions</h3></div>
-            </div>
-            <p class="gc-method">Tirer des enseignements généraux et personnels de cette expérience.</p>
-            <div class="gc-body">
-              <p>Ce projet m'a appris que l'<strong>autonomie technique</strong> s'acquiert en acceptant de
-              se confronter à l'inconnu sans chercher à tout maîtriser a priori. J'ai découvert que ma
-              capacité à diagnostiquer méthodiquement un incident (plutôt que de réinstaller "à l'aveugle")
-              est un point fort réel. En revanche, je dois progresser sur la <strong>planification
-              structurée</strong> des déploiements complexes : documenter les dépendances avant de commencer
-              évite des cycles d'erreur coûteux en temps.</p>
-            </div>
-          </div>
-
-          <div class="gibbs-card" data-step="5" data-aos>
-            <div class="gc-header">
-              <div class="gc-num">5</div>
-              <div class="gc-icon"><i class="fas fa-rocket"></i></div>
-              <div><span class="gc-step-lbl">Étape 5</span><h3>Retour à l'action</h3></div>
-            </div>
-            <p class="gc-method">Définir des actions concrètes pour progresser.</p>
-            <div class="gc-body">
-              <p>Pour mes prochains projets techniques, je vais systématiquement rédiger un
-              <strong>plan de dépendances</strong> avant tout déploiement. Je vais approfondir
-              la sécurité réseau Fortinet (SAÉ4.Cyber.01 en cours) et me préparer à la certification
-              <strong>Cisco CyberOps Associate</strong> (déjà entamée à l'étape 2 de Cyber.04).
-              Sur le plan du travail collaboratif, j'appliquerai le modèle de matrice de décision
-              (Grafana vs Zabbix, Ubiquiti vs Cisco) à d'autres choix technologiques pour continuer
-              à développer une argumentation technique rigoureuse et documentée.</p>
-            </div>
-          </div>
-
-        </div><!-- /gibbs-cards -->
-      </div><!-- /gibbs-layout -->
-    </div>
-  </section>
-
-  <!-- ===================== CONCLUSION GÉNÉRALE ===================== -->
-  <section id="conclusion" class="section conclusion">
-    <div class="container">
-      <span class="section-tag" data-aos>Bilan S3 &amp; S4</span>
-      <h2 class="section-title centered" data-aos>Conclusion Générale</h2>
-      <p class="section-desc" data-aos>
-        Retour sur l'acquisition de mes compétences BUT RT – Cybersécurité
-        à l'issue des Semestres 3 et 4.
-      </p>
-
-      <!-- Bilan AC -->
-      <div class="concl-ac-section" data-aos>
-        <h3 class="concl-subtitle"><i class="fas fa-list-check"></i> Bilan des Apprentissages Critiques</h3>
-        <div class="ac-bilan-grid">
-
-          <div class="acb-block">
-            <div class="acb-head acb-cca"><i class="fas fa-network-wired"></i> CCA – Administrer</div>
-            <div class="acb-items">
-              <div class="acb-item acb-ok"><span class="acb-code">AC21.01</span><span class="acb-lbl">Configurer et dépanner le routage dynamique</span><span class="acb-status">Acquis</span></div>
-              <div class="acb-item acb-ok"><span class="acb-code">AC21.02</span><span class="acb-lbl">QoS et sécurité de base</span><span class="acb-status">Acquis</span></div>
-              <div class="acb-item acb-ok"><span class="acb-code">AC21.03</span><span class="acb-lbl">Déployer postes clients et virtualisation</span><span class="acb-status">Acquis</span></div>
-              <div class="acb-item acb-ok"><span class="acb-code">AC21.04</span><span class="acb-lbl">Déployer des services réseaux avancés</span><span class="acb-status">Acquis</span></div>
-              <div class="acb-item acb-ok"><span class="acb-code">AC21.06</span><span class="acb-lbl">Travailler en équipe</span><span class="acb-status">Acquis</span></div>
-            </div>
-          </div>
-
-          <div class="acb-block">
-            <div class="acb-head acb-ccb"><i class="fas fa-globe"></i> CCB – Connecter</div>
-            <div class="acb-items">
-              <div class="acb-item acb-ok"><span class="acb-code">AC22.01</span><span class="acb-lbl">Systèmes de transmissions complexes</span><span class="acb-status">Acquis</span></div>
-              <div class="acb-item acb-ok"><span class="acb-code">AC22.02</span><span class="acb-lbl">Accès distant sécurisé</span><span class="acb-status">Acquis</span></div>
-              <div class="acb-item acb-wip"><span class="acb-code">AC22.05</span><span class="acb-lbl">Questionner un cahier des charges R&amp;T</span><span class="acb-status">En cours</span></div>
-            </div>
-          </div>
-
-          <div class="acb-block">
-            <div class="acb-head acb-ccc"><i class="fas fa-code"></i> CCC – Créer</div>
-            <div class="acb-items">
-              <div class="acb-item acb-ok"><span class="acb-code">AC23.01</span><span class="acb-lbl">Automatiser avec des scripts</span><span class="acb-status">Acquis</span></div>
-              <div class="acb-item acb-ok"><span class="acb-code">AC23.02</span><span class="acb-lbl">Développer une application Web/mobile</span><span class="acb-status">Acquis</span></div>
-              <div class="acb-item acb-ok"><span class="acb-code">AC23.03</span><span class="acb-lbl">Programmer une app client/serveur</span><span class="acb-status">Acquis</span></div>
-            </div>
-          </div>
-
-          <div class="acb-block">
-            <div class="acb-head acb-cybera"><i class="fas fa-shield-halved"></i> CyberA – Sécuriser</div>
-            <div class="acb-items">
-              <div class="acb-item acb-ok"><span class="acb-code">AC24.01</span><span class="acb-lbl">Bonnes pratiques cybersécurité</span><span class="acb-status">Acquis</span></div>
-              <div class="acb-item acb-ok"><span class="acb-code">AC24.02</span><span class="acb-lbl">Outils de sécurisation d'infra réseau</span><span class="acb-status">Acquis</span></div>
-              <div class="acb-item acb-ok"><span class="acb-code">AC24.03</span><span class="acb-lbl">Sécuriser les services</span><span class="acb-status">Acquis</span></div>
-            </div>
-          </div>
-
-          <div class="acb-block">
-            <div class="acb-head acb-cyberb"><i class="fas fa-bug"></i> CyberB – Analyser</div>
-            <div class="acb-items">
-              <div class="acb-item acb-ok"><span class="acb-code">AC24.05</span><span class="acb-lbl">Types d'attaques</span><span class="acb-status">Acquis</span></div>
-              <div class="acb-item acb-ok"><span class="acb-code">AC24.06</span><span class="acb-lbl">Documents techniques en anglais</span><span class="acb-status">Acquis</span></div>
-              <div class="acb-item acb-ok"><span class="acb-code">AC25.01</span><span class="acb-lbl">Protections contre malwares</span><span class="acb-status">Acquis</span></div>
-              <div class="acb-item acb-ok"><span class="acb-code">AC25.02</span><span class="acb-lbl">Outils de test de pénétration</span><span class="acb-status">Acquis</span></div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Gibbs global -->
-      <div class="concl-gibbs" data-aos>
-        <h3 class="concl-subtitle"><i class="fas fa-brain"></i> Réflexion globale – S3 &amp; S4</h3>
-        <div class="concl-gibbs-grid">
-
-          <div class="cg-card">
-            <div class="cg-num">1</div>
-            <h4>Ce que j'ai fait</h4>
-            <p>Cinq SAÉ sur deux semestres, dans des domaines qui n'ont pas grand-chose en commun : IoT LoRaWAN sur VPS, application Android avec RBAC, infrastructure AD/RADIUS/vCenter, tests d'intrusion sur VulnHub, et sécurité Fortinet avec serveur Bastion. À chaque fois, j'ai dû apprendre un environnement que je ne connaissais pas encore — souvent en partant d'une page blanche.</p>
-          </div>
-
-          <div class="cg-card">
-            <div class="cg-num" style="background:var(--cyber)">2</div>
-            <h4>Ce que j'ai ressenti</h4>
-            <p>La progression n'a pas été linéaire. Les SAÉ techniques (Cyber.03, Pentesting) m'ont mis en difficulté, mais pas de la même façon : l'infra réseau demandait de la rigueur sur les dépendances, le pentesting demandait d'accepter de chercher sans trouver tout de suite. Les deux m'ont appris que l'inconfort est souvent le signe qu'on apprend vraiment.</p>
-          </div>
-
-          <div class="cg-card">
-            <div class="cg-num" style="background:var(--accent)">3</div>
-            <h4>Ce que j'analyse</h4>
-            <p>Mon profil se clarifie : je suis à l'aise dans les rôles qui mêlent technique et méthode — diagnostiquer un incident, argumenter un choix technologique, documenter proprement. Ce qui reste à travailler, c'est la planification en amont des projets complexes et la gestion du temps quand plusieurs technologies se croisent.</p>
-          </div>
-
-          <div class="cg-card">
-            <div class="cg-num" style="background:var(--green)">4</div>
-            <h4>Ce que j'en conclus</h4>
-            <p>Ces deux semestres ont confirmé que la cybersécurité est le domaine où je veux aller, défense comme offense. Mais la technique seule ne suffit pas — savoir documenter, expliquer et justifier ses choix compte autant en entreprise que savoir configurer un FortiGate.</p>
-          </div>
-
-          <div class="cg-card cg-card-full">
-            <div class="cg-num" style="background:var(--yellow)">5</div>
-            <h4>Mon plan d'action</h4>
-            <p>Le stage qui commence le <strong>6 avril 2026</strong> est la prochaine étape concrète. L'objectif n'est pas juste de valider les crédits : c'est de trouver un contexte où ce que j'ai appris devient opérationnel sur des problèmes réels. Je cherche une entreprise où je peux travailler sur de la sécurité réseau avec des gens qui ont des choses à m'apprendre — et où je peux enchaîner en alternance dès septembre. La <strong>certification Cisco CyberOps Associate</strong> avance en parallèle pour structurer les connaissances offensives.</p>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== CONTACT ===================== -->
-  <section id="contact" class="section contact">
-    <div class="container">
-      <span class="section-tag" data-aos>Liens &amp; Contact</span>
-      <h2 class="section-title centered" data-aos>Me Contacter</h2>
-      <p class="section-desc" data-aos>
-        Retrouvez mes projets sur les plateformes ci-dessous ou envoyez-moi un message directement.
-      </p>
-
-      <div class="contact-layout">
-        <div class="contact-cards-col" data-aos>
-          <div class="contact-grid">
-            <a href="https://github.com/Titouan-Badolle" target="_blank" rel="noopener noreferrer" class="contact-card">
-              <div class="cc-icon"><i class="fab fa-github"></i></div>
-              <h3>GitHub</h3>
-              <p>Mes projets, scripts<br/>et dépôts de code</p>
-              <span class="cc-link">@Titouan-Badolle</span>
-            </a>
-            <a href="https://www.linkedin.com/in/titouan-badolle-40031935a/" target="_blank" rel="noopener noreferrer" class="contact-card">
-              <div class="cc-icon"><i class="fab fa-linkedin"></i></div>
-              <h3>LinkedIn</h3>
-              <p>Mon profil professionnel<br/>et mon parcours</p>
-              <span class="cc-link">Titouan Badolle</span>
-            </a>
-            <a href="mailto:badolletitouanpro@gmail.com" class="contact-card">
-              <div class="cc-icon"><i class="fas fa-envelope"></i></div>
-              <h3>Email</h3>
-              <p>Pour toute question<br/>ou prise de contact</p>
-              <span class="cc-link">badolletitouanpro@gmail.com</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="contact-form-wrap" data-aos>
-          <h3 class="form-title"><i class="fas fa-paper-plane"></i> Envoyer un message</h3>
-          <form class="contact-form" id="contact-form">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="cf-name">Nom</label>
-                <input type="text" id="cf-name" name="name" placeholder="Votre nom..." autocomplete="name" />
-              </div>
-              <div class="form-group">
-                <label for="cf-email">Email</label>
-                <input type="email" id="cf-email" name="email" placeholder="votre@email.com" autocomplete="email" />
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="cf-subject">Sujet</label>
-              <input type="text" id="cf-subject" name="subject" placeholder="Objet du message..." />
-            </div>
-            <div class="form-group">
-              <label for="cf-message">Message</label>
-              <textarea id="cf-message" name="message" rows="4" placeholder="Votre message..."></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary form-submit" id="contact-submit">
-              <i id="contact-submit-icon" class="fas fa-paper-plane"></i>
-              <span id="contact-submit-text"> Envoyer le message</span>
-            </button>
-            <p class="form-note" id="form-note"><i class="fas fa-lock"></i> Message envoyé directement à badolletitouanpro@gmail.com</p>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== FOOTER ===================== -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <a href="#accueil" class="nav-logo">&lt;Portfolio /&gt;</a>
-          <p>E-Portfolio – BUT Réseaux &amp; Télécommunications</p>
-          <p>Titouan Badolle – Parcours Cybersécurité – 2024 / 2026</p>
-          <div class="footer-social">
-            <a href="https://github.com/Titouan-Badolle" target="_blank" rel="noopener noreferrer" class="footer-social-link"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/titouan-badolle-40031935a/" target="_blank" rel="noopener noreferrer" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
-            <a href="mailto:badolletitouanpro@gmail.com" class="footer-social-link"><i class="fas fa-envelope"></i></a>
-          </div>
-        </div>
-        <nav class="footer-nav">
-          <div class="footer-nav-col">
-            <span class="footer-nav-title">Navigation</span>
-            <a href="#accueil">Accueil</a>
-            <a href="#about">À propos</a>
-            <a href="#parcours">Parcours</a>
-            <a href="#competences">Compétences</a>
-          </div>
-          <div class="footer-nav-col">
-            <span class="footer-nav-title">Travaux</span>
-            <a href="#outils">Outils</a>
-            <a href="#preuves">Preuves SAÉ</a>
-            <a href="#reflexion">Réflexion</a>
-            <a href="#conclusion">Conclusion</a>
-            <a href="#contact">Contact</a>
-          </div>
-        </nav>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2026 – Titouan Badolle – Tous droits réservés</p>
-        <p>Hébergé sur <a href="https://pages.github.com" target="_blank" rel="noopener noreferrer">GitHub Pages</a></p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ===================== BACK TO TOP ===================== -->
-  <button class="back-to-top" id="back-to-top" aria-label="Retour en haut de page">
-    <i class="fas fa-chevron-up"></i>
-  </button>
-
-  <!-- ===================== VIDEO MODAL ===================== -->
-  <div class="vid-modal" id="vid-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Lecteur vidéo">
-    <div class="vid-modal-bg" id="vid-modal-bg"></div>
-    <div class="vid-modal-wrap">
-      <div class="vid-modal-header">
-        <p class="vid-modal-title"><i class="fas fa-film"></i><span id="vid-modal-title-text"></span></p>
-        <button class="vid-modal-close" id="vid-modal-close" aria-label="Fermer la vidéo">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="vid-modal-player-wrap">
-        <video id="vid-modal-player" controls playsinline class="vid-modal-player">
-          <source id="vid-modal-src" src="" type="video/mp4" />
-        </video>
+      <div class="timeline-item">
+        <div class="timeline-year">2023</div>
+        <div><div class="timeline-title">Bac STI2D SIN — Mention Bien</div><div class="timeline-sub">Systèmes embarqués, programmation, électronique numérique</div></div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- ===================== LIGHTBOX IMAGES ===================== -->
-  <div class="img-lightbox" id="img-lightbox" aria-hidden="true" role="dialog" aria-label="Agrandissement image">
-    <div class="lb-bg" id="lb-bg"></div>
-    <div class="lb-content">
-      <button class="lb-close" id="lb-close" aria-label="Fermer"><i class="fas fa-times"></i></button>
-      <img class="lb-img" id="lb-img" src="" alt="" />
-      <p class="lb-caption" id="lb-caption"></p>
+<!-- REFLEXION -->
+<div class="anchor" id="reflexion"></div>
+<section class="projects-section">
+  <div class="section-inner reveal">
+    <div class="section-label">Méta-cognition · Gibbs</div>
+    <h2>Analyse<br>réflexive</h2>
+    <p class="reflexion-intro">"Marcher tout en se regardant marcher — observer et évaluer ses propres actions tout en les réalisant."</p>
+    <p class="reflexion-body">Appliquée à la SAÉ Cyber.03 (infrastructure réseau sécurisée multi-services), qui représente le projet le plus ambitieux et le plus formateur de ces deux semestres.</p>
+    <div class="gibbs-grid">
+      <div class="gibbs-step">
+        <div class="gibbs-num">1</div>
+        <div class="gibbs-title">Description des faits</div>
+        <div class="gibbs-body">Déploiement seul d'une infra réseau complète en 4 semaines : vCenter, AD-DS, OSPFv2 sur Cisco physique, Wi-Fi WPA2-Enterprise RADIUS, RemoteApp et veille technologique (Grafana vs Zabbix, Ubiquiti vs Cisco).</div>
+      </div>
+      <div class="gibbs-step">
+        <div class="gibbs-num">2</div>
+        <div class="gibbs-title">Ressenti</div>
+        <div class="gibbs-body">Enthousiasme initial face à l'ambition du projet, puis stress face à la multiplication des technos à maîtriser simultanément. La résolution méthodique du conflit de port Unifi (8080) a procuré une vraie satisfaction et un regain de confiance.</div>
+      </div>
+      <div class="gibbs-step">
+        <div class="gibbs-num">3</div>
+        <div class="gibbs-title">Analyse</div>
+        <div class="gibbs-body">Points positifs : diagnostic par logs, choix technologiques justifiés par matrices de décision, cloisonnement réseau fonctionnel. À améliorer : anticiper les dépendances entre services — DNS doit être opérationnel avant la promotion du contrôleur de domaine.</div>
+      </div>
+      <div class="gibbs-step">
+        <div class="gibbs-num">4</div>
+        <div class="gibbs-title">Conclusions</div>
+        <div class="gibbs-body">L'autonomie technique s'acquiert en acceptant de se confronter à l'inconnu. Ma capacité à diagnostiquer méthodiquement (plutôt que réinstaller à l'aveugle) est un point fort réel. Je dois progresser sur la planification structurée des déploiements complexes.</div>
+      </div>
+      <div class="gibbs-step">
+        <div class="gibbs-num">5</div>
+        <div class="gibbs-title">Retour à l'action</div>
+        <div class="gibbs-body">Rédiger un plan de dépendances avant tout déploiement. Approfondir FortiGate (SAÉ4), préparer Cisco CyberOps Associate. Appliquer la matrice de décision à d'autres choix technologiques pour développer une argumentation rigoureuse.</div>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- ===================== TOAST ===================== -->
-  <div class="toast" id="toast" role="status" aria-live="polite">
-    <i class="fas fa-check-circle"></i>
-    <span id="toast-msg">Action effectuée</span>
+<!-- CONCLUSION -->
+<div class="anchor" id="conclusion"></div>
+<section class="conclusion-section">
+  <div class="section-inner reveal">
+    <div class="section-label">Bilan S3 & S4</div>
+    <h2>Conclusion<br>générale</h2>
+    <table class="ac-table">
+      <thead>
+        <tr>
+          <th>Compétence</th>
+          <th>Apprentissages critiques</th>
+          <th>SAÉ associée(s)</th>
+          <th>Statut</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="comp-badge">CCA</span>Administrer les réseaux</td>
+          <td class="ac-desc">AC21.01–06 · Routage, QoS, virtualisation, services réseau, travail en équipe</td>
+          <td class="ac-desc">Cyber.03 · SAÉ3.01</td>
+          <td><span class="status-ok">● Acquis</span></td>
+        </tr>
+        <tr>
+          <td><span class="comp-badge">CCB</span>Connecter les entreprises</td>
+          <td class="ac-desc">AC22.01–05 · Transmissions complexes, accès distant sécurisé, cahier des charges</td>
+          <td class="ac-desc">Cyber.03 · SAÉ3.01</td>
+          <td><span class="status-ok">● Acquis</span></td>
+        </tr>
+        <tr>
+          <td><span class="comp-badge">CCC</span>Créer des applications</td>
+          <td class="ac-desc">AC23.01–03 · Scripts, app web/mobile, client/serveur</td>
+          <td class="ac-desc">SAÉ3.02</td>
+          <td><span class="status-ok">● Acquis</span></td>
+        </tr>
+        <tr>
+          <td><span class="comp-badge">CyberA</span>Sécuriser les réseaux</td>
+          <td class="ac-desc">AC24.01–03 · Bonnes pratiques, outils de sécurisation, sécurisation des services</td>
+          <td class="ac-desc">Cyber.03 · SAÉ4</td>
+          <td><span class="status-ok">● Acquis</span></td>
+        </tr>
+        <tr>
+          <td><span class="comp-badge">CyberB</span>Analyser les menaces</td>
+          <td class="ac-desc">AC24.05–06 · AC25.01–02 · Types d'attaques, outils de pentest, anglais technique</td>
+          <td class="ac-desc">Cyber.04 · SAÉ4</td>
+          <td><span class="status-ok">● Acquis</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="conclusion-quote">"Ces deux semestres ont confirmé que la cybersécurité est le domaine où je veux aller, défense comme offense. Mais la technique seule ne suffit pas — savoir documenter, expliquer et justifier ses choix compte autant en entreprise que savoir configurer un FortiGate."</p>
   </div>
+</section>
 
-  <!-- EmailJS SDK -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script src="js/main.js"></script>
+<!-- CONTACT -->
+<div class="anchor" id="contact"></div>
+<section class="contact-section">
+  <div class="section-inner reveal">
+    <div class="section-label">Liens & Contact</div>
+    <h2>Me contacter</h2>
+
+    <div class="contact-grid">
+      <!-- GitHub card -->
+      <a class="contact-card" href="https://github.com/Titouan-Badolle" target="_blank">
+        <span class="contact-card-icon">{ }</span>
+        <div class="contact-card-title">GitHub</div>
+        <div class="contact-card-sub">Mes projets, scripts<br>et dépôts de code</div>
+        <div class="contact-card-link">@Titouan-Badolle</div>
+      </a>
+      <!-- LinkedIn card -->
+      <a class="contact-card" href="https://www.linkedin.com/in/titouan-badolle-40031935a/" target="_blank">
+        <span class="contact-card-icon">in</span>
+        <div class="contact-card-title">LinkedIn</div>
+        <div class="contact-card-sub">Mon profil professionnel<br>et mon parcours</div>
+        <div class="contact-card-link">Titouan Badolle</div>
+      </a>
+      <!-- Email card -->
+      <a class="contact-card" href="mailto:badolletitouanpro@gmail.com">
+        <span class="contact-card-icon">@</span>
+        <div class="contact-card-title">Email</div>
+        <div class="contact-card-sub">Pour toute question<br>ou prise de contact</div>
+        <div class="contact-card-link">badolletitouanpro@gmail.com</div>
+      </a>
+      <!-- Formulaire -->
+      <div class="contact-form-wrap">
+        <div class="form-title">Envoyer un message</div>
+        <form id="contactForm" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group"><label>Nom</label><input type="text" name="name" placeholder="Votre nom" required></div>
+            <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="votre@email.com" required></div>
+          </div>
+          <div class="form-group" style="margin-bottom:16px;"><label>Sujet</label><input type="text" name="subject" placeholder="Objet du message"></div>
+          <div class="form-group"><label>Message</label><textarea name="message" placeholder="Votre message..." required></textarea></div>
+          <div class="form-submit">
+            <button type="submit" class="btn-send">Envoyer <span>→</span></button>
+            <span class="form-note" id="formMsg"></span>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="contact-dispo">
+      <div class="dispo-dot"></div>
+      Disponible pour une alternance à partir de septembre 2027
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2026 · Titouan Badolle</span>
+  <span class="footer-right">BUT RT Cybersécurité · IUT Roanne</span>
+</footer>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx=0, my=0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.transform = `translate(${mx-4}px,${my-4}px)`;
+    const offset = ring.classList.contains('hover') ? 28 : 18;
+    ring.style.transform = `translate(${mx-offset}px,${my-offset}px)`;
+  });
+  document.querySelectorAll('a, button, .project-card, .stat, .skill-item, .cert-card, .tag, .contact-card, .side-dot').forEach(el => {
+    el.addEventListener('mouseenter', () => ring.classList.add('hover'));
+    el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+  });
+
+  // Card spotlight
+  document.querySelectorAll('.project-card, .contact-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
+      card.style.setProperty('--my', ((e.clientY-r.top)/r.height*100).toFixed(1)+'%');
+    });
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const revObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); revObs.unobserve(e.target); } });
+  }, { threshold: 0.06 });
+  revealEls.forEach(el => revObs.observe(el));
+
+  // Progress bar
+  const progress = document.getElementById('navProgress');
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    progress.style.width = pct + '%';
+  });
+
+  // Side indicator
+  const sections = [
+    { id: 'hero', el: document.getElementById('hero') },
+    { id: 'projects', el: document.getElementById('projects') },
+    { id: 'skills', el: document.getElementById('skills') },
+    { id: 'about', el: document.getElementById('about') },
+    { id: 'reflexion', el: document.getElementById('reflexion') },
+    { id: 'conclusion', el: document.getElementById('conclusion') },
+    { id: 'contact', el: document.getElementById('contact') },
+  ];
+  const dots = document.querySelectorAll('.side-dot');
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      const target = sections[i].el;
+      target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+  const sectionObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const idx = sections.findIndex(s => s.el === e.target);
+        if (idx >= 0) { dots.forEach(d => d.classList.remove('active')); dots[idx].classList.add('active'); }
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => { if(s.el) sectionObs.observe(s.el); });
+
+  // Form
+  function handleSubmit(e) {
+    e.preventDefault();
+    const f = e.target;
+    const name = f.name.value;
+    const email = f.email.value;
+    const subject = f.subject.value || 'Contact depuis portfolio';
+    const message = f.message.value;
+    const body = encodeURIComponent(`Nom: ${name}\n\n${message}`);
+    const mailto = `mailto:badolletitouanpro@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+    window.location.href = mailto;
+    document.getElementById('formMsg').textContent = 'Message envoyé à badolletitouanpro@gmail.com';
+    f.reset();
+  }
+</script>
 </body>
 </html>
